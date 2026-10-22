@@ -1,1 +1,219 @@
-Kalkulator Sistem Bilangan
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalkulator Sistem Bilangan</title>
+
+    <!-- Bootstrap CDN -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background-color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kalkulator {
+            max-width: 520px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .hasil-box {
+            background: #eaf2ff;
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        #hasil {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0d6efd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container py-4">
+        <div class="kalkulator mx-auto">
+
+            <h2 class="text-center fw-bold mb-2">
+                Kalkulator Sistem Bilangan
+            </h2>
+            <p class="text-center text-secondary mb-4">
+                Konversi antar sistem bilangan
+            </p>
+
+            <!-- Input angka -->
+            <div class="mb-3">
+                <label for="angka" class="form-label fw-semibold">
+                    Masukkan Angka
+                </label>
+                <input
+                    type="text"
+                    id="angka"
+                    class="form-control"
+                    placeholder="Contoh: 1010"
+                >
+            </div>
+
+            <!-- Sistem bilangan input -->
+            <div class="mb-3">
+                <label for="bilanganAsal" class="form-label fw-semibold">
+                    Sistem Bilangan Input
+                </label>
+                <select id="bilanganAsal" class="form-select">
+                    <option value="2">Biner (Basis 2)</option>
+                    <option value="8">Oktal (Basis 8)</option>
+                    <option value="10" selected>Desimal (Basis 10)</option>
+                    <option value="16">Heksadesimal (Basis 16)</option>
+                </select>
+            </div>
+
+            <!-- Sistem bilangan hasil -->
+            <div class="mb-4">
+                <label for="bilanganTujuan" class="form-label fw-semibold">
+                    Sistem Bilangan Hasil
+                </label>
+                <select id="bilanganTujuan" class="form-select">
+                    <option value="2">Biner (Basis 2)</option>
+                    <option value="8">Oktal (Basis 8)</option>
+                    <option value="10">Desimal (Basis 10)</option>
+                    <option value="16" selected>
+                        Heksadesimal (Basis 16)
+                    </option>
+                </select>
+            </div>
+
+            <!-- Tombol konversi -->
+            <button
+                type="button"
+                class="btn btn-primary w-100 mb-4 py-2"
+                onclick="konversikan()"
+            >
+                Konversi
+            </button>
+
+            <!-- Hasil -->
+            <div class="hasil-box">
+                <div class="text-secondary fw-semibold">
+                    HASIL KONVERSI
+                </div>
+                <div id="hasil">-</div>
+                <div id="keterangan" class="text-secondary mt-2">
+                    Hasil akan muncul di sini
+                </div>
+            </div>
+
+            <div id="pesan" class="text-danger small mt-3"></div>
+
+        </div>
+    </div>
+
+    <script>
+        function konversikan() {
+            const angka = document.getElementById("angka").value.trim();
+            const asal = Number(
+                document.getElementById("bilanganAsal").value
+            );
+            const tujuan = Number(
+                document.getElementById("bilanganTujuan").value
+            );
+
+            const hasil = document.getElementById("hasil");
+            const keterangan = document.getElementById("keterangan");
+            const pesan = document.getElementById("pesan");
+
+            pesan.textContent = "";
+            hasil.textContent = "-";
+
+            if (angka === "") {
+                pesan.textContent = "Silakan masukkan angka.";
+                keterangan.textContent = "Konversi belum dilakukan";
+                return;
+            }
+
+            // Validasi karakter berdasarkan basis
+            const pola = {
+                2: /^[01]+$/,
+                8: /^[0-7]+$/,
+                10: /^[0-9]+$/,
+                16: /^[0-9a-fA-F]+$/
+            };
+
+            if (!pola[asal].test(angka)) {
+                pesan.textContent =
+                    "Angka tidak valid untuk sistem bilangan " +
+                    namaBilangan(asal) + ".";
+                keterangan.textContent = "Konversi gagal";
+                return;
+            }
+
+            try {
+                // Konversi ke BigInt agar angka besar tetap akurat
+                let nilai = 0n;
+
+                for (const karakter of angka.toLowerCase()) {
+                    const digit = parseInt(karakter, 16);
+
+                    if (digit >= asal) {
+                        throw new Error("Digit tidak valid");
+                    }
+
+                    nilai = nilai * BigInt(asal) + BigInt(digit);
+                }
+
+                // Konversi ke sistem bilangan tujuan
+                const hasilKonversi = nilai
+                    .toString(tujuan)
+                    .toUpperCase();
+
+                hasil.textContent = hasilKonversi;
+                keterangan.textContent =
+                    namaBilangan(asal) + " → " + namaBilangan(tujuan);
+
+            } catch (error) {
+                pesan.textContent = "Terjadi kesalahan saat konversi.";
+                keterangan.textContent = "Konversi gagal";
+            }
+        }
+
+        function namaBilangan(basis) {
+            const nama = {
+                2: "Biner",
+                8: "Oktal",
+                10: "Desimal",
+                16: "Heksadesimal"
+            };
+
+            return nama[basis];
+        }
+
+        // Tekan Enter untuk menjalankan konversi
+        document.getElementById("angka").addEventListener(
+            "keydown",
+            function(event) {
+                if (event.key === "Enter") {
+                    konversikan();
+                }
+            }
+        );
+    </script>
+
+</body>
+</html>
+
