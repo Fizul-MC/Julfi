@@ -4,796 +4,955 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M Julfikar Al - 262505008 - MODULO PRO X</title>
+<title>M Julfikar Al - 262505008 - Modulo Calculator</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&display=swap');
-
 :root {
-  --green: #b7ff38;
-  --orange: #ff8a27;
-  --bg: #100f0b;
-  --panel: #1c1a13;
-  --line: #565039;
-  --text: #f5f0d5;
+  --deep: #062b3b;
+  --sea: #087e8b;
+  --aqua: #50d6c5;
+  --foam: #d9f7ef;
+  --sand: #f4d9a5;
+  --ink: #143b45;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 20px 12px 35px;
-  color: var(--text);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--foam);
   background:
-    radial-gradient(ellipse at top, #36301a 0%, transparent 65%),
-    repeating-linear-gradient(0deg, #100f0b 0px, #100f0b 3px, #14120d 4px);
+    radial-gradient(ellipse at 50% 0%, #176b7b 0%, transparent 55%),
+    linear-gradient(180deg, #0c5266, #062b3b 72%, #031c2a);
+  overflow-x: hidden;
 }
 
-button, input, select { font: inherit; }
-
-.app {
-  width: 100%;
-  max-width: 720px;
-  margin: auto;
-  padding: 20px;
-  background: linear-gradient(145deg, #28251a, #13120e 70%);
-  border: 2px solid #716647;
-  border-radius: 8px;
-  box-shadow: 0 0 0 5px #0b0a08, 0 0 35px #b7ff3820;
-  animation: boot .65s ease-out;
+/* Bintang laut dan gelembung */
+.ocean-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
 }
 
-@keyframes boot {
-  from { opacity: 0; transform: translateY(20px) scale(.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+.bubble {
+  position: absolute;
+  bottom: -60px;
+  border: 1px solid #a9fff0;
+  border-radius: 50%;
+  background: #9fffff12;
+  animation: rise linear infinite;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 2px solid var(--line);
-  padding-bottom: 15px;
+@keyframes rise {
+  from { transform: translateY(0) translateX(0); opacity: 0; }
+  15% { opacity: .7; }
+  80% { opacity: .5; }
+  to { transform: translateY(-115vh) translateX(35px); opacity: 0; }
+}
+
+.wave {
+  position: fixed;
+  bottom: -55px;
+  left: -10%;
+  width: 120%;
+  height: 110px;
+  border-radius: 45% 45% 0 0;
+  background: #39c9bc12;
+  animation: swell 7s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.wave.two {
+  bottom: -75px;
+  background: #50d6c516;
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+@keyframes swell {
+  from { transform: translateX(-3%) rotate(-2deg); }
+  to { transform: translateX(3%) rotate(2deg); }
+}
+
+header {
+  text-align: center;
+  padding: 35px 15px 15px;
+  animation: emerge 1s ease both;
 }
 
 .logo {
-  font: 900 clamp(20px, 5vw, 31px) 'Orbitron', sans-serif;
-  color: var(--green);
-  text-shadow: 0 0 12px #b7ff3870;
+  font-size: 48px;
+  filter: drop-shadow(0 5px 12px #001c28);
+  animation: float 3s ease-in-out infinite;
 }
 
-.version {
-  color: var(--orange);
-  font-size: 12px;
-  text-align: right;
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
 }
 
-.subtitle {
-  color: #b2aa87;
-  letter-spacing: 3px;
-  font-size: 11px;
-  margin-top: 8px;
-}
-
-.status {
-  display: flex;
-  justify-content: space-between;
-  margin: 16px 0;
-  font-size: 11px;
-  color: var(--green);
-}
-
-.dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 9px var(--green);
-  animation: blink 1.5s infinite;
-}
-
-@keyframes blink { 50% { opacity: .25; } }
-
-.screen {
-  position: relative;
-  overflow: hidden;
-  padding: 20px;
-  background: #080e08;
-  border: 2px solid #444a32;
-  border-radius: 4px;
-  box-shadow: inset 0 0 25px #000;
-  margin-bottom: 18px;
-}
-
-.screen::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    transparent 0px, transparent 3px,
-    #b7ff3808 4px
-  );
-}
-
-.screen-label {
-  color: #788e55;
-  font-size: 11px;
+h1 {
+  margin: 8px 0;
+  color: var(--sand);
+  font-size: clamp(25px, 5vw, 38px);
   letter-spacing: 2px;
+  text-shadow: 0 3px 0 #003343;
 }
 
-.result {
-  color: var(--green);
-  font: 800 clamp(30px, 8vw, 48px) 'Orbitron', sans-serif;
-  overflow-wrap: anywhere;
-  margin: 13px 0 8px;
-  text-shadow: 0 0 15px #b7ff3850;
-  transition: color .3s, transform .3s;
+header p {
+  margin: 8px 0;
+  color: #bcece5;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
-.result.pop { animation: resultPop .4s ease; }
-
-@keyframes resultPop {
-  0% { transform: scale(.94); opacity: .35; }
-  60% { transform: scale(1.04); }
-  100% { transform: scale(1); opacity: 1; }
+.container {
+  width: min(960px, 94%);
+  margin: 20px auto 60px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: 20px;
+  align-items: start;
+  animation: emerge .8s .1s ease both;
 }
 
-.screen-detail {
-  color: #a9b88c;
-  font-size: 13px;
-  min-height: 18px;
-  overflow-wrap: anywhere;
-}
-
-.tabs {
-  display: flex;
-  gap: 7px;
-  margin: 16px 0;
-}
-
-.tab {
-  flex: 1;
-  padding: 12px 4px;
-  color: #b7ae91;
-  background: #211f17;
-  border: 1px solid var(--line);
-  cursor: pointer;
-  font-size: 12px;
-  transition: .25s ease;
-}
-
-.tab.active {
-  color: #151509;
-  background: var(--green);
-  border-color: var(--green);
-  box-shadow: 0 0 14px #b7ff3830;
-  font-weight: bold;
-}
-
-.panel {
-  display: none;
-  animation: panelIn .3s ease;
-}
-
-.panel.active { display: block; }
-
-@keyframes panelIn {
-  from { opacity: 0; transform: translateY(8px); }
+@keyframes emerge {
+  from { opacity: 0; transform: translateY(22px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.field { margin: 15px 0; }
+.panel {
+  background: linear-gradient(145deg, #0c4657ee, #062c3aef);
+  border: 2px solid #4bc9bb72;
+  border-radius: 22px;
+  padding: 23px;
+  box-shadow: 0 12px 35px #00162075,
+              inset 0 1px 0 #a5fff22b;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--aqua), var(--sand), transparent);
+  opacity: .8;
+}
+
+h2 {
+  color: var(--sand);
+  font-size: 21px;
+  margin: 0 0 20px;
+}
 
 label {
   display: block;
-  color: var(--orange);
-  font-size: 12px;
-  margin-bottom: 8px;
-  letter-spacing: 1px;
+  margin: 15px 0 7px;
+  color: #c4eee7;
+  font-size: 14px;
 }
 
 input, select {
   width: 100%;
-  min-width: 0;
   padding: 13px;
-  color: var(--green);
-  background: #0d0d09;
-  border: 1px solid #57513b;
-  border-radius: 3px;
+  border: 1px solid #55b8b4;
+  border-radius: 10px;
   outline: none;
+  color: #eafffa;
+  background: #032532;
+  font-family: inherit;
+  font-size: 16px;
   transition: border .25s, box-shadow .25s;
 }
 
 input:focus, select:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 12px #b7ff3820;
+  border-color: var(--sand);
+  box-shadow: 0 0 0 3px #f4d9a529;
 }
 
-input::placeholder { color: #66604a; }
-
-select option { background: #17160f; }
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+select option {
+  background: #062b3b;
 }
 
-.actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 14px 8px;
-  border: 1px solid var(--green);
-  background: var(--green);
-  color: #171809;
-  font: 800 12px 'Orbitron', sans-serif;
+button {
+  border: 1px solid #7ce6d8;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #118e94, #075767);
+  color: white;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  transition: transform .15s, box-shadow .2s, filter .2s;
+  transition: transform .18s ease, filter .25s, box-shadow .25s;
+  box-shadow: 0 4px 0 #032d3b;
 }
 
-.btn.secondary {
-  color: var(--orange);
-  background: #20180f;
-  border-color: #845124;
+button:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 15px #50d6c554;
 }
 
-.btn:hover {
-  filter: brightness(1.15);
-  box-shadow: 0 0 15px #b7ff3835;
+button:active {
+  transform: translateY(3px) scale(.98);
+  box-shadow: 0 1px 0 #032d3b;
 }
 
-.btn:active {
-  transform: scale(.96);
+button:focus-visible {
+  outline: 2px solid var(--sand);
+  outline-offset: 3px;
 }
 
-.message {
-  display: none;
-  padding: 13px;
-  margin-top: 15px;
-  border: 1px solid var(--green);
-  background: #19200f;
-  color: var(--green);
-  line-height: 1.7;
+button.primary {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  color: #073746;
+  background: linear-gradient(135deg, #a6f5e4, #50d6c5);
+  border-color: #d6fff5;
+  font-size: 17px;
+}
+
+button.secondary {
+  background: #073441;
+}
+
+button.danger {
+  background: #603c3b;
+  border-color: #bb7770;
+}
+
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.quick button {
+  flex: 1;
+  min-width: 90px;
+  padding: 9px;
+  font-size: 13px;
+}
+
+.result-box {
+  margin-top: 20px;
+  padding: 20px 12px;
+  text-align: center;
+  background: linear-gradient(180deg, #031d2a, #064150);
+  border: 1px solid #49cbbb;
+  border-radius: 15px;
+  box-shadow: inset 0 0 20px #50d6c510;
+}
+
+.result-label {
+  color: #9ddbd2;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#result {
+  margin: 12px 0;
+  font-family: "Courier New", monospace;
+  font-size: clamp(27px, 5vw, 42px);
+  font-weight: bold;
+  color: var(--aqua);
   overflow-wrap: anywhere;
-  animation: panelIn .3s ease;
+  text-shadow: 0 0 16px #50d6c545;
 }
 
-.message.show { display: block; }
-
-.message.error {
-  border-color: #ff654d;
-  color: #ff8978;
-  background: #28130f;
+#result.animate {
+  animation: resultPop .45s cubic-bezier(.2,1.6,.4,1);
 }
 
-.history-title {
-  margin-top: 25px;
-  padding-top: 15px;
-  border-top: 1px dashed var(--line);
-  color: var(--orange);
-  font: 600 13px 'Orbitron', sans-serif;
+@keyframes resultPop {
+  from { opacity: 0; transform: scale(.75); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+#status {
+  min-height: 20px;
+  color: #f4d9a5;
+  font-size: 13px;
+}
+
+#steps {
+  margin-top: 14px;
+  padding: 12px;
+  background: #031d2a80;
+  border-left: 3px solid var(--sand);
+  border-radius: 5px;
+  color: #c7e9e2;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.history-list {
+  max-height: 330px;
+  overflow-y: auto;
 }
 
 .history-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 4px;
-  border-bottom: 1px solid #343023;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #398b8b;
+  border-radius: 10px;
+  background: #042d3b;
+  animation: emerge .3s ease both;
+  overflow-wrap: anywhere;
+}
+
+.history-item strong {
+  color: var(--aqua);
+}
+
+.history-item small {
+  display: block;
+  color: #a9d8d1;
+  margin-top: 5px;
+}
+
+.history-item button {
+  margin-top: 8px;
+  padding: 6px 10px;
   font-size: 12px;
-  animation: panelIn .3s ease;
 }
 
-.history-item span { overflow-wrap: anywhere; }
-.history-item strong { color: var(--green); }
-
-.small-btn {
-  padding: 6px 8px;
-  color: var(--orange);
-  background: transparent;
-  border: 1px solid #6e4829;
-  cursor: pointer;
+.empty {
+  color: #9ccac4;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-.footer {
-  margin-top: 25px;
+.toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.toolbar button {
+  flex: 1;
+}
+
+.note {
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #9dcac4;
+}
+
+footer {
   text-align: center;
-  color: #726c56;
-  font-size: 10px;
-  line-height: 2;
+  padding: 15px 15px 35px;
+  color: #8ec7c0;
+  font-size: 12px;
   letter-spacing: 1px;
 }
 
-kbd {
-  color: var(--green);
-  border: 1px solid #57513b;
-  padding: 2px 5px;
+@media (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr;
+    width: 92%;
+    gap: 16px;
+  }
+  .panel { padding: 19px; }
+  header { padding-top: 25px; }
 }
 
-@media (max-width: 420px) {
-  .app { padding: 13px; }
-  .screen { padding: 15px; }
-  .tab { font-size: 10px; }
-  .row { gap: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
-<div class="app">
+<div class="ocean-bg" id="ocean"></div>
+<div class="wave"></div>
+<div class="wave two"></div>
 
-  <header class="header">
-    <div>
-      <div class="logo">MODULO PRO X</div>
-      <div class="subtitle">ARCADE MATHEMATICS SYSTEM</div>
-    </div>
-    <div class="version">MK-II<br>BUILD 2.6.0</div>
-  </header>
+<header>
+  <div class="logo">⚓</div>
+  <h1>OCEAN MODULO</h1>
+  <p>MATHEMATICAL VOYAGE • DEEP SEA EDITION</p>
+</header>
 
-  <div class="status">
-    <span><i class="dot"></i> SYSTEM ONLINE</span>
-    <span>ENGINE: MOD-CORE</span>
-  </div>
+<main class="container">
 
-  <section class="screen" aria-live="polite">
-    <div class="screen-label">RESULT DISPLAY // OUTPUT</div>
-    <div class="result" id="result">READY_</div>
-    <div class="screen-detail" id="detail">
-      Masukkan angka untuk memulai.
-    </div>
-  </section>
+  <section class="panel">
+    <h2>🌊 Ruang Navigasi</h2>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="mod">01 MODULO</button>
-    <button class="tab" data-tab="cong">02 KONGRUENSI</button>
-    <button class="tab" data-tab="ops">03 OPERASI</button>
-  </nav>
+    <label for="operation">Pilih operasi matematika</label>
+    <select id="operation">
+      <option value="add">Penjumlahan modulo (a + b) mod m</option>
+      <option value="sub">Pengurangan modulo (a - b) mod m</option>
+      <option value="mul">Perkalian modulo (a × b) mod m</option>
+      <option value="div">Pembagian modular (a / b) mod m</option>
+      <option value="pow">Perpangkatan modular (a^b mod m)</option>
+      <option value="cong">Pengecekan kongruensi (a ≡ b mod m)</option>
+    </select>
 
-  <!-- PANEL MODULO -->
-  <section class="panel active" id="mod">
-    <div class="field">
-      <label for="a">INPUT A // BILANGAN BULAT</label>
-      <input id="a" type="number" step="1" placeholder="Contoh: -17">
-    </div>
+    <label for="a">Bilangan pertama (a)</label>
+    <input id="a" type="text" inputmode="numeric"
+           value="-17" placeholder="Contoh: -17">
 
-    <div class="field">
-      <label for="m">MODULUS M // TIDAK BOLEH NOL</label>
-      <input id="m" type="number" step="1" placeholder="Contoh: 5">
-    </div>
+    <label for="b" id="bLabel">Bilangan kedua (b)</label>
+    <input id="b" type="text" inputmode="numeric"
+           value="5" placeholder="Contoh: 5">
 
-    <div class="actions">
-      <button class="btn" onclick="calculateMod()">▶ HITUNG MOD</button>
-      <button class="btn secondary" onclick="randomMod()">⚄ ANGKA ACAK</button>
-    </div>
-  </section>
+    <label for="m">Modulus (m)</label>
+    <input id="m" type="text" inputmode="numeric"
+           value="7" placeholder="Contoh: 7">
 
-  <!-- PANEL KONGRUENSI -->
-  <section class="panel" id="cong">
-    <div class="field">
-      <label for="ca">INPUT A</label>
-      <input id="ca" type="number" step="1" placeholder="Contoh: -17">
+    <button class="primary" id="calculate">
+      ⚓ MULAI PERHITUNGAN
+    </button>
+
+    <div class="quick">
+      <button class="secondary" data-example="1">Contoh 1</button>
+      <button class="secondary" data-example="2">Contoh 2</button>
+      <button class="secondary" data-example="3">Contoh 3</button>
     </div>
 
-    <div class="field">
-      <label for="cb">INPUT B</label>
-      <input id="cb" type="number" step="1" placeholder="Contoh: 3">
+    <div class="result-box" aria-live="polite">
+      <div class="result-label">Hasil Ekspedisi</div>
+      <div id="result">?</div>
+      <div id="status">Siap menjelajahi dunia modulo.</div>
     </div>
 
-    <div class="field">
-      <label for="cm">MODULUS M</label>
-      <input id="cm" type="number" step="1" placeholder="Contoh: 5">
+    <div id="steps">
+      Masukkan bilangan, pilih operasi, lalu mulai perhitungan.
     </div>
 
-    <div class="actions">
-      <button class="btn" onclick="checkCongruence()">▶ CEK KONGRUENSI</button>
-      <button class="btn secondary" onclick="clearPanel('cong')">↺ RESET</button>
+    <div class="note">
+      🐚 Catatan: modulus harus berupa bilangan bulat positif.
+      Bilangan a dan b boleh negatif.
     </div>
   </section>
 
-  <!-- PANEL OPERASI -->
-  <section class="panel" id="ops">
-    <div class="row">
-      <div class="field">
-        <label for="oa">INPUT A</label>
-        <input id="oa" type="number" step="1" placeholder="-7">
-      </div>
+  <section class="panel">
+    <h2>📜 Logbook Kapal</h2>
+    <p class="empty">
+      Semua hasil ekspedisi akan tercatat di sini.
+    </p>
 
-      <div class="field">
-        <label for="ob">INPUT B</label>
-        <input id="ob" type="number" step="1" placeholder="3">
-      </div>
+    <div id="history" class="history-list"></div>
+
+    <div class="toolbar">
+      <button id="copyBtn" class="secondary">📋 Salin</button>
+      <button id="soundBtn" class="secondary">🔊 Suara ON</button>
+      <button id="clearBtn" class="danger">🗑 Hapus</button>
     </div>
 
-    <div class="field">
-      <label for="operation">PILIH OPERASI</label>
-      <select id="operation">
-        <option value="add">Penjumlahan (A + B) mod M</option>
-        <option value="sub">Pengurangan (A - B) mod M</option>
-        <option value="mul">Perkalian (A × B) mod M</option>
-        <option value="pow">Perpangkatan (A ^ B) mod M</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="om">MODULUS M</label>
-      <input id="om" type="number" step="1" placeholder="Contoh: 7">
-    </div>
-
-    <div class="actions">
-      <button class="btn" onclick="calculateOperation()">▶ EKSEKUSI</button>
-      <button class="btn secondary" onclick="clearPanel('ops')">↺ RESET</button>
-    </div>
-    <div class="screen-detail" style="margin-top:12px">
-      Catatan: eksponen B harus bilangan bulat nonnegatif.
+    <div class="note">
+      ⚙️ MESIN MATEMATIKA<br>
+      • Mendukung bilangan negatif.<br>
+      • Menghitung invers modular.<br>
+      • Memeriksa kongruensi bilangan.<br>
+      • Menampilkan langkah penyelesaian.<br>
+      • Riwayat tersimpan selama halaman aktif.
     </div>
   </section>
 
-  <div class="message" id="message"></div>
+</main>
 
-  <div class="actions">
-    <button class="btn secondary" onclick="copyResult()">▣ SALIN HASIL</button>
-    <button class="btn secondary" onclick="toggleSound()" id="soundBtn">♫ SUARA: OFF</button>
-  </div>
-
-  <section>
-    <div class="history-title">▸ LOG TERMINAL // RIWAYAT</div>
-    <div id="history">
-      <div class="screen-detail" style="padding:12px 0">
-        Belum ada perhitungan.
-      </div>
-    </div>
-    <button class="btn secondary" style="width:100%;margin-top:12px"
-      onclick="clearHistory()">HAPUS RIWAYAT</button>
-  </section>
-
-  <footer class="footer">
-    MODULO PRO X // ARCADE EDITION<br>
-    INTEGER MATH • NEGATIVE NUMBER SUPPORT<br>
-    PRESS BUTTON TO EXECUTE
-  </footer>
-
-</div>
+<footer>
+  ⚓ OCEAN MODULO • EXPLORE THE DEPTHS OF MATHEMATICS ⚓
+</footer>
 
 <script>
+"use strict";
+
 const $ = id => document.getElementById(id);
 
-let lastResult = "";
-let soundOn = false;
+let historyData = [];
+let soundEnabled = true;
 let audioContext = null;
-let historyItems = [];
 
-// Mengambil bilangan bulat dengan validasi
-function readInt(id, name) {
-  const el = $(id);
-  const raw = el.value.trim();
-
-  if (raw === "") {
-    throw new Error(name + " belum diisi.");
-  }
-
-  const n = Number(raw);
-
-  if (!Number.isSafeInteger(n)) {
-    throw new Error(name + " harus berupa bilangan bulat yang aman.");
-  }
-
-  return n;
-}
-
-// Modulo matematis: hasil selalu 0 sampai |m|-1
-function mod(a, m) {
-  if (m === 0) throw new Error("Modulus tidak boleh nol.");
-
-  const r = a % Math.abs(m);
-  return (r + Math.abs(m)) % Math.abs(m);
-}
-
-function showResult(value, description, formula) {
-  lastResult = String(value);
-
-  $("result").textContent = lastResult;
-  $("detail").textContent = description;
-
-  const result = $("result");
-  result.classList.remove("pop");
-  void result.offsetWidth;
-  result.classList.add("pop");
-
-  const message = $("message");
-  message.className = "message show";
-  message.innerHTML = "";
-
-  const title = document.createElement("strong");
-  title.textContent = "✓ PERHITUNGAN SELESAI";
-
-  const line = document.createElement("div");
-  line.style.marginTop = "8px";
-  line.textContent = formula;
-
-  const resultLine = document.createElement("div");
-  resultLine.style.marginTop = "8px";
-  resultLine.textContent = "HASIL: " + value;
-
-  message.append(title, line, resultLine);
-
-  addHistory(formula, value);
-  playTone(650);
-}
-
-function showError(error) {
-  const message = $("message");
-  message.className = "message show error";
-  message.textContent = "⚠ ERROR: " + error.message;
-  $("detail").textContent = "Periksa kembali input.";
-  playTone(180);
-}
-
-function calculateMod() {
-  try {
-    const a = readInt("a", "Angka A");
-    const m = readInt("m", "Modulus M");
-
-    if (m === 0) throw new Error("Modulus tidak boleh nol.");
-
-    const r = mod(a, m);
-
-    showResult(
-      r,
-      "RESIDU NORMAL: 0 sampai " + (Math.abs(m) - 1),
-      a + " mod " + m + " = " + r
-    );
-  } catch (e) {
-    showError(e);
-  }
-}
-
-function checkCongruence() {
-  try {
-    const a = readInt("ca", "Angka A");
-    const b = readInt("cb", "Angka B");
-    const m = readInt("cm", "Modulus M");
-
-    if (m === 0) throw new Error("Modulus tidak boleh nol.");
-
-    const ra = mod(a, m);
-    const rb = mod(b, m);
-    const difference = a - b;
-    const congruent = ra === rb;
-
-    const verdict = congruent ? "KONGRUEN" : "TIDAK KONGRUEN";
-
-    showResult(
-      congruent ? "TRUE" : "FALSE",
-      verdict + " MOD " + Math.abs(m),
-      a + " ≡ " + b + " (mod " + m + ") → " +
-      verdict + ". Residu: " + ra + " dan " + rb +
-      "; selisih: " + difference
-    );
-  } catch (e) {
-    showError(e);
-  }
-}
-
-// Perpangkatan modular menggunakan square-and-multiply
-// Menghindari pembentukan angka A^B yang sangat besar.
-function modularPower(base, exponent, modulus) {
-  let result = 1n;
-  let b = BigInt(mod(base, modulus));
-  let e = BigInt(exponent);
-  const m = BigInt(Math.abs(modulus));
-
-  result %= m;
-
-  while (e > 0n) {
-    if (e % 2n === 1n) {
-      result = (result * b) % m;
-    }
-
-    b = (b * b) % m;
-    e /= 2n;
-  }
-
-  return Number(result);
-}
-
-function calculateOperation() {
-  try {
-    const a = readInt("oa", "Angka A");
-    const b = readInt("ob", "Angka B");
-    const m = readInt("om", "Modulus M");
-
-    if (m === 0) throw new Error("Modulus tidak boleh nol.");
-
-    const operation = $("operation").value;
-    let value;
-    let expression;
-
-    switch (operation) {
-      case "add":
-        value = mod(a + b, m);
-        expression = "(" + a + " + " + b + ") mod " + m;
-        break;
-
-      case "sub":
-        value = mod(a - b, m);
-        expression = "(" + a + " - " + b + ") mod " + m;
-        break;
-
-      case "mul":
-        value = mod(a * b, m);
-        expression = "(" + a + " × " + b + ") mod " + m;
-        break;
-
-      case "pow":
-        if (b < 0) {
-          throw new Error(
-            "Eksponen negatif belum didukung. Gunakan B ≥ 0."
-          );
-        }
-
-        value = modularPower(a, b, m);
-        expression = "(" + a + " ^ " + b + ") mod " + m;
-        break;
-    }
-
-    if (!Number.isSafeInteger(value)) {
-      throw new Error("Hasil di luar batas bilangan aman.");
-    }
-
-    showResult(value, "OPERASI MODULAR SELESAI", expression);
-  } catch (e) {
-    showError(e);
-  }
-}
-
-function randomMod() {
-  $("a").value = Math.floor(Math.random() * 201) - 100;
-  $("m").value = Math.floor(Math.random() * 19) + 2;
-  calculateMod();
-}
-
-function addHistory(formula, value) {
-  historyItems.unshift({ formula, value });
-  historyItems = historyItems.slice(0, 8);
-
-  const history = $("history");
-  history.innerHTML = "";
-
-  historyItems.forEach(item => {
-    const row = document.createElement("div");
-    row.className = "history-item";
-
-    const formulaText = document.createElement("span");
-    formulaText.textContent = item.formula;
-
-    const resultText = document.createElement("strong");
-    resultText.textContent = item.value;
-
-    row.append(formulaText, resultText);
-    history.appendChild(row);
-  });
-}
-
-function clearHistory() {
-  historyItems = [];
-  $("history").innerHTML =
-    '<div class="screen-detail" style="padding:12px 0">' +
-    'Riwayat dibersihkan.</div>';
-}
-
-function clearPanel(id) {
-  $(id).querySelectorAll("input").forEach(input => input.value = "");
-  $("message").className = "message";
-  $("result").textContent = "READY_";
-  $("detail").textContent = "Masukkan angka untuk memulai.";
-  lastResult = "";
-}
-
-async function copyResult() {
-  if (!lastResult) {
-    showError(new Error("Belum ada hasil untuk disalin."));
-    return;
-  }
+// ===============================
+// SUARA INTERAKSI KALKULATOR PRO
+// ===============================
+function playSound(type = "click") {
+  if (!soundEnabled) return;
 
   try {
-    await navigator.clipboard.writeText(lastResult);
-    $("detail").textContent = "Hasil berhasil disalin: " + lastResult;
-    playTone(800);
-  } catch (e) {
-    // Fallback untuk browser tanpa Clipboard API
-    const textarea = document.createElement("textarea");
-    textarea.value = lastResult;
-    document.body.appendChild(textarea);
-    textarea.select();
+    const AudioCtx = window.AudioContext ||
+                     window.webkitAudioContext;
 
-    try {
-      const copied = document.execCommand("copy");
-      $("detail").textContent = copied
-        ? "Hasil berhasil disalin: " + lastResult
-        : "Salin manual: " + lastResult;
-    } catch {
-      $("detail").textContent = "Salin manual: " + lastResult;
-    }
+    if (!AudioCtx) return;
 
-    textarea.remove();
-  }
-}
-
-function toggleSound() {
-  soundOn = !soundOn;
-  $("soundBtn").textContent = soundOn
-    ? "♫ SUARA: ON"
-    : "♫ SUARA: OFF";
-
-  if (soundOn) playTone(600);
-}
-
-function playTone(frequency) {
-  if (!soundOn) return;
-
-  try {
-    audioContext ||= new (window.AudioContext ||
-      window.webkitAudioContext)();
+    if (!audioContext) audioContext = new AudioCtx();
 
     if (audioContext.state === "suspended") {
       audioContext.resume();
     }
 
-    const oscillator = audioContext.createOscillator();
+    const osc = audioContext.createOscillator();
     const gain = audioContext.createGain();
 
-    oscillator.type = "square";
-    oscillator.frequency.value = frequency;
-    gain.gain.value = 0.035;
+    const now = audioContext.currentTime;
+    const sounds = {
+      click: [700, 480, 0.045],
+      success: [650, 1050, 0.12],
+      error: [260, 150, 0.16],
+      clear: [500, 300, 0.09]
+    };
 
-    oscillator.connect(gain);
+    const [start, end, duration] = sounds[type] || sounds.click;
+
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(start, now);
+    osc.frequency.exponentialRampToValueAtTime(
+      Math.max(end, 1), now + duration
+    );
+
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.07, now + 0.008);
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001, now + duration
+    );
+
+    osc.connect(gain);
     gain.connect(audioContext.destination);
 
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.07);
+    osc.start(now);
+    osc.stop(now + duration + 0.01);
   } catch (e) {
-    // Audio tidak tersedia; kalkulator tetap berfungsi.
+    // Audio tidak tersedia: kalkulator tetap berfungsi.
   }
 }
 
-// Navigasi antar-mode
-document.querySelectorAll(".tab").forEach(tab => {
-  tab.addEventListener("click", () => {
-    document.querySelectorAll(".tab").forEach(t =>
-      t.classList.toggle("active", t === tab)
-    );
+// ===============================
+// ANIMASI GELEMBUNG LAUT
+// ===============================
+const ocean = $("ocean");
 
-    document.querySelectorAll(".panel").forEach(panel =>
-      panel.classList.toggle("active", panel.id === tab.dataset.tab)
-    );
+for (let i = 0; i < 24; i++) {
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
 
-    playTone(450);
+  const size = 5 + Math.random() * 20;
+
+  bubble.style.width = size + "px";
+  bubble.style.height = size + "px";
+  bubble.style.left = Math.random() * 100 + "%";
+  bubble.style.animationDuration = (9 + Math.random() * 15) + "s";
+  bubble.style.animationDelay = (-Math.random() * 20) + "s";
+
+  ocean.appendChild(bubble);
+}
+
+// ===============================
+// FUNGSI MATEMATIKA
+// ===============================
+
+// Menghasilkan sisa nonnegatif untuk modulus positif.
+function mod(a, m) {
+  return ((a % m) + m) % m;
+}
+
+function gcd(a, b) {
+  while (b !== 0n) {
+    const t = b;
+    b = a % b;
+    a = t;
+  }
+  return a < 0n ? -a : a;
+}
+
+// Algoritma Euclidean diperluas.
+function extendedGcd(a, b) {
+  let oldR = a, r = b;
+  let oldS = 1n, s = 0n;
+  let oldT = 0n, t = 1n;
+
+  while (r !== 0n) {
+    const q = oldR / r;
+
+    [oldR, r] = [r, oldR - q * r];
+    [oldS, s] = [s, oldS - q * s];
+    [oldT, t] = [t, oldT - q * t];
+  }
+
+  return { g: oldR, x: oldS, y: oldT };
+}
+
+// Invers modular: b^(-1) mod m.
+function inverseMod(b, m) {
+  const { g, x } = extendedGcd(b, m);
+
+  if (g !== 1n) return null;
+
+  return mod(x, m);
+}
+
+// Perpangkatan modular dengan eksponen sangat besar.
+function powMod(base, exp, m) {
+  let result = 1n % m;
+  base = mod(base, m);
+
+  while (exp > 0n) {
+    if (exp % 2n === 1n) {
+      result = (result * base) % m;
+    }
+
+    base = (base * base) % m;
+    exp /= 2n;
+  }
+
+  return result;
+}
+
+function readInteger(id) {
+  const value = $(id).value.trim();
+
+  if (!/^[+-]?\d+$/.test(value)) {
+    throw new Error(
+      "Masukkan bilangan bulat yang valid pada kolom " + id + "."
+    );
+  }
+
+  return BigInt(value);
+}
+
+function formatInteger(n) {
+  return n.toString();
+}
+
+// ===============================
+// MESIN PERHITUNGAN
+// ===============================
+function calculate() {
+  playSound("click");
+
+  try {
+    const a = readInteger("a");
+    const b = readInteger("b");
+    const m = readInteger("m");
+
+    if (m <= 0n) {
+      throw new Error("Modulus harus lebih besar dari nol.");
+    }
+
+    const op = $("operation").value;
+    let answer;
+    let explanation = "";
+    let status = "";
+
+    if (op === "add") {
+      answer = mod(a + b, m);
+      explanation =
+        `(${a} + ${b}) mod ${m}<br>` +
+        `= ${a + b} mod ${m}<br>` +
+        `= ${answer}`;
+      status = "Penjumlahan modulo berhasil.";
+    }
+
+    else if (op === "sub") {
+      answer = mod(a - b, m);
+      explanation =
+        `(${a} - ${b}) mod ${m}<br>` +
+        `= ${a - b} mod ${m}<br>` +
+        `= ${answer}`;
+      status = "Pengurangan modulo berhasil.";
+    }
+
+    else if (op === "mul") {
+      answer = mod(a * b, m);
+      explanation =
+        `(${a} × ${b}) mod ${m}<br>` +
+        `= ${a * b} mod ${m}<br>` +
+        `= ${answer}`;
+      status = "Perkalian modulo berhasil.";
+    }
+
+    else if (op === "div") {
+      const inverse = inverseMod(mod(b, m), m);
+
+      if (inverse === null) {
+        throw new Error(
+          `Pembagian tidak memiliki solusi tunggal: ` +
+          `invers ${b} modulo ${m} tidak ada karena ` +
+          `FPB(${b}, ${m}) bukan 1.`
+        );
+      }
+
+      answer = mod(a * inverse, m);
+
+      explanation =
+        `a / b mod m = a × b⁻¹ mod m<br>` +
+        `Invers ${b} modulo ${m} = ${inverse}<br>` +
+        `= (${a} × ${inverse}) mod ${m}<br>` +
+        `= ${answer}`;
+      status = "Pembagian modular berhasil.";
+    }
+
+    else if (op === "pow") {
+      if (b >= 0n) {
+        answer = powMod(a, b, m);
+
+        explanation =
+          `${a}<sup>${b}</sup> mod ${m}<br>` +
+          `= ${answer}<br>` +
+          `Dihitung dengan perpangkatan modular.`;
+      } else {
+        const inverse = inverseMod(mod(a, m), m);
+
+        if (inverse === null) {
+          throw new Error(
+            `Eksponen negatif membutuhkan invers ` +
+            `${a} modulo ${m}. Invers tersebut tidak ada.`
+          );
+        }
+
+        answer = powMod(inverse, -b, m);
+
+        explanation =
+          `${a}<sup>${b}</sup> mod ${m}<br>` +
+          `Invers ${a} modulo ${m} = ${inverse}<br>` +
+          `= ${inverse}<sup>${-b}</sup> mod ${m}<br>` +
+          `= ${answer}`;
+      }
+
+      status = "Perpangkatan modular berhasil.";
+    }
+
+    else if (op === "cong") {
+      const left = mod(a, m);
+      const right = mod(b, m);
+      const congruent = left === right;
+
+      answer = congruent ? "KONGRUEN ✓" : "TIDAK KONGRUEN ✗";
+
+      explanation =
+        `${a} mod ${m} = ${left}<br>` +
+        `${b} mod ${m} = ${right}<br>` +
+        `Selisih a − b = ${a - b}<br>` +
+        `FPB tidak diperlukan: sisa kedua bilangan dibandingkan.`;
+
+      status = congruent
+        ? "Kedua bilangan kongruen modulo " + m + "."
+        : "Kedua bilangan tidak kongruen modulo " + m + ".";
+    }
+
+    showResult(answer, status, explanation);
+    addHistory(`${a}, ${b}, ${m}`, answer, op);
+
+    playSound("success");
+
+  } catch (error) {
+    $("result").textContent = "⚠";
+    $("status").textContent = error.message;
+    $("steps").textContent = "Periksa kembali input dan operasi yang dipilih.";
+
+    animateResult();
+    playSound("error");
+  }
+}
+
+// ===============================
+// TAMPILAN HASIL
+// ===============================
+function showResult(answer, status, explanation) {
+  $("result").textContent = String(answer);
+  $("status").textContent = status;
+  $("steps").innerHTML = explanation;
+  animateResult();
+}
+
+function animateResult() {
+  const result = $("result");
+
+  result.classList.remove("animate");
+  void result.offsetWidth;
+  result.classList.add("animate");
+}
+
+// ===============================
+// RIWAYAT PERHITUNGAN
+// ===============================
+const operationNames = {
+  add: "Penjumlahan",
+  sub: "Pengurangan",
+  mul: "Perkalian",
+  div: "Pembagian modular",
+  pow: "Perpangkatan",
+  cong: "Pengecekan kongruensi"
+};
+
+function addHistory(numbers, answer, op) {
+  historyData.unshift({
+    numbers,
+    answer: String(answer),
+    op,
+    time: new Date().toLocaleTimeString("id-ID")
+  });
+
+  if (historyData.length > 30) {
+    historyData.pop();
+  }
+
+  renderHistory();
+}
+
+function renderHistory() {
+  const container = $("history");
+  container.replaceChildren();
+
+  if (historyData.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty";
+    empty.textContent = "Belum ada perhitungan. Mulai ekspedisi pertamamu!";
+    container.appendChild(empty);
+    return;
+  }
+
+  historyData.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "history-item";
+
+    const title = document.createElement("strong");
+    title.textContent = operationNames[item.op];
+
+    const detail = document.createElement("div");
+    detail.textContent = `Input (a, b, m): ${item.numbers}`;
+
+    const result = document.createElement("div");
+    result.style.marginTop = "6px";
+    result.textContent = `Hasil: ${item.answer}`;
+
+    const time = document.createElement("small");
+    time.textContent = item.time;
+
+    const reuse = document.createElement("button");
+    reuse.className = "secondary";
+    reuse.textContent = "Gunakan lagi";
+    reuse.addEventListener("click", () => {
+      const values = item.numbers.split(", ");
+
+      $("a").value = values[0];
+      $("b").value = values[1];
+      $("m").value = values[2];
+      $("operation").value = item.op;
+
+      updateOperationUI();
+      playSound("click");
+      $("a").focus();
+    });
+
+    card.append(title, detail, result, time, reuse);
+    container.appendChild(card);
+  });
+}
+
+// ===============================
+// ANTARMUKA DINAMIS
+// ===============================
+function updateOperationUI() {
+  const op = $("operation").value;
+
+  $("bLabel").textContent =
+    op === "pow" ? "Eksponen (b, boleh negatif)" :
+    op === "cong" ? "Bilangan pembanding (b)" :
+    "Bilangan kedua (b)";
+}
+
+$("operation").addEventListener("change", () => {
+  updateOperationUI();
+  playSound("click");
+});
+
+$("calculate").addEventListener("click", calculate);
+
+document.querySelectorAll("[data-example]").forEach(button => {
+  button.addEventListener("click", () => {
+    const examples = {
+      1: { a: "-17", b: "5", m: "7", op: "add" },
+      2: { a: "14", b: "2", m: "6", op: "cong" },
+      3: { a: "3", b: "-2", m: "7", op: "pow" }
+    };
+
+    const example = examples[button.dataset.example];
+
+    $("a").value = example.a;
+    $("b").value = example.b;
+    $("m").value = example.m;
+    $("operation").value = example.op;
+
+    updateOperationUI();
+    playSound("click");
+    calculate();
   });
 });
 
-// Enter untuk menjalankan mode yang sedang aktif
-document.querySelectorAll(".panel input").forEach(input => {
-  input.addEventListener("keydown", event => {
-    if (event.key !== "Enter") return;
+$("clearBtn").addEventListener("click", () => {
+  historyData = [];
+  renderHistory();
 
-    const panel = input.closest(".panel");
+  $("result").textContent = "?";
+  $("status").textContent = "Logbook telah dibersihkan.";
+  $("steps").textContent = "Siap untuk ekspedisi baru.";
 
-    if (panel.id === "mod") calculateMod();
-    if (panel.id === "cong") checkCongruence();
-    if (panel.id === "ops") calculateOperation();
+  playSound("clear");
+});
+
+$("soundBtn").addEventListener("click", () => {
+  soundEnabled = !soundEnabled;
+
+  $("soundBtn").textContent = soundEnabled
+    ? "🔊 Suara ON"
+    : "🔇 Suara OFF";
+
+  if (soundEnabled) playSound("click");
+});
+
+$("copyBtn").addEventListener("click", async () => {
+  const textToCopy = [
+    "OCEAN MODULO",
+    "Hasil: " + $("result").textContent,
+    "Status: " + $("status").textContent,
+    "Langkah: " + $("steps").innerText
+  ].join("\n");
+
+  try {
+    await navigator.clipboard.writeText(textToCopy);
+    $("status").textContent = "Hasil berhasil disalin!";
+    playSound("success");
+  } catch (error) {
+    $("status").textContent =
+      "Clipboard tidak tersedia. Salin hasil secara manual.";
+    playSound("error");
+  }
+});
+
+// Mendukung tombol Enter pada input.
+["a", "b", "m"].forEach(id => {
+  $(id).addEventListener("keydown", event => {
+    if (event.key === "Enter") calculate();
   });
 });
+
+updateOperationUI();
+renderHistory();
 </script>
 </body>
 </html>
