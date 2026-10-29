@@ -2,726 +2,1069 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M Julfikar Al - 262505008 - Modulo PRO</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M Julfikar Al - 262505008 - Modulo PRO</title>
 
-<style>
-:root {
-  --bg: #070b20;
-  --panel: rgba(18, 26, 58, .87);
-  --cyan: #6df8ff;
-  --purple: #bb91ff;
-  --text: #edf4ff;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  color: var(--text);
-  background: radial-gradient(ellipse at 50% 0%, #25205c 0%, #0b102b 42%, #030611 100%);
-  font-family: "Trebuchet MS", sans-serif;
-  overflow-x: hidden;
-}
-#stars {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-}
-.nebula {
-  position: fixed;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: .15;
-  pointer-events: none;
-  z-index: -1;
-  animation: drift 12s ease-in-out infinite alternate;
-}
-.n1 { background: #8b4dff; top: 10%; left: -150px; }
-.n2 { background: #00d9ff; right: -160px; bottom: 5%; animation-delay: -5s; }
-@keyframes drift {
-  from { transform: translate(0,0) scale(1); }
-  to { transform: translate(70px,-40px) scale(1.2); }
-}
-header { text-align: center; padding: 35px 12px 20px; }
-.logo {
-  font-size: clamp(27px, 6vw, 46px);
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: white;
-  text-shadow: 0 0 12px #7d8cff, 0 0 35px #a65cff;
-}
-.subtitle { color: #a8b8e8; letter-spacing: 3px; font-size: 11px; }
-.planet {
-  display: inline-block;
-  font-size: 33px;
-  animation: orbit 6s ease-in-out infinite;
-}
-@keyframes orbit {
-  0%,100% { transform: translateY(0) rotate(-8deg); }
-  50% { transform: translateY(-9px) rotate(8deg); }
-}
-.panel {
-  background: var(--panel);
-  border: 1px solid rgba(109,248,255,.25);
-  border-radius: 20px;
-  padding: 22px;
-  margin-bottom: 20px;
-  box-shadow: 0 12px 40px #0005, inset 0 0 25px #8e8aff08;
-  backdrop-filter: blur(12px);
-  transition: border-color .35s, box-shadow .35s, transform .35s;
-}
-.panel:hover {
-  border-color: #9b8cff88;
-  box-shadow: 0 12px 42px #615bff20, 0 0 15px #6df8ff0c;
-}
-.panel h2 { font-size: 18px; color: var(--cyan); margin-bottom: 7px; }
-.desc { font-size: 13px; line-height: 1.7; color: #aab8d8; }
-.form-control, .form-select {
-  background: #080e25;
-  border: 1px solid #384775;
-  color: white;
-  border-radius: 11px;
-  padding: 12px;
-}
-.form-control:focus, .form-select:focus {
-  background: #0b1330;
-  color: white;
-  border-color: var(--cyan);
-  box-shadow: 0 0 0 3px #6df8ff18;
-}
-.form-control::placeholder { color: #7482a9; }
-.form-select option { background: #101630; }
-label { color: #b9c9ee; font-size: 13px; margin-bottom: 6px; }
-.cosmic-btn {
-  border: 1px solid #6df8ff88;
-  color: #fff;
-  background: linear-gradient(110deg,#3546a7,#7044bb);
-  padding: 11px 15px;
-  border-radius: 11px;
-  font-weight: bold;
-  transition: .25s ease;
-}
-.cosmic-btn:hover {
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 0 22px #857aff55;
-  filter: brightness(1.2);
-}
-.cosmic-btn:active { transform: scale(.96); }
-.secondary-btn { background: #101a39; border-color: #46577e; }
-.result {
-  display: none;
-  margin-top: 18px;
-  padding: 17px;
-  border-radius: 13px;
-  background: linear-gradient(130deg,#14264a,#201944);
-  border: 1px solid #6df8ff55;
-  animation: appear .45s cubic-bezier(.2,.8,.2,1) both;
-}
-.result.show { display: block; }
-@keyframes appear {
-  from { opacity: 0; transform: translateY(12px) scale(.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-.big-result {
-  font-size: clamp(27px, 6vw, 39px);
-  font-weight: 900;
-  color: var(--cyan);
-  text-shadow: 0 0 15px #6df8ff55;
-  overflow-wrap: anywhere;
-}
-.steps {
-  color: #d0dcf8;
-  font-size: 13px;
-  line-height: 1.9;
-  white-space: pre-line;
-  overflow-wrap: anywhere;
-}
-.pill {
-  display: inline-block;
-  border: 1px solid #a18cff66;
-  background: #8e70ff17;
-  color: #d6c8ff;
-  padding: 5px 10px;
-  border-radius: 30px;
-  font-size: 11px;
-}
-.history-item {
-  padding: 11px;
-  margin-top: 8px;
-  border-radius: 9px;
-  background: #ffffff07;
-  border-left: 2px solid #8f85ff;
-  font-size: 13px;
-  overflow-wrap: anywhere;
-}
-footer { text-align: center; padding: 15px 10px 30px; color: #687ba8; font-size: 11px; }
-hr { border-color: #52618a; opacity: .4; }
-.switch-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-input[type=checkbox] { accent-color: #8d80ff; }
-.residue-chip {
-  display: inline-block; margin: 4px; padding: 8px 11px;
-  background: #101d42; border: 1px solid #6078bb;
-  border-radius: 9px; color: #b8faff;
-}
-</style>
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080b20;
+      --panel: rgba(20, 25, 57, 0.88);
+      --purple: #a78bfa;
+      --cyan: #67e8f9;
+      --pink: #f0abfc;
+      --white: #f4f4ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--white);
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 10%, #24205b 0, transparent 35%),
+        radial-gradient(ellipse at 90% 45%, #1c1747 0, transparent 35%),
+        linear-gradient(145deg, #07091a, #11102b 55%, #090c20);
+      overflow-x: hidden;
+    }
+
+    /* Bintang di latar belakang */
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 100px 80px, #c4b5fd, transparent),
+        radial-gradient(2px 2px at 180px 160px, #fff, transparent),
+        radial-gradient(1px 1px at 250px 50px, #67e8f9, transparent),
+        radial-gradient(1px 1px at 300px 210px, #fff, transparent);
+      background-size: 340px 260px;
+      animation: stars-drift 35s linear infinite;
+    }
+
+    @keyframes stars-drift {
+      from { background-position: 0 0; }
+      to { background-position: 340px 260px; }
+    }
+
+    .container-main {
+      width: min(100% - 28px, 1000px);
+      margin: auto;
+      padding-bottom: 45px;
+    }
+
+    header {
+      position: relative;
+      isolation: isolate;
+      text-align: center;
+      padding: 20px 0 28px;
+      overflow: hidden;
+    }
+
+    /* Planet besar di belakang judul */
+    .planet-scene {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 255px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .planet-orb {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      overflow: visible;
+      background:
+        radial-gradient(ellipse at 28% 23%, rgba(255,255,255,.85), transparent 8%),
+        radial-gradient(ellipse at 30% 30%, #f0abfc 0, #b46af4 20%, #7041c9 45%, #35206d 72%, #171538 100%);
+      box-shadow:
+        inset -24px -18px 38px rgba(0,0,0,.7),
+        inset 12px 10px 24px rgba(255,255,255,.16),
+        0 0 35px rgba(167,139,250,.4),
+        0 0 80px rgba(124,58,237,.25);
+      animation: planet-float 7s ease-in-out infinite;
+    }
+
+    /* Garis awan pada permukaan planet */
+    .planet-orb::before {
+      content: "";
+      position: absolute;
+      inset: 12px 0;
+      border-radius: 50%;
+      background: repeating-linear-gradient(
+        170deg,
+        transparent 0 13px,
+        rgba(255,255,255,.16) 14px 18px,
+        rgba(83,43,158,.22) 19px 24px,
+        transparent 25px 36px
+      );
+      filter: blur(2px);
+      animation: cloud-drift 12s linear infinite;
+    }
+
+    /* Cincin planet */
+    .planet-ring {
+      position: absolute;
+      top: 51px;
+      left: -43px;
+      width: 266px;
+      height: 78px;
+      border: 11px solid rgba(216,180,254,.85);
+      border-left-color: rgba(147,197,253,.55);
+      border-right-color: rgba(240,171,252,.75);
+      border-radius: 50%;
+      transform: rotate(-19deg);
+      box-shadow: 0 0 14px rgba(216,180,254,.35);
+      z-index: -1;
+    }
+
+    .planet-shade {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(
+        120deg,
+        transparent 25%,
+        rgba(10,8,34,.08) 40%,
+        rgba(5,6,23,.7) 100%
+      );
+    }
+
+    .planet-orb::after {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border-radius: 50%;
+      border: 1px solid rgba(196,181,253,.28);
+    }
+
+    @keyframes planet-float {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-17px) rotate(4deg); }
+    }
+
+    @keyframes cloud-drift {
+      from { background-position: 0 0; }
+      to { background-position: 100px 0; }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 188px;
+    }
+
+    .logo {
+      margin: 0;
+      font-size: clamp(27px, 6vw, 48px);
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 1.2;
+      color: #fff;
+      text-shadow:
+        0 0 10px rgba(167,139,250,.9),
+        0 0 30px rgba(124,58,237,.65);
+    }
+
+    .subtitle {
+      margin-top: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--cyan);
+    }
+
+    .desc {
+      color: #c5c7e9;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    .badge-cosmic {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 12px;
+      border: 1px solid rgba(167,139,250,.45);
+      border-radius: 30px;
+      color: #ddd6fe;
+      background: rgba(124,58,237,.13);
+      font-size: 11px;
+    }
+
+    .panel {
+      padding: 23px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(167,139,250,.24);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 10px 35px rgba(0,0,0,.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .panel h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #e9ddff;
+      margin-bottom: 7px;
+    }
+
+    .panel-description {
+      font-size: 13px;
+      color: #aeb3d6;
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      color: #d7d8f4;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .form-control,
+    .form-select {
+      color: #fff;
+      background-color: rgba(8,11,32,.8);
+      border: 1px solid #45416e;
+      border-radius: 10px;
+      padding: 11px 12px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      color: #fff;
+      background-color: #10132f;
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(167,139,250,.13);
+    }
+
+    .form-control::placeholder {
+      color: #797d9f;
+    }
+
+    .form-select option {
+      color: white;
+      background: #11132e;
+    }
+
+    .btn-cosmic {
+      color: #fff;
+      font-weight: 800;
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 18px;
+      background: linear-gradient(100deg, #7c3aed, #a855f7);
+      box-shadow: 0 5px 18px rgba(124,58,237,.24);
+      transition: transform .2s, filter .2s;
+    }
+
+    .btn-cosmic:hover {
+      color: #fff;
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-cosmic {
+      color: #d8b4fe;
+      border: 1px solid #7854b8;
+      border-radius: 9px;
+      background: transparent;
+    }
+
+    .btn-outline-cosmic:hover {
+      color: white;
+      background: rgba(124,58,237,.2);
+      border-color: #c4b5fd;
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 18px;
+      padding: 18px;
+      text-align: center;
+      border: 1px solid rgba(103,232,249,.28);
+      border-radius: 13px;
+      background: rgba(103,232,249,.055);
+    }
+
+    .result-label {
+      font-size: 12px;
+      color: #aeb3d6;
+      margin-bottom: 5px;
+    }
+
+    .result-value {
+      overflow-wrap: anywhere;
+      font-size: clamp(25px, 6vw, 38px);
+      font-weight: 900;
+      color: var(--cyan);
+      text-shadow: 0 0 18px rgba(103,232,249,.2);
+    }
+
+    .result-detail {
+      margin-top: 8px;
+      color: #c7c9e7;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .quick-example {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .example-chip {
+      padding: 5px 10px;
+      font-size: 12px;
+      color: #d8b4fe;
+      border: 1px solid #49416e;
+      border-radius: 20px;
+      background: rgba(124,58,237,.1);
+      cursor: pointer;
+    }
+
+    .example-chip:hover {
+      background: rgba(124,58,237,.28);
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(167,139,250,.14);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .history-item:last-child {
+      border-bottom: 0;
+    }
+
+    .history-answer {
+      color: var(--cyan);
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .residue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .residue-item {
+      padding: 11px 5px;
+      text-align: center;
+      border-radius: 10px;
+      background: rgba(124,58,237,.13);
+      border: 1px solid rgba(167,139,250,.23);
+    }
+
+    .residue-item strong {
+      display: block;
+      color: var(--cyan);
+      font-size: 18px;
+    }
+
+    .residue-item span {
+      color: #aeb3d6;
+      font-size: 11px;
+    }
+
+    .theory-card {
+      margin-top: 10px;
+      padding: 15px;
+      border: 1px solid rgba(167,139,250,.2);
+      border-radius: 12px;
+      background: rgba(8,11,32,.35);
+    }
+
+    .theory-card h3 {
+      color: #d8b4fe;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .theory-card p {
+      margin: 0;
+      color: #c2c5e3;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .formula {
+      margin-top: 9px;
+      padding: 10px;
+      color: var(--cyan);
+      text-align: center;
+      border-radius: 8px;
+      background: rgba(103,232,249,.06);
+      font-family: Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+
+    .status-text {
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    footer {
+      padding: 12px 0 25px;
+      text-align: center;
+      color: #8287ac;
+      font-size: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .container-main {
+        width: calc(100% - 20px);
+      }
+
+      .panel {
+        padding: 17px;
+        border-radius: 14px;
+      }
+
+      .planet-scene {
+        height: 220px;
+      }
+
+      .planet-orb {
+        width: 145px;
+        height: 145px;
+      }
+
+      .planet-ring {
+        width: 218px;
+        height: 64px;
+        left: -36px;
+        top: 41px;
+        border-width: 9px;
+      }
+
+      .header-content {
+        padding-top: 165px;
+      }
+
+      .logo {
+        letter-spacing: 2px;
+      }
+
+      .subtitle {
+        letter-spacing: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="stars"></div>
 
-<canvas id="stars"></canvas>
-<div class="nebula n1"></div>
-<div class="nebula n2"></div>
-
-<header>
-  <div class="planet">🪐</div>
-  <div class="logo">COSMIC MODULO</div>
-  <div class="subtitle">PRO • MODULAR ARITHMETIC LAB</div>
-  <p class="desc mt-3">Jelajahi dunia bilangan dalam semesta matematika.</p>
-</header>
-
-<main class="container pb-4" style="max-width:950px">
-
-  <div class="panel">
-    <div class="d-flex justify-content-between align-items-start gap-3">
-      <div>
-        <h2>✦ Control Center</h2>
-        <p class="desc mb-0">Atur pengalaman kalkulatormu.</p>
-      </div>
-      <span class="pill">SYSTEM ONLINE</span>
-    </div>
-    <hr>
-    <div class="switch-row">
-      <label class="mb-0"><input type="checkbox" id="soundToggle" checked> Suara tombol</label>
-      <label class="mb-0"><input type="checkbox" id="animToggle" checked> Animasi</label>
-      <button class="cosmic-btn secondary-btn ms-auto" onclick="clearHistory()">Hapus riwayat</button>
-    </div>
-    <p class="desc mt-3 mb-0">Suara dibuat langsung oleh browser. Bunyi pertama aktif setelah kamu menekan tombol.</p>
-  </div>
-
-  <!-- FITUR 1: KALKULATOR -->
-  <section class="panel">
-    <h2>01 / Modulo Calculator</h2>
-    <p class="desc">
-      Hitung operasi aritmetika modulo. Bilangan negatif diperbolehkan.
-      Modulus harus bilangan bulat positif.
-    </p>
-
-    <div class="row g-3">
-      <div class="col-12 col-sm-6">
-        <label for="numA">Bilangan A</label>
-        <input id="numA" class="form-control" type="number" step="1" value="-17">
-      </div>
-      <div class="col-12 col-sm-6">
-        <label for="numB">Bilangan B</label>
-        <input id="numB" class="form-control" type="number" step="1" value="5">
-      </div>
-      <div class="col-12 col-sm-6">
-        <label for="operation">Operasi</label>
-        <select id="operation" class="form-select">
-          <option value="add">Penjumlahan (A + B)</option>
-          <option value="sub">Pengurangan (A − B)</option>
-          <option value="mul">Perkalian (A × B)</option>
-          <option value="pow">Perpangkatan (A pangkat B)</option>
-          <option value="div">Pembagian modulo (A ÷ B)</option>
-        </select>
-      </div>
-      <div class="col-12 col-sm-6">
-        <label for="modulus">Modulus (m)</label>
-        <input id="modulus" class="form-control" type="number" step="1" min="1" value="7">
-      </div>
-      <div class="col-12">
-        <button class="cosmic-btn w-100" onclick="calculateModulo()">✦ Hitung Sekarang</button>
-      </div>
-    </div>
-    <div id="calcResult" class="result" aria-live="polite"></div>
-  </section>
-
-  <!-- FITUR 2: KONGRUENSI -->
-  <section class="panel">
-    <h2>02 / Congruence Scanner</h2>
-    <p class="desc">
-      Periksa apakah dua bilangan kongruen modulo m.
-      Dua bilangan kongruen jika selisihnya habis dibagi modulus.
-    </p>
-    <div class="row g-3">
-      <div class="col-12 col-sm-4">
-        <label for="conA">Bilangan A</label>
-        <input id="conA" class="form-control" type="number" step="1" value="-17">
-      </div>
-      <div class="col-12 col-sm-4">
-        <label for="conB">Bilangan B</label>
-        <input id="conB" class="form-control" type="number" step="1" value="4">
-      </div>
-      <div class="col-12 col-sm-4">
-        <label for="conM">Modulus (m)</label>
-        <input id="conM" class="form-control" type="number" min="1" step="1" value="7">
-      </div>
-      <div class="col-12">
-        <button class="cosmic-btn w-100" onclick="checkCongruence()">◎ Periksa Kongruensi</button>
-      </div>
-    </div>
-    <div id="conResult" class="result" aria-live="polite"></div>
-  </section>
-
-  <!-- FITUR 3: EKSPLORASI RESIDU -->
-  <section class="panel">
-    <h2>03 / Residue Explorer</h2>
-    <p class="desc">
-      Lihat sisa pembagian beberapa bilangan berurutan terhadap modulus
-      yang kamu pilih. Berguna untuk memahami pola aritmetika modular.
-    </p>
-    <div class="row g-3">
-      <div class="col-12 col-sm-4">
-        <label for="startN">Mulai dari</label>
-        <input id="startN" class="form-control" type="number" step="1" value="-5">
-      </div>
-      <div class="col-12 col-sm-4">
-        <label for="countN">Jumlah bilangan (maks. 30)</label>
-        <input id="countN" class="form-control" type="number" min="1" max="30" step="1" value="12">
-      </div>
-      <div class="col-12 col-sm-4">
-        <label for="resM">Modulus</label>
-        <input id="resM" class="form-control" type="number" min="1" step="1" value="7">
-      </div>
-      <div class="col-12">
-        <button class="cosmic-btn w-100" onclick="exploreResidues()">✧ Jelajahi Residu</button>
-      </div>
-    </div>
-    <div id="resResult" class="result" aria-live="polite"></div>
-  </section>
-
-  <!-- FITUR 4: PUSTAKA -->
-  <section class="panel">
-    <h2>04 / Cosmic Knowledge Base</h2>
-    <p class="desc">Pahami teori di balik setiap operasi.</p>
-
-    <div class="accordion" id="theory">
-      <div class="accordion-item bg-transparent border-secondary">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed bg-transparent text-light" data-bs-toggle="collapse" data-bs-target="#t1">
-            Apa itu operasi modulo?
-          </button>
-        </h3>
-        <div id="t1" class="accordion-collapse collapse" data-bs-parent="#theory">
-          <div class="accordion-body desc">
-            Modulo mencari sisa pembagian. Contoh: 17 mod 5 = 2 karena
-            17 = 3 × 5 + 2. Untuk modulus positif, hasil dinormalisasi
-            ke rentang 0 sampai m − 1. Jadi, −17 mod 7 = 4 karena
-            −17 = (−3 × 7) + 4.
-          </div>
+  <main class="container-main">
+    <header>
+      <div class="planet-scene" aria-hidden="true">
+        <div class="planet-orb">
+          <div class="planet-ring"></div>
+          <div class="planet-shade"></div>
         </div>
       </div>
-      <div class="accordion-item bg-transparent border-secondary">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed bg-transparent text-light" data-bs-toggle="collapse" data-bs-target="#t2">
-            Bagaimana penjumlahan dan perkalian modulo?
-          </button>
-        </h3>
-        <div id="t2" class="accordion-collapse collapse" data-bs-parent="#theory">
-          <div class="accordion-body desc">
-            Hitung operasi terlebih dahulu, kemudian ambil sisanya.
-            Contoh: (5 + 4) mod 7 = 2, sedangkan (5 × 4) mod 7 = 6.
-            Kita juga bisa mengurangi setiap operand ke residunya sebelum
-            melakukan operasi.
+
+      <div class="header-content">
+        <h1 class="logo">COSMIC MODULO</h1>
+        <div class="subtitle">PRO • MODULAR ARITHMETIC LAB</div>
+        <p class="desc">Jelajahi dunia bilangan dalam semesta matematika.</p>
+        <span class="badge-cosmic">✦ Explore • Calculate • Discover ✦</span>
+      </div>
+    </header>
+
+    <!-- KALKULATOR MODULO -->
+    <section class="panel">
+      <h2>✦ Kalkulator Modular</h2>
+      <p class="panel-description">
+        Hitung sisa pembagian dari operasi bilangan menggunakan modulo.
+      </p>
+
+      <form id="moduloForm">
+        <div class="row g-3">
+          <div class="col-6">
+            <label class="form-label" for="numberA">Bilangan A</label>
+            <input class="form-control" id="numberA" type="number"
+                   step="1" placeholder="Contoh: 17" required>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label" for="numberB">Bilangan B</label>
+            <input class="form-control" id="numberB" type="number"
+                   step="1" placeholder="Contoh: 5" required>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label" for="operation">Operasi</label>
+            <select class="form-select" id="operation">
+              <option value="add">Penjumlahan (+)</option>
+              <option value="subtract">Pengurangan (−)</option>
+              <option value="multiply">Perkalian (×)</option>
+              <option value="divide">Pembagian (÷)</option>
+              <option value="power">Pangkat (A^B)</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label" for="modulus">Modulus (m)</label>
+            <input class="form-control" id="modulus" type="number"
+                   min="1" step="1" value="5" required>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-cosmic w-100" type="submit">
+              ✧ Hitung Modulo
+            </button>
           </div>
         </div>
+      </form>
+
+      <div class="quick-example">
+        <button class="example-chip" type="button"
+                onclick="setExample(17, 5, 5, 'add')">17 + 5 mod 5</button>
+        <button class="example-chip" type="button"
+                onclick="setExample(12, 7, 5, 'multiply')">12 × 7 mod 5</button>
+        <button class="example-chip" type="button"
+                onclick="setExample(2, 8, 7, 'power')">2⁸ mod 7</button>
       </div>
-      <div class="accordion-item bg-transparent border-secondary">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed bg-transparent text-light" data-bs-toggle="collapse" data-bs-target="#t3">
-            Apa itu kongruensi?
-          </button>
-        </h3>
-        <div id="t3" class="accordion-collapse collapse" data-bs-parent="#theory">
-          <div class="accordion-body desc">
-            a ≡ b (mod m) berarti a dan b memiliki residu yang sama
-            ketika dibagi m. Secara matematis, m membagi habis (a − b).
-            Contoh: 17 ≡ 2 (mod 5), sebab 17 − 2 = 15 habis dibagi 5.
+
+      <div class="result-box" id="moduloResult" aria-live="polite">
+        <div class="result-label">HASIL PERHITUNGAN</div>
+        <div class="result-value" id="moduloAnswer">0</div>
+        <div class="result-detail" id="moduloExplanation"></div>
+      </div>
+    </section>
+
+    <!-- PEMERIKSA KONGRUENSI -->
+    <section class="panel">
+      <h2>✦ Pemeriksa Kongruensi</h2>
+      <p class="panel-description">
+        Periksa apakah dua bilangan kongruen terhadap suatu modulus.
+      </p>
+
+      <form id="congruenceForm">
+        <div class="row g-3">
+          <div class="col-4">
+            <label class="form-label" for="conA">Bilangan A</label>
+            <input class="form-control" id="conA" type="number"
+                   step="1" placeholder="17" required>
+          </div>
+
+          <div class="col-4">
+            <label class="form-label" for="conB">Bilangan B</label>
+            <input class="form-control" id="conB" type="number"
+                   step="1" placeholder="2" required>
+          </div>
+
+          <div class="col-4">
+            <label class="form-label" for="conM">Modulus</label>
+            <input class="form-control" id="conM" type="number"
+                   min="1" step="1" value="5" required>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-cosmic w-100" type="submit">
+              Periksa Kongruensi
+            </button>
           </div>
         </div>
+      </form>
+
+      <div class="result-box" id="congruenceResult" aria-live="polite">
+        <div class="result-value" id="congruenceAnswer">A ≡ B (mod m)</div>
+        <div class="result-detail" id="congruenceExplanation"></div>
       </div>
-      <div class="accordion-item bg-transparent border-secondary">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed bg-transparent text-light" data-bs-toggle="collapse" data-bs-target="#t4">
-            Bagaimana pembagian dan perpangkatan modulo?
-          </button>
-        </h3>
-        <div id="t4" class="accordion-collapse collapse" data-bs-parent="#theory">
-          <div class="accordion-body desc">
-            Perpangkatan menggunakan pangkat bulat nonnegatif.
-            Pembagian modulo memerlukan invers perkalian: invers B ada
-            jika FPB(B,m) = 1. Jika tidak ada invers, pembagian modulo
-            tidak didefinisikan dengan cara ini. Kalkulator ini juga
-            membatasi hasil antara agar tidak melebihi batas aman angka
-            JavaScript.
+    </section>
+
+    <!-- PENJELAJAH RESIDU -->
+    <section class="panel">
+      <h2>✦ Penjelajah Residu</h2>
+      <p class="panel-description">
+        Lihat sisa pembagian dari beberapa bilangan sekaligus.
+      </p>
+
+      <form id="residueForm">
+        <div class="row g-3">
+          <div class="col-6">
+            <label class="form-label" for="residueStart">Mulai dari</label>
+            <input class="form-control" id="residueStart" type="number"
+                   step="1" value="0" required>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label" for="residueEnd">Sampai</label>
+            <input class="form-control" id="residueEnd" type="number"
+                   step="1" value="20" required>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" for="residueModulus">Modulus</label>
+            <input class="form-control" id="residueModulus" type="number"
+                   min="1" step="1" value="5" required>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-cosmic w-100" type="submit">
+              Jelajahi Residu
+            </button>
           </div>
         </div>
+      </form>
+
+      <div id="residueResult" class="mt-3" aria-live="polite"></div>
+    </section>
+
+    <!-- RIWAYAT -->
+    <section class="panel">
+      <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+        <h2 class="mb-0">✦ Riwayat Perhitungan</h2>
+        <button class="btn btn-outline-cosmic btn-sm"
+                type="button" id="clearHistory">Hapus</button>
       </div>
-    </div>
-  </section>
 
-  <!-- FITUR 5: RIWAYAT -->
-  <section class="panel">
-    <h2>05 / Mission Log</h2>
-    <p class="desc">Catatan perhitungan selama sesi ini.</p>
-    <div id="history"><p class="desc mb-0">Belum ada perhitungan.</p></div>
-  </section>
+      <p class="panel-description">
+        Hasil perhitungan selama halaman ini masih terbuka.
+      </p>
 
-</main>
+      <div id="historyList">
+        <p class="text-secondary small mb-0">Belum ada perhitungan.</p>
+      </div>
+    </section>
 
-<footer>COSMIC MODULO PRO · Modular Arithmetic Lab · Made for curious minds ✦</footer>
+    <!-- MATERI TEORI -->
+    <section class="panel">
+      <h2>✦ Pusat Pengetahuan</h2>
+      <p class="panel-description">
+        Ringkasan konsep dasar aritmetika modular.
+      </p>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-// ============================================
-// 1. COSMIC BACKGROUND: BINTANG BERKELIP
-// ============================================
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
-let stars = [];
+      <div class="theory-card">
+        <h3>1. Apa itu modulo?</h3>
+        <p>
+          Modulo adalah operasi untuk mencari sisa pembagian suatu bilangan
+          dengan bilangan lainnya.
+        </p>
+        <div class="formula">17 mod 5 = 2</div>
+        <p class="mt-2">
+          Karena 17 = (3 × 5) + 2, maka sisanya adalah 2.
+        </p>
+      </div>
 
-function createStars() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width = window.innerWidth * dpr;
-  canvas.height = window.innerHeight * dpr;
-  canvas.style.width = window.innerWidth + "px";
-  canvas.style.height = window.innerHeight + "px";
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      <div class="theory-card">
+        <h3>2. Kongruensi bilangan</h3>
+        <p>
+          Dua bilangan disebut kongruen modulo m jika keduanya mempunyai
+          sisa pembagian yang sama ketika dibagi m.
+        </p>
+        <div class="formula">17 ≡ 2 (mod 5)</div>
+      </div>
 
-  stars = Array.from({length: Math.min(150, Math.floor(innerWidth / 5))}, () => ({
-    x: Math.random() * innerWidth,
-    y: Math.random() * innerHeight,
-    r: Math.random() * 1.5 + .3,
-    a: Math.random(),
-    speed: Math.random() * .012 + .003
-  }));
-}
-createStars();
-window.addEventListener("resize", createStars);
+      <div class="theory-card">
+        <h3>3. Operasi modular</h3>
+        <p>
+          Penjumlahan, pengurangan, dan perkalian dapat dilakukan sebelum
+          mengambil sisa pembagian dengan modulus.
+        </p>
+        <div class="formula">(a + b) mod m</div>
+        <div class="formula">(a − b) mod m</div>
+        <div class="formula">(a × b) mod m</div>
+      </div>
 
-function drawStars() {
-  ctx.clearRect(0, 0, innerWidth, innerHeight);
-  const animate = document.getElementById("animToggle").checked;
+      <div class="theory-card">
+        <h3>4. Residu modulo</h3>
+        <p>
+          Residu adalah sisa pembagian. Untuk modulus positif m, residu
+          standar berada dari 0 sampai m − 1.
+        </p>
+        <div class="formula">0 ≤ r &lt; m</div>
+      </div>
+    </section>
 
-  for (const s of stars) {
-    if (animate) {
-      s.a += s.speed;
-      if (s.a > 1) s.a = 0;
+    <footer>
+      COSMIC MODULO PRO · Modular Arithmetic Lab<br>
+      Dibuat untuk eksplorasi matematika
+    </footer>
+  </main>
+
+  <script>
+    const historyList = document.getElementById("historyList");
+    const historyData = [];
+
+    // Menghitung sisa pembagian agar hasil negatif tetap dinormalisasi.
+    function mod(a, m) {
+      return ((a % m) + m) % m;
     }
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(190,220,255,${.2 + .8 * Math.abs(Math.sin(s.a * Math.PI))})`;
-    ctx.fill();
-  }
-  requestAnimationFrame(drawStars);
-}
-drawStars();
 
-// ============================================
-// 2. SOUND ENGINE: TANPA FILE AUDIO
-// ============================================
-let audioContext;
-function clickSound(freq = 650) {
-  if (!document.getElementById("soundToggle").checked) return;
+    function isInteger(value) {
+      return Number.isSafeInteger(value);
+    }
 
-  try {
-    audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
-    if (audioContext.state === "suspended") audioContext.resume();
+    function getInteger(id, label) {
+      const raw = document.getElementById(id).value.trim();
 
-    const osc = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(freq, audioContext.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(
-      Math.max(100, freq * .72), audioContext.currentTime + .07
+      if (raw === "") {
+        throw new Error(label + " harus diisi.");
+      }
+
+      const value = Number(raw);
+
+      if (!isInteger(value)) {
+        throw new Error(label + " harus berupa bilangan bulat yang aman.");
+      }
+
+      return value;
+    }
+
+    function getModulus(id) {
+      const m = getInteger(id, "Modulus");
+
+      if (m < 1) {
+        throw new Error("Modulus harus berupa bilangan bulat positif.");
+      }
+
+      return m;
+    }
+
+    function showResult(boxId, answerId, explanationId, answer, detail) {
+      document.getElementById(answerId).textContent = answer;
+      document.getElementById(explanationId).textContent = detail;
+      document.getElementById(boxId).style.display = "block";
+    }
+
+    // Efek suara ringan menggunakan Web Audio API.
+    // Suara baru dimainkan setelah pengguna berinteraksi.
+    function playClickSound() {
+      try {
+        const AudioContextClass =
+          window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) return;
+
+        const audio = new AudioContextClass();
+        const oscillator = audio.createOscillator();
+        const gain = audio.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(620, audio.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(
+          880, audio.currentTime + 0.07
+        );
+
+        gain.gain.setValueAtTime(0.045, audio.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001, audio.currentTime + 0.09
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audio.destination);
+
+        oscillator.start();
+        oscillator.stop(audio.currentTime + 0.09);
+        oscillator.onended = () => audio.close();
+      } catch (error) {
+        // Kalkulator tetap berfungsi jika audio tidak tersedia.
+      }
+    }
+
+    function addHistory(expression, answer) {
+      historyData.unshift({ expression, answer });
+
+      // Batasi riwayat agar halaman tetap ringan.
+      if (historyData.length > 20) {
+        historyData.pop();
+      }
+
+      renderHistory();
+    }
+
+    function renderHistory() {
+      historyList.replaceChildren();
+
+      if (historyData.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "text-secondary small mb-0";
+        empty.textContent = "Belum ada perhitungan.";
+        historyList.appendChild(empty);
+        return;
+      }
+
+      historyData.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "history-item";
+
+        const expression = document.createElement("span");
+        expression.textContent = item.expression;
+
+        const answer = document.createElement("span");
+        answer.className = "history-answer";
+        answer.textContent = item.answer;
+
+        row.append(expression, answer);
+        historyList.appendChild(row);
+      });
+    }
+
+    // Kalkulator modulo
+    document.getElementById("moduloForm").addEventListener("submit", event => {
+      event.preventDefault();
+      playClickSound();
+
+      try {
+        const a = getInteger("numberA", "Bilangan A");
+        const b = getInteger("numberB", "Bilangan B");
+        const m = getModulus("modulus");
+        const operation = document.getElementById("operation").value;
+
+        let value;
+        let symbol;
+
+        switch (operation) {
+          case "add":
+            value = a + b;
+            symbol = "+";
+            break;
+
+          case "subtract":
+            value = a - b;
+            symbol = "−";
+            break;
+
+          case "multiply":
+            value = a * b;
+            symbol = "×";
+            break;
+
+          case "divide":
+            if (b === 0) {
+              throw new Error("Bilangan B tidak boleh nol untuk pembagian.");
+            }
+
+            if (a % b !== 0) {
+              throw new Error(
+                "Pembagian harus menghasilkan bilangan bulat agar dapat dihitung sebagai modulo bilangan bulat."
+              );
+            }
+
+            value = a / b;
+            symbol = "÷";
+            break;
+
+          case "power":
+            if (b < 0) {
+              throw new Error(
+                "Pangkat negatif belum didukung oleh kalkulator ini."
+              );
+            }
+
+            if (b > 100000) {
+              throw new Error("Pangkat terlalu besar untuk dihitung.");
+            }
+
+            // Perkalian modular bertahap untuk mengurangi risiko overflow.
+            let result = 1;
+            let base = mod(a, m);
+            let exponent = b;
+
+            while (exponent > 0) {
+              if (exponent % 2 === 1) {
+                result = mod(result * base, m);
+              }
+
+              exponent = Math.floor(exponent / 2);
+
+              if (exponent > 0) {
+                base = mod(base * base, m);
+              }
+            }
+
+            value = result;
+            symbol = "^";
+            break;
+
+          default:
+            throw new Error("Operasi tidak dikenali.");
+        }
+
+        if (operation !== "power" && !isInteger(value)) {
+          throw new Error(
+            "Hasil terlalu besar untuk dihitung dengan aman."
+          );
+        }
+
+        const answer = operation === "power" ? value : mod(value, m);
+
+        showResult(
+          "moduloResult",
+          "moduloAnswer",
+          "moduloExplanation",
+          answer,
+          operation === "power"
+            ? a + "^" + b + " mod " + m + " = " + answer
+            : "(" + a + " " + symbol + " " + b + ") mod " + m +
+              " = " + answer
+        );
+
+        addHistory(
+          operation === "power"
+            ? a + "^" + b + " mod " + m
+            : "(" + a + " " + symbol + " " + b + ") mod " + m,
+          answer
+        );
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+
+    // Mengisi contoh secara otomatis.
+    function setExample(a, b, m, operation) {
+      document.getElementById("numberA").value = a;
+      document.getElementById("numberB").value = b;
+      document.getElementById("modulus").value = m;
+      document.getElementById("operation").value = operation;
+      document.getElementById("moduloForm").requestSubmit();
+    }
+
+    // Pemeriksa kongruensi
+    document.getElementById("congruenceForm").addEventListener(
+      "submit", event => {
+        event.preventDefault();
+        playClickSound();
+
+        try {
+          const a = getInteger("conA", "Bilangan A");
+          const b = getInteger("conB", "Bilangan B");
+          const m = getModulus("conM");
+
+          const residueA = mod(a, m);
+          const residueB = mod(b, m);
+          const congruent = residueA === residueB;
+
+          const answer = congruent
+            ? a + " ≡ " + b + " (mod " + m + ")"
+            : a + " ≢ " + b + " (mod " + m + ")";
+
+          const detail =
+            "Residu A = " + residueA +
+            ", residu B = " + residueB + ". " +
+            (congruent
+              ? "Keduanya memiliki residu yang sama."
+              : "Keduanya memiliki residu yang berbeda.");
+
+          showResult(
+            "congruenceResult",
+            "congruenceAnswer",
+            "congruenceExplanation",
+            answer,
+            detail
+          );
+
+          addHistory(answer, congruent ? "Kongruen" : "Tidak kongruen");
+        } catch (error) {
+          alert(error.message);
+        }
+      }
     );
-    gain.gain.setValueAtTime(.0001, audioContext.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.07, audioContext.currentTime + .008);
-    gain.gain.exponentialRampToValueAtTime(.0001, audioContext.currentTime + .09);
-    osc.connect(gain);
-    gain.connect(audioContext.destination);
-    osc.start();
-    osc.stop(audioContext.currentTime + .1);
-  } catch (e) {
-    // Audio tidak didukung atau dinonaktifkan browser.
-  }
-}
-document.querySelectorAll("button").forEach(btn => {
-  btn.addEventListener("click", () => clickSound(700));
-});
 
-// ============================================
-// 3. MATEMATIKA DASAR
-// ============================================
-const MAX = Number.MAX_SAFE_INTEGER;
+    // Penjelajah residu
+    document.getElementById("residueForm").addEventListener(
+      "submit", event => {
+        event.preventDefault();
+        playClickSound();
 
-function readInt(id, label, min, max = MAX) {
-  const raw = document.getElementById(id).value.trim();
-  if (raw === "") throw new Error(label + " belum diisi.");
+        try {
+          const start = getInteger("residueStart", "Bilangan awal");
+          const end = getInteger("residueEnd", "Bilangan akhir");
+          const m = getModulus("residueModulus");
 
-  const n = Number(raw);
-  if (!Number.isSafeInteger(n))
-    throw new Error(label + " harus berupa bilangan bulat dalam batas aman JavaScript.");
-  if (n < min || n > max)
-    throw new Error(label + " harus berada antara " + min + " dan " + max + ".");
-  return n;
-}
+          if (end < start) {
+            throw new Error(
+              "Bilangan akhir harus lebih besar atau sama dengan bilangan awal."
+            );
+          }
 
-// Residu kanonis: selalu 0 <= hasil < m.
-function mod(a, m) {
-  return ((a % m) + m) % m;
-}
+          if (end - start > 200) {
+            throw new Error(
+              "Rentang maksimal adalah 201 bilangan agar tampilan tetap ringan."
+            );
+          }
 
-function gcd(a, b) {
-  a = Math.abs(a);
-  b = Math.abs(b);
-  while (b !== 0) [a, b] = [b, a % b];
-  return a;
-}
+          const container = document.getElementById("residueResult");
+          container.replaceChildren();
 
-// Invers modulo dengan algoritma Euclid diperluas.
-function modInverse(a, m) {
-  let oldR = mod(a, m), r = m;
-  let oldS = 1, s = 0;
+          const heading = document.createElement("p");
+          heading.className = "small text-secondary mb-2";
+          heading.textContent = "Residu modulo " + m + ":";
+          container.appendChild(heading);
 
-  while (r !== 0) {
-    const q = Math.floor(oldR / r);
-    [oldR, r] = [r, oldR - q * r];
-    [oldS, s] = [s, oldS - q * s];
-  }
+          const grid = document.createElement("div");
+          grid.className = "residue-grid";
 
-  if (oldR !== 1) return null;
-  return mod(oldS, m);
-}
+          for (let n = start; n <= end; n++) {
+            const item = document.createElement("div");
+            item.className = "residue-item";
 
-// Perkalian modular aman untuk hasil antara besar.
-function mulMod(a, b, m) {
-  a = mod(a, m);
-  b = mod(b, m);
-  let result = 0;
+            const number = document.createElement("strong");
+            number.textContent = n;
 
-  while (b > 0) {
-    if (b % 2 === 1) result = mod(result + a, m);
-    b = Math.floor(b / 2);
-    if (b > 0) a = mod(a + a, m);
-  }
-  return result;
-}
+            const residue = document.createElement("span");
+            residue.textContent = "Sisa: " + mod(n, m);
 
-// Pangkat modular cepat, pangkat harus nonnegatif.
-function powMod(base, exp, m) {
-  let result = mod(1, m);
-  base = mod(base, m);
+            item.append(number, residue);
+            grid.appendChild(item);
+          }
 
-  while (exp > 0) {
-    if (exp % 2 === 1) result = mulMod(result, base, m);
-    exp = Math.floor(exp / 2);
-    if (exp > 0) base = mulMod(base, base, m);
-  }
-  return result;
-}
+          container.appendChild(grid);
 
-function showResult(id, content) {
-  const el = document.getElementById(id);
-  el.innerHTML = content;
-  el.classList.remove("show");
+          addHistory(
+            "Residu " + start + "–" + end + " mod " + m,
+            "Berhasil"
+          );
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+    );
 
-  if (document.getElementById("animToggle").checked) {
-    void el.offsetWidth;
-  }
-  el.classList.add("show");
-}
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, c => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;",
-    '"': "&quot;", "'": "&#39;"
-  })[c]);
-}
-
-function showError(id, message) {
-  showResult(id,
-    `<span style="color:#ffb0c2">⚠ ${escapeHTML(message)}</span>`
-  );
-}
-
-// ============================================
-// 4. KALKULATOR MODULO
-// ============================================
-function calculateModulo() {
-  try {
-    const a = readInt("numA", "Bilangan A", -MAX);
-    const b = readInt("numB", "Bilangan B", -MAX);
-    const m = readInt("modulus", "Modulus", 1);
-    const op = document.getElementById("operation").value;
-
-    let value, formula, explanation;
-
-    if (op === "add") {
-      value = mod(mod(a,m) + mod(b,m),m);
-      formula = `(${a} + ${b}) mod ${m}`;
-      explanation = `Jumlah awal: ${a + b}.\nAmbil residu terhadap ${m}: ${value}.`;
-    } else if (op === "sub") {
-      value = mod(mod(a,m) - mod(b,m),m);
-      formula = `(${a} − ${b}) mod ${m}`;
-      explanation = `Selisih awal: ${a - b}.\nResidu kanonis: ${value}.`;
-    } else if (op === "mul") {
-      value = mulMod(a,b,m);
-      formula = `(${a} × ${b}) mod ${m}`;
-      explanation = `Kalikan kedua bilangan, lalu ambil residunya.\nHasil modulo: ${value}.`;
-    } else if (op === "pow") {
-      if (b < 0) throw new Error(
-        "Pangkat negatif belum didukung. Gunakan pangkat bulat 0 atau lebih."
-      );
-      value = powMod(a,b,m);
-      formula = `${a}^${b} mod ${m}`;
-      explanation = `Pangkat dihitung dengan metode perpangkatan modular cepat.\nHasil modulo: ${value}.`;
-    } else {
-      const inv = modInverse(b,m);
-      if (inv === null) throw new Error(
-        `Pembagian modulo tidak tersedia karena FPB(${b}, ${m}) = ${gcd(b,m)} bukan 1. Invers modulo tidak ada.`
-      );
-
-      value = mulMod(a,inv,m);
-      formula = `(${a} ÷ ${b}) mod ${m}`;
-      explanation =
-        `FPB(${b}, ${m}) = 1, sehingga invers modulo ada.\n` +
-        `Invers ${b} modulo ${m} adalah ${inv}.\n` +
-        `Ganti pembagian dengan perkalian: (${a} × ${inv}) mod ${m}.\n` +
-        `Hasil modulo: ${value}.`;
-    }
-
-    showResult("calcResult", `
-      <span class="pill">CALCULATION COMPLETE</span>
-      <p class="desc mt-3 mb-1">${escapeHTML(formula)}</p>
-      <div class="big-result">${value}</div>
-      <hr>
-      <div class="steps"><b>Langkah perhitungan</b>\n${escapeHTML(explanation)}</div>
-    `);
-
-    addHistory(`${formula} = ${value}`);
-    clickSound(900);
-  } catch (e) {
-    showError("calcResult", e.message);
-  }
-}
-
-// ============================================
-// 5. PEMERIKSA KONGRUENSI
-// ============================================
-function checkCongruence() {
-  try {
-    const a = readInt("conA", "Bilangan A", -MAX);
-    const b = readInt("conB", "Bilangan B", -MAX);
-    const m = readInt("conM", "Modulus", 1);
-
-    const ra = mod(a,m);
-    const rb = mod(b,m);
-    const difference = a - b;
-    const yes = ra === rb;
-    const statement = yes ? "KONGRUEN" : "TIDAK KONGRUEN";
-
-    const explanation =
-      `1. Hitung residu A: ${a} mod ${m} = ${ra}.\n` +
-      `2. Hitung residu B: ${b} mod ${m} = ${rb}.\n` +
-      `3. Selisih A − B = ${difference}.\n` +
-      (yes
-        ? `4. ${difference} habis dibagi ${m}; residunya sama.\n`
-        : `4. ${difference} tidak habis dibagi ${m}; residunya berbeda.\n`) +
-      `Kesimpulan: ${yes ? "a ≡ b (mod m)" : "a ≢ b (mod m)"}.`;
-
-    showResult("conResult", `
-      <span class="pill">CONGRUENCE SCAN</span>
-      <div class="big-result" style="font-size:27px">${statement}</div>
-      <p class="mt-2 mb-2">${a} ${yes ? "≡" : "≢"} ${b} (mod ${m})</p>
-      <hr>
-      <div class="steps">${escapeHTML(explanation)}</div>
-    `);
-
-    addHistory(`${a} ${yes ? "≡" : "≢"} ${b} (mod ${m})`);
-    clickSound(yes ? 1000 : 350);
-  } catch (e) {
-    showError("conResult", e.message);
-  }
-}
-
-// ============================================
-// 6. PENJELAJAH RESIDU
-// ============================================
-function exploreResidues() {
-  try {
-    const start = readInt("startN", "Bilangan awal", -MAX, MAX - 30);
-    const count = readInt("countN", "Jumlah bilangan", 1, 30);
-    const m = readInt("resM", "Modulus", 1);
-
-    let html = `<span class="pill">RESIDUE MAP · MOD ${m}</span>
-      <p class="desc mt-3">Setiap bilangan dipetakan ke residu kanonisnya.</p><div>`;
-
-    for (let i=0; i<count; i++) {
-      const n = start + i;
-      html += `<span class="residue-chip">${n} → <b>${mod(n,m)}</b></span>`;
-    }
-
-    html += `</div><hr><div class="steps">
-      <b>Penjelasan</b>\nModulus ${m} menghasilkan residu dari 0 hingga ${m-1}.
-      Bilangan yang memiliki residu sama berada dalam kelas kongruensi yang sama.
-    </div>`;
-
-    showResult("resResult",html);
-    addHistory(`Eksplorasi residu mulai ${start}, jumlah ${count}, mod ${m}`);
-    clickSound(850);
-  } catch(e) {
-    showError("resResult",e.message);
-  }
-}
-
-// ============================================
-// 7. RIWAYAT SESI
-// ============================================
-let historyItems = [];
-
-function addHistory(text) {
-  historyItems.unshift(text);
-  historyItems = historyItems.slice(0,15);
-  renderHistory();
-}
-
-function renderHistory() {
-  const el = document.getElementById("history");
-
-  if (!historyItems.length) {
-    el.innerHTML = '<p class="desc mb-0">Belum ada perhitungan.</p>';
-    return;
-  }
-
-  el.innerHTML = historyItems.map((item,i) =>
-    `<div class="history-item"><span class="pill">#${i+1}</span>
-      <div class="mt-2">${escapeHTML(item)}</div></div>`
-  ).join("");
-}
-
-function clearHistory() {
-  historyItems = [];
-  renderHistory();
-  clickSound(450);
-}
-
-// Animasi opsional: matikan transisi CSS jika tidak diperlukan.
-document.getElementById("animToggle").addEventListener("change", function() {
-  document.body.style.setProperty(
-    "--transition-speed", this.checked ? ".35s" : "0s"
-  );
-  document.querySelectorAll(".panel,.cosmic-btn").forEach(el => {
-    el.style.transitionDuration = this.checked ? "" : "0s";
-  });
-});
-</script>
+    // Hapus riwayat
+    document.getElementById("clearHistory").addEventListener("click", () => {
+      playClickSound();
+      historyData.length = 0;
+      renderHistory();
+    });
+  </script>
 </body>
 </html>
