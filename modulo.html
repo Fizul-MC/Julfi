@@ -2,541 +2,766 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Julfikar Al - 262505008 - Modulo — Smart Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M Julfikar Al - 262505008 - Modulo Calculator</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
-:root {
-    --bg: #080b16;
-    --panel: rgba(20, 26, 48, .85);
-    --border: rgba(255,255,255,.09);
-    --text: #f4f6ff;
-    --muted: #929bb8;
-    --purple: #9b87ff;
-    --blue: #59c7ff;
-}
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
-* {
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 35px 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background:
-        radial-gradient(ellipse at 15% 10%, #27205a 0%, transparent 40%),
-        radial-gradient(ellipse at 90% 90%, #102e4b 0%, transparent 40%),
-        var(--bg);
-}
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: #f1f5f9;
+            background:
+                radial-gradient(circle at top left, #312e81 0, transparent 35%),
+                radial-gradient(circle at bottom right, #164e63 0, transparent 35%),
+                #080d1b;
+            padding: 30px 15px;
+        }
 
-.app {
-    width: 100%;
-    max-width: 460px;
-}
+        .app {
+            max-width: 950px;
+            margin: auto;
+        }
 
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        .logo {
+            width: 65px;
+            height: 65px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            box-shadow: 0 10px 35px #6366f155;
+            margin-bottom: 15px;
+        }
 
-.logo {
-    width: 45px;
-    height: 45px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    font-size: 23px;
-    font-weight: 800;
-    color: white;
-    background: linear-gradient(135deg, #8d78ff, #4cafff);
-    box-shadow: 0 5px 25px #7d6bff40;
-}
+        .header h1 {
+            font-weight: 800;
+            font-size: 32px;
+        }
 
-.brand-name {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: -.5px;
-}
+        .header h1 span {
+            color: #818cf8;
+        }
 
-.brand-sub {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 4px;
-}
+        .header p {
+            color: #94a3b8;
+        }
 
-.status {
-    font-size: 11px;
-    color: #78efbd;
-    background: #153c34;
-    padding: 8px 11px;
-    border-radius: 20px;
-}
+        .card-pro {
+            background: rgba(15, 23, 42, 0.82);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 20px 60px #00000030;
+            backdrop-filter: blur(15px);
+            margin-bottom: 20px;
+        }
 
-.card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 25px;
-    padding: 27px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 25px 70px #00000040;
-}
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
 
-.eyebrow {
-    color: var(--purple);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 10px;
-    font-weight: 800;
-}
+        .form-label {
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+        }
 
-h1 {
-    font-size: 29px;
-    letter-spacing: -1.2px;
-    margin: 12px 0 9px;
-}
+        .form-control,
+        .form-select {
+            background: #111c32;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 13px;
+        }
 
-.subtitle {
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--muted);
-    margin: 0 0 27px;
-}
+        .form-control:focus,
+        .form-select:focus {
+            background: #111c32;
+            color: white;
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px #818cf825;
+        }
 
-.field-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 19px 0 10px;
-}
+        .form-control::placeholder {
+            color: #64748b;
+        }
 
-.field-label span {
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 400;
-}
+        .form-select option {
+            background: #111c32;
+            color: white;
+        }
 
-.input-wrap {
-    position: relative;
-}
+        .btn-pro {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            border: none;
+            color: white;
+            padding: 13px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
 
-input {
-    width: 100%;
-    padding: 17px;
-    color: white;
-    background: #0b1020;
-    border: 1px solid #29314b;
-    border-radius: 13px;
-    outline: none;
-    font-size: 18px;
-    font-family: inherit;
-    transition: .2s;
-}
+        .btn-pro:hover {
+            transform: translateY(-2px);
+            color: white;
+            box-shadow: 0 8px 25px #6366f155;
+        }
 
-input:focus {
-    border-color: var(--purple);
-    box-shadow: 0 0 0 3px #9b87ff18;
-}
+        .btn-secondary-pro {
+            background: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 9px 14px;
+        }
 
-input::placeholder {
-    color: #4e5875;
-}
+        .btn-secondary-pro:hover {
+            background: #334155;
+            color: white;
+        }
 
-.operator {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 19px 0;
-    color: var(--muted);
-    font-size: 11px;
-}
+        .result-box {
+            background: linear-gradient(135deg, #312e81, #164e63);
+            border: 1px solid #818cf855;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
 
-.operator::before,
-.operator::after {
-    content: "";
-    height: 1px;
-    background: var(--border);
-    flex: 1;
-}
+        .result-label {
+            color: #cbd5e1;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
 
-.operator strong {
-    color: var(--purple);
-    font-size: 18px;
-    background: #9b87ff12;
-    padding: 9px 13px;
-    border-radius: 10px;
-}
+        .result-number {
+            font-size: clamp(35px, 8vw, 55px);
+            font-weight: 800;
+            color: #67e8f9;
+            overflow-wrap: anywhere;
+        }
 
-.calculate {
-    width: 100%;
-    border: none;
-    border-radius: 13px;
-    padding: 17px;
-    margin-top: 25px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    background: linear-gradient(105deg, #8068f8, #448ff4);
-    box-shadow: 0 8px 25px #6d65f833;
-    transition: transform .2s, filter .2s;
-}
+        .formula {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin-top: 10px;
+            overflow-wrap: anywhere;
+        }
 
-.calculate:hover {
-    filter: brightness(1.13);
-    transform: translateY(-2px);
-}
+        .history-item {
+            background: #111c32;
+            border: 1px solid #263449;
+            border-radius: 12px;
+            padding: 13px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
 
-.calculate:active {
-    transform: scale(.98);
-}
+        .history-text {
+            font-size: 13px;
+            color: #cbd5e1;
+            overflow-wrap: anywhere;
+        }
 
-.error {
-    color: #ff8e9e;
-    font-size: 12px;
-    margin-top: 14px;
-    text-align: center;
-}
+        .history-result {
+            color: #67e8f9;
+            font-weight: 700;
+            font-size: 17px;
+        }
 
-.result {
-    display: none;
-    margin-top: 22px;
-    padding: 21px;
-    text-align: center;
-    border: 1px solid #9b87ff40;
-    border-radius: 17px;
-    background: linear-gradient(140deg, #8d76ff13, #4cbdff0c);
-    animation: appear .35s ease;
-}
+        .congruence-status {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
 
-@keyframes appear {
-    from { opacity: 0; transform: translateY(9px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        .congruent {
+            display: block;
+            background: #064e3b;
+            border: 1px solid #10b981;
+            color: #a7f3d0;
+        }
 
-.result-label {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
+        .not-congruent {
+            display: block;
+            background: #7f1d1d;
+            border: 1px solid #ef4444;
+            color: #fecaca;
+        }
 
-.result-number {
-    font-size: 53px;
-    font-weight: 800;
-    letter-spacing: -2px;
-    margin: 8px 0;
-    background: linear-gradient(110deg, #b3a2ff, #62d4ff);
-    color: transparent;
-    background-clip: text;
-}
+        .small-note {
+            color: #64748b;
+            font-size: 12px;
+        }
 
-.equation {
-    color: #c2c9e1;
-    font-size: 13px;
-    word-break: break-word;
-}
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 25px;
+        }
 
-.explanation {
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.7;
-    margin-top: 14px;
-    padding-top: 13px;
-    border-top: 1px solid var(--border);
-}
+        @media (max-width: 576px) {
+            .card-pro {
+                padding: 18px;
+                border-radius: 18px;
+            }
 
-.section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 26px 2px 13px;
-}
-
-.section-head h2 {
-    font-size: 13px;
-    margin: 0;
-}
-
-.clear {
-    color: var(--muted);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    font-family: inherit;
-}
-
-.history {
-    background: #10162a9c;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.history-empty {
-    text-align: center;
-    padding: 22px 10px;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.history-item {
-    padding: 14px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-}
-
-.history-item:last-child {
-    border-bottom: none;
-}
-
-.history-equation {
-    font-size: 12px;
-    color: #c2c9e1;
-    overflow-wrap: anywhere;
-}
-
-.history-time {
-    color: var(--muted);
-    font-size: 10px;
-    margin-top: 5px;
-}
-
-.history-answer {
-    color: var(--blue);
-    font-weight: 800;
-    font-size: 17px;
-    flex-shrink: 0;
-}
-
-.footer {
-    text-align: center;
-    color: #59617e;
-    font-size: 10px;
-    margin-top: 22px;
-}
-
-@media (max-width: 420px) {
-    .card { padding: 21px; }
-    h1 { font-size: 26px; }
-}
-</style>
+            .header h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<main class="app">
 
-    <header class="topbar">
-        <div class="brand">
-            <div class="logo">%</div>
-            <div>
-                <div class="brand-name">MODULO<span style="color:#9b87ff">.</span></div>
-                <div class="brand-sub">SMART MATH CALCULATOR</div>
-            </div>
-        </div>
-        <div class="status">● System Ready</div>
-    </header>
+<div class="app">
 
-    <section class="card">
-        <div class="eyebrow">Mathematics / 001</div>
-        <h1>Kalkulator Modulo</h1>
-        <p class="subtitle">
-            Hitung sisa pembagian dengan cepat, akurat, dan praktis.
-        </p>
-
-        <form id="moduloForm">
-            <label class="field-label" for="a">
-                Bilangan pertama <span>INPUT A</span>
-            </label>
-            <div class="input-wrap">
-                <input id="a" type="number" step="any"
-                    placeholder="Masukkan angka..." required>
-            </div>
-
-            <div class="operator">
-                OPERASI
-                <strong>mod</strong>
-                REMAINDER
-            </div>
-
-            <label class="field-label" for="b">
-                Bilangan kedua <span>INPUT B</span>
-            </label>
-            <div class="input-wrap">
-                <input id="b" type="number" step="any"
-                    placeholder="Masukkan pembagi..." required>
-            </div>
-
-            <button class="calculate" type="submit">
-                Hitung Sekarang &nbsp; ↗
-            </button>
-        </form>
-
-        <div class="error" id="error" role="alert"></div>
-
-        <div class="result" id="result" aria-live="polite">
-            <div class="result-label">Hasil Modulo</div>
-            <div class="result-number" id="answer">0</div>
-            <div class="equation" id="equation"></div>
-            <div class="explanation" id="explanation"></div>
-        </div>
-    </section>
-
-    <div class="section-head">
-        <h2>Riwayat Perhitungan</h2>
-        <button class="clear" id="clearHistory" type="button">
-            Hapus riwayat ↗
-        </button>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">%</div>
+        <h1>Modulo <span>PRO</span></h1>
+        <p>Kalkulator Aritmetika Modular Modern</p>
     </div>
 
-    <section class="history" id="history">
-        <div class="history-empty">
-            Belum ada perhitungan. Coba hitung sesuatu!
+    <!-- KALKULATOR UTAMA -->
+    <div class="card-pro">
+
+        <div class="section-title">
+            <span style="color:#818cf8;">01.</span>
+            Kalkulator Modulo
         </div>
-    </section>
 
-    <footer class="footer">
-        MODULO CALCULATOR · BUILT FOR CURIOUS MINDS
-    </footer>
+        <form id="moduloForm">
 
-</main>
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    <label class="form-label">Bilangan A</label>
+                    <input type="number"
+                           id="angkaA"
+                           class="form-control"
+                           placeholder="Contoh: -17"
+                           step="1"
+                           required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Operasi</label>
+                    <select id="operasi" class="form-select">
+                        <option value="+">Penjumlahan (+)</option>
+                        <option value="-">Pengurangan (-)</option>
+                        <option value="*">Perkalian (×)</option>
+                        <option value="^">Perpangkatan (^)</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Bilangan B</label>
+                    <input type="number"
+                           id="angkaB"
+                           class="form-control"
+                           placeholder="Contoh: 5"
+                           step="1"
+                           required>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Modulus (m)</label>
+                    <input type="number"
+                           id="modulus"
+                           class="form-control"
+                           placeholder="Masukkan modulus positif"
+                           min="1"
+                           step="1"
+                           required>
+                </div>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-pro w-100 mt-4">
+                ⚡ Hitung Modulo
+            </button>
+
+        </form>
+
+        <!-- HASIL -->
+        <div class="result-box" id="resultBox" style="display:none;">
+
+            <div class="result-label">
+                HASIL RESIDU MODULO
+            </div>
+
+            <div class="result-number" id="hasil">0</div>
+
+            <div class="formula" id="formula"></div>
+
+            <button class="btn btn-secondary-pro mt-3"
+                    onclick="salinHasil()">
+                📋 Salin Hasil
+            </button>
+
+        </div>
+
+        <div class="small-note mt-3">
+            * Gunakan modulus positif. Bilangan A dan B boleh negatif.
+        </div>
+
+    </div>
+
+    <!-- CEK KONGRUENSI -->
+    <div class="card-pro">
+
+        <div class="section-title">
+            <span style="color:#06b6d4;">02.</span>
+            Pengecekan Kongruensi
+        </div>
+
+        <p class="small-note mb-4">
+            Periksa apakah dua bilangan memiliki residu yang sama
+            terhadap modulus tertentu.
+        </p>
+
+        <form id="kongruensiForm">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    <label class="form-label">Bilangan A</label>
+                    <input type="number"
+                           id="kongA"
+                           class="form-control"
+                           placeholder="Contoh: -17"
+                           step="1"
+                           required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Bilangan B</label>
+                    <input type="number"
+                           id="kongB"
+                           class="form-control"
+                           placeholder="Contoh: 3"
+                           step="1"
+                           required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Modulus (m)</label>
+                    <input type="number"
+                           id="kongM"
+                           class="form-control"
+                           placeholder="Contoh: 10"
+                           min="1"
+                           step="1"
+                           required>
+                </div>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-pro w-100 mt-4">
+                🔍 Cek Kongruensi
+            </button>
+
+        </form>
+
+        <div id="kongruensiStatus"
+             class="congruence-status"></div>
+
+    </div>
+
+    <!-- RIWAYAT -->
+    <div class="card-pro">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <div class="section-title mb-0">
+                <span style="color:#818cf8;">03.</span>
+                Riwayat Perhitungan
+            </div>
+
+            <button class="btn-secondary-pro"
+                    onclick="hapusRiwayat()">
+                🗑 Hapus
+            </button>
+
+        </div>
+
+        <div id="history">
+            <p class="small-note text-center">
+                Belum ada perhitungan.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MODULO PRO CALCULATOR · Aritmetika Modular
+    </div>
+
+</div>
 
 <script>
-const form = document.getElementById("moduloForm");
-const inputA = document.getElementById("a");
-const inputB = document.getElementById("b");
-const result = document.getElementById("result");
-const answer = document.getElementById("answer");
-const equation = document.getElementById("equation");
-const explanation = document.getElementById("explanation");
-const error = document.getElementById("error");
-const historyBox = document.getElementById("history");
 
-let historyData = [];
+    // ==============================
+    // FUNGSI DASAR MODULO
+    // ==============================
 
-function formatNumber(n) {
-    if (Object.is(n, -0) || n === 0) return "0";
-    return Number(n.toPrecision(12)).toString();
-}
-
-function modulo(a, b) {
-    // Modulo dengan hasil mengikuti tanda pembagi.
-    let r = ((a % Math.abs(b)) + Math.abs(b)) % Math.abs(b);
-
-    if (Math.abs(r) < 1e-12) r = 0;
-    return r;
-}
-
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const a = inputA.valueAsNumber;
-    const b = inputB.valueAsNumber;
-
-    error.textContent = "";
-    result.style.display = "none";
-
-    if (!Number.isFinite(a) || !Number.isFinite(b)) {
-        error.textContent = "Masukkan dua bilangan yang valid.";
-        return;
+    function modulo(a, m) {
+        return ((a % m) + m) % m;
     }
 
-    if (b === 0) {
-        error.textContent = "Pembagi tidak boleh bernilai nol.";
-        inputB.focus();
-        return;
+    // Menghitung perpangkatan modular
+    // Menghindari angka hasil pangkat yang terlalu besar
+
+    function pangkatModulo(a, b, m) {
+
+        let hasil = 1;
+        let basis = modulo(a, m);
+        let pangkat = b;
+
+        while (pangkat > 0) {
+
+            if (pangkat % 2 === 1) {
+                hasil = (hasil * basis) % m;
+            }
+
+            basis = (basis * basis) % m;
+
+            pangkat = Math.floor(pangkat / 2);
+        }
+
+        return hasil;
     }
 
-    const r = modulo(a, b);
-    const fa = formatNumber(a);
-    const fb = formatNumber(b);
-    const fr = formatNumber(r);
+    // ==============================
+    // VALIDASI INPUT
+    // ==============================
 
-    answer.textContent = fr;
-    equation.textContent = `${fa} mod ${fb} = ${fr}`;
-
-    const quotient = Math.floor(a / Math.abs(b));
-    explanation.textContent =
-        `Sisa pembagian dari ${fa} oleh ${fb} adalah ${fr}.`;
-
-    result.style.display = "block";
-
-    historyData.unshift({
-        equation: `${fa} mod ${fb}`,
-        answer: fr,
-        time: new Date().toLocaleTimeString("id-ID", {
-            hour: "2-digit",
-            minute: "2-digit"
-        })
-    });
-
-    historyData = historyData.slice(0, 5);
-    renderHistory();
-});
-
-function renderHistory() {
-    historyBox.replaceChildren();
-
-    if (historyData.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "history-empty";
-        empty.textContent = "Belum ada perhitungan. Coba hitung sesuatu!";
-        historyBox.appendChild(empty);
-        return;
+    function validasiBilangan(nilai) {
+        return Number.isSafeInteger(nilai);
     }
 
-    historyData.forEach(item => {
-        const row = document.createElement("div");
-        row.className = "history-item";
+    // ==============================
+    // KALKULATOR MODULO
+    // ==============================
 
-        const details = document.createElement("div");
+    document.getElementById("moduloForm")
+        .addEventListener("submit", function(event) {
 
-        const eq = document.createElement("div");
-        eq.className = "history-equation";
-        eq.textContent = item.equation;
+            event.preventDefault();
 
-        const time = document.createElement("div");
-        time.className = "history-time";
-        time.textContent = item.time;
+            const a = Number(document.getElementById("angkaA").value);
+            const b = Number(document.getElementById("angkaB").value);
+            const m = Number(document.getElementById("modulus").value);
 
-        const val = document.createElement("div");
-        val.className = "history-answer";
-        val.textContent = "= " + item.answer;
+            const operasi = document.getElementById("operasi").value;
 
-        details.append(eq, time);
-        row.append(details, val);
-        historyBox.appendChild(row);
-    });
-}
+            if (!validasiBilangan(a) ||
+                !validasiBilangan(b) ||
+                !validasiBilangan(m)) {
 
-document.getElementById("clearHistory").addEventListener("click", () => {
-    historyData = [];
-    renderHistory();
-});
+                alert("Masukkan bilangan bulat yang valid!");
+                return;
+            }
+
+            if (m <= 0) {
+                alert("Modulus harus lebih besar dari 0!");
+                return;
+            }
+
+            if (operasi === "^" && b < 0) {
+                alert("Pangkat harus bilangan bulat nonnegatif!");
+                return;
+            }
+
+            let nilai;
+            let simbol;
+
+            switch (operasi) {
+
+                case "+":
+                    nilai = a + b;
+                    simbol = "+";
+                    break;
+
+                case "-":
+                    nilai = a - b;
+                    simbol = "-";
+                    break;
+
+                case "*":
+                    nilai = a * b;
+                    simbol = "×";
+                    break;
+
+                case "^":
+
+                    nilai = pangkatModulo(a, b, m);
+                    simbol = "^";
+
+                    break;
+            }
+
+            let hasil;
+
+            if (operasi === "^") {
+
+                hasil = nilai;
+
+            } else {
+
+                if (!Number.isSafeInteger(nilai)) {
+                    alert("Hasil terlalu besar untuk perhitungan aman!");
+                    return;
+                }
+
+                hasil = modulo(nilai, m);
+
+            }
+
+            // Tampilkan hasil
+
+            document.getElementById("resultBox").style.display = "block";
+
+            document.getElementById("hasil").textContent = hasil;
+
+            document.getElementById("formula").textContent =
+                "(" + a + " " + simbol + " " + b + ") mod " + m +
+                " = " + hasil;
+
+            // Tambahkan riwayat
+
+            tambahRiwayat(
+                "(" + a + " " + simbol + " " + b + ") mod " + m,
+                hasil
+            );
+
+        });
+
+
+    // ==============================
+    // CEK KONGRUENSI
+    // ==============================
+
+    document.getElementById("kongruensiForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const a = Number(document.getElementById("kongA").value);
+            const b = Number(document.getElementById("kongB").value);
+            const m = Number(document.getElementById("kongM").value);
+
+            const status =
+                document.getElementById("kongruensiStatus");
+
+            if (!validasiBilangan(a) ||
+                !validasiBilangan(b) ||
+                !validasiBilangan(m)) {
+
+                alert("Masukkan bilangan bulat yang valid!");
+                return;
+            }
+
+            if (m <= 0) {
+                alert("Modulus harus lebih besar dari 0!");
+                return;
+            }
+
+            const residuA = modulo(a, m);
+            const residuB = modulo(b, m);
+
+            const kongruen = residuA === residuB;
+
+            status.className = "congruence-status";
+
+            if (kongruen) {
+
+                status.classList.add("congruent");
+
+                status.innerHTML =
+                    "✓ KONGRUEN<br><br>" +
+                    a + " ≡ " + b + " (mod " + m + ")" +
+                    "<br><br>" +
+                    "Residu A = " + residuA +
+                    "<br>" +
+                    "Residu B = " + residuB;
+
+            } else {
+
+                status.classList.add("not-congruent");
+
+                status.innerHTML =
+                    "✕ TIDAK KONGRUEN<br><br>" +
+                    a + " ≢ " + b + " (mod " + m + ")" +
+                    "<br><br>" +
+                    "Residu A = " + residuA +
+                    "<br>" +
+                    "Residu B = " + residuB;
+
+            }
+
+            // Simpan ke riwayat
+
+            tambahRiwayat(
+                a + " ≡ " + b + " (mod " + m + ")",
+                kongruen ? "Kongruen" : "Tidak Kongruen"
+            );
+
+        });
+
+
+    // ==============================
+    // RIWAYAT PERHITUNGAN
+    // ==============================
+
+    let riwayat = [];
+
+    function tambahRiwayat(teks, hasil) {
+
+        riwayat.unshift({
+            teks: teks,
+            hasil: hasil
+        });
+
+        // Maksimal 10 riwayat
+
+        riwayat = riwayat.slice(0, 10);
+
+        tampilkanRiwayat();
+
+    }
+
+    function tampilkanRiwayat() {
+
+        const history = document.getElementById("history");
+
+        history.innerHTML = "";
+
+        if (riwayat.length === 0) {
+
+            history.innerHTML =
+                '<p class="small-note text-center">' +
+                'Belum ada perhitungan.</p>';
+
+            return;
+        }
+
+        riwayat.forEach(function(item) {
+
+            const div = document.createElement("div");
+
+            div.className = "history-item";
+
+            const teks = document.createElement("div");
+            teks.className = "history-text";
+            teks.textContent = item.teks;
+
+            const hasil = document.createElement("div");
+            hasil.className = "history-result";
+            hasil.textContent = item.hasil;
+
+            div.appendChild(teks);
+            div.appendChild(hasil);
+
+            history.appendChild(div);
+
+        });
+
+    }
+
+    function hapusRiwayat() {
+
+        riwayat = [];
+
+        tampilkanRiwayat();
+
+    }
+
+
+    // ==============================
+    // SALIN HASIL
+    // ==============================
+
+    function salinHasil() {
+
+        const hasil = document.getElementById("hasil").textContent;
+
+        if (navigator.clipboard &&
+            navigator.clipboard.writeText) {
+
+            navigator.clipboard.writeText(hasil)
+                .then(function() {
+                    alert("Hasil berhasil disalin: " + hasil);
+                })
+                .catch(function() {
+                    salinManual(hasil);
+                });
+
+        } else {
+
+            salinManual(hasil);
+
+        }
+
+    }
+
+    function salinManual(teks) {
+
+        const input = document.createElement("textarea");
+
+        input.value = teks;
+
+        document.body.appendChild(input);
+
+        input.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(input);
+
+        alert("Hasil berhasil disalin: " + teks);
+
+    }
 
 </script>
+
 </body>
 </html>
