@@ -562,7 +562,7 @@ footer {
 
 <main>
 
-<!-- LEVEL 3: HOME -->
+<!-- HOME -->
 <section id="home" class="hero container">
   <div class="hero-content">
     <div class="hero-label">✦ BIODATA ONLINE PRIBADI</div>
@@ -580,7 +580,7 @@ footer {
 <section id="biodata" class="container">
   <div class="section-heading">
     <h2>✦ Biodata Pribadi</h2>
-    <p>Mengenal lebih dekat tentang diri saya.</p>
+    <p>Siapa kah diri saya.</p>
   </div>
 
   <div class="profile-card glass">
@@ -591,18 +591,18 @@ footer {
       <table class="bio-table">
         <tr><td>Nama</td><td>Muhammad Julfikar Al-Hadid</td></tr>
         <tr><td>Panggilan</td><td>Julfikar</td></tr>
+        <tr><td>NIM</td><td>262505008</td></tr>
         <tr><td>Universitas</td><td>Ma'soem University</td></tr>
+        <tr><td>Fakultas</td><td>Komputer</td></tr>
         <tr><td>Program Studi</td><td>Sistem Informasi</td></tr>
-        <tr><td>Asal Sekolah</td><td>SMAN 1 Cileunyi</td></tr>
         <tr><td>Asal Daerah</td><td>Cibiru Wetan</td></tr>
-        <tr><td>Hobi</td><td>Editing Video</td></tr>
         <tr><td>Cita-cita</td><td>Menjadi Orang Sukses</td></tr>
       </table>
     </div>
   </div>
 </section>
 
-<!-- LEVEL 4: BUKTI BELAJAR -->
+<!-- BUKTI BELAJAR -->
 <section id="bukti" class="container">
   <div class="section-heading">
     <h2>✦ Bukti Belajar</h2>
@@ -627,7 +627,7 @@ footer {
     <button class="tab-btn" data-tab="combinatorics">04. Kombinatorika</button>
   </div>
 
-  <!-- LEVEL 1 -->
+  <!-- MODULO -->
   <div id="modulo" class="tab-panel glass active">
     <h3 class="panel-title">
       Modulo Calculator <span class="level-badge">Level 1</span>
@@ -663,7 +663,7 @@ footer {
     </div>
   </div>
 
-  <!-- LEVEL 2 -->
+  <!-- CONGRUNCE -->
   <div id="congruence" class="tab-panel glass">
     <h3 class="panel-title">
       Congruence Checker <span class="level-badge">Level 2</span>
@@ -702,7 +702,7 @@ footer {
     </div>
   </div>
 
-  <!-- LEVEL 5 -->
+  <!-- HIMPUNAN -->
   <div id="number" class="tab-panel glass">
     <h3 class="panel-title">
       Number System Calculator <span class="level-badge">Level 5</span>
@@ -744,7 +744,7 @@ footer {
     </div>
   </div>
 
-  <!-- LEVEL 6 -->
+  <!-- Combinatorics -->
   <div id="combinatorics" class="tab-panel glass">
     <h3 class="panel-title">
       Combinatorics Calculator <span class="level-badge">Level 6</span>
@@ -815,7 +815,7 @@ footer {
 </main>
 
 <footer>
-  <p>© 2026 Muhammad Julfikar Al-Hadid</p>
+  <p>© 2026 Muhammad Julfikar Al-Hadid - 262505008</p>
   <p>Made with ☀ and JavaScript · Matematika Informatika</p>
 </footer>
 
@@ -851,7 +851,7 @@ function getInteger(id, label) {
 }
 
 /* ==================================
-   LEVEL 1: MODULO CALCULATOR
+        MODULO CALCULATOR
 ================================== */
 
 function calculateModulo() {
@@ -883,4 +883,264 @@ function calculateModulo() {
 
         Jadi, sisa pembagian adalah ${result}.
       </div>
-   
+      <div class="note success">Hasil modulo: ${result}</div>
+    `;
+  } catch (error) {
+    showError("modResult", error.message);
+  }
+}
+
+/* ==================================
+        CONGRUENCE CHECKER
+================================== */
+
+function checkCongruence() {
+  try {
+    const a = getInteger("conA", "Bilangan a");
+    const b = getInteger("conB", "Bilangan b");
+    const m = getInteger("conM", "Modulus m");
+
+    if (m <= 0) {
+      throw new Error("Modulus harus bilangan bulat positif.");
+    }
+
+    const difference = a - b;
+    const remainder = ((difference % m) + m) % m;
+    const congruent = remainder === 0;
+
+    const resultA = ((a % m) + m) % m;
+    const resultB = ((b % m) + m) % m;
+
+    document.getElementById("conResult").innerHTML = `
+      <h4>✓ Hasil Pemeriksaan</h4>
+      <div class="result-value" style="font-size:23px">
+        ${a} ≡ ${b} (mod ${m})
+      </div>
+      <h3 class="${congruent ? 'success' : 'error'}">
+        ${congruent ? '✓ KONGRUEN' : '✕ TIDAK KONGRUEN'}
+      </h3>
+      <div class="steps">
+        Proses Pengecekan:
+
+        a - b = ${a} - (${b})
+
+        a - b = ${difference}
+
+        ${difference} mod ${m} = ${remainder}
+
+        Sisa a mod m = ${resultA}
+        Sisa b mod m = ${resultB}
+
+        ${congruent
+          ? 'Karena sisanya 0, maka kedua bilangan KONGRUEN.'
+          : 'Karena sisanya bukan 0, maka kedua bilangan TIDAK KONGRUEN.'}
+      </div>
+    `;
+  } catch (error) {
+    showError("conResult", error.message);
+  }
+}
+
+/* ==================================
+       NUMBER SYSTEM CALCULATOR
+================================== */
+
+function convertNumber() {
+  try {
+    const input = document.getElementById("numberInput").value.trim();
+    const base = Number(document.getElementById("numberBase").value);
+
+    if (!input) {
+      throw new Error("Silakan masukkan bilangan terlebih dahulu.");
+    }
+
+    // Validasi digit berdasarkan basis asal.
+    const patterns = {
+      2: /^[+-]?[01]+$/,
+      8: /^[+-]?[0-7]+$/,
+      10: /^[+-]?[0-9]+$/,
+      16: /^[+-]?[0-9a-fA-F]+$/
+    };
+
+    if (!patterns[base].test(input)) {
+      throw new Error("Input tidak sesuai dengan basis " + base + ".");
+    }
+
+    // BigInt agar bilangan besar tetap akurat.
+    const number = BigInt(input);
+
+    const binary = number.toString(2).toUpperCase();
+    const decimal = number.toString(10);
+    const octal = number.toString(8).toUpperCase();
+    const hexadecimal = number.toString(16).toUpperCase();
+
+    const data = [
+      ["Biner (Basis 2)", binary],
+      ["Desimal (Basis 10)", decimal],
+      ["Oktal (Basis 8)", octal],
+      ["Heksadesimal (Basis 16)", hexadecimal]
+    ];
+
+    document.getElementById("numberResult").innerHTML = `
+      <h4>✓ Hasil Konversi</h4>
+      <p class="description">
+        Input: ${input} (Basis ${base})
+      </p>
+      <div class="number-results">
+        ${data.map(item => `
+          <div class="number-item">
+            <small>${item[0]}</small>
+            <strong>${item[1]}</strong>
+          </div>
+        `).join("")}
+      </div>
+      <div class="note success">
+        Konversi berhasil dilakukan.
+      </div>
+    `;
+  } catch (error) {
+    showError("numberResult", error.message);
+  }
+}
+
+/* ==================================
+       COMBINATORICS CALCULATOR
+================================== */
+
+// Menghitung faktorial menggunakan BigInt.
+function factorial(n) {
+  let result = 1n;
+
+  for (let i = 2; i <= n; i++) {
+    result *= BigInt(i);
+  }
+
+  return result;
+}
+
+// Menghitung permutasi secara langsung.
+function permutation(n, r) {
+  let result = 1n;
+
+  for (let i = 0; i < r; i++) {
+    result *= BigInt(n - i);
+  }
+
+  return result;
+}
+
+// Menghitung kombinasi secara efisien.
+function combination(n, r) {
+  r = Math.min(r, n - r);
+
+  let result = 1n;
+
+  for (let i = 1; i <= r; i++) {
+    result = result * BigInt(n - r + i) / BigInt(i);
+  }
+
+  return result;
+}
+
+function formatBigInt(value) {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function calculateCombinatorics() {
+  try {
+    const n = getInteger("combN", "Nilai n");
+    const r = getInteger("combR", "Nilai r");
+
+    if (n < 0 || r < 0) {
+      throw new Error("Nilai n dan r tidak boleh negatif.");
+    }
+
+    if (r > n) {
+      throw new Error("Nilai r tidak boleh lebih besar dari n.");
+    }
+
+    if (n > 500) {
+      throw new Error("Untuk menjaga performa, nilai n maksimal 500.");
+    }
+
+    const p = permutation(n, r);
+    const c = combination(n, r);
+
+    const numerator = factorial(n);
+    const denominatorP = factorial(n - r);
+    const denominatorC = factorial(r) * denominatorP;
+
+    document.getElementById("combResult").innerHTML = `
+      <h4>✓ Hasil Perhitungan</h4>
+
+      <div class="note">
+        <b>Rumus Permutasi:</b><br>
+        P(n,r) = n! / (n-r)!<br>
+        P(${n},${r}) = ${formatBigInt(numerator)} /
+        ${formatBigInt(denominatorP)}<br>
+        <strong class="success">Hasil = ${formatBigInt(p)}</strong>
+      </div>
+
+      <div class="note">
+        <b>Rumus Kombinasi:</b><br>
+        C(n,r) = n! / (r!(n-r)!)<br>
+        C(${n},${r}) = ${formatBigInt(numerator)} /
+        (${formatBigInt(factorial(r))} ×
+        ${formatBigInt(denominatorP)})<br>
+        <strong class="success">Hasil = ${formatBigInt(c)}</strong>
+      </div>
+
+      <div class="steps">
+        Perbedaan:
+
+        Permutasi memperhatikan urutan.
+        Kombinasi tidak memperhatikan urutan.
+
+        Nilai n = ${n}
+        Nilai r = ${r}
+
+        Faktorial n! = ${formatBigInt(numerator)}
+        Faktorial r! = ${formatBigInt(factorial(r))}
+        Faktorial (n-r)! = ${formatBigInt(denominatorP)}
+      </div>
+    `;
+  } catch (error) {
+    showError("combResult", error.message);
+  }
+}
+
+/* ==================================
+   SISTEM TAB
+================================== */
+
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabPanels = document.querySelectorAll(".tab-panel");
+
+tabButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.tab;
+
+    tabButtons.forEach(btn => btn.classList.remove("active"));
+    tabPanels.forEach(panel => panel.classList.remove("active"));
+
+    button.classList.add("active");
+    document.getElementById(target).classList.add("active");
+  });
+});
+
+/* ==================================
+   NAVIGASI AKTIF
+================================== */
+
+const navLinks = document.querySelectorAll(".nav-links a");
+
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.forEach(item => item.classList.remove("active"));
+    link.classList.add("active");
+  });
+});
+
+</script>
+</body>
+</html>
