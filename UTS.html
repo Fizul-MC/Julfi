@@ -1,0 +1,886 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#352052">
+<title>Biodata Online | Julfikar</title>
+
+<style>
+:root {
+  --purple: #7139a9;
+  --pink: #e75d91;
+  --orange: #ffad64;
+  --dark: #211b3c;
+  --glass: rgba(39, 27, 66, .78);
+  --border: rgba(255,255,255,.2);
+  --white: #fff;
+  --muted: #e5d9f5;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--white);
+  background:
+    linear-gradient(160deg, #211b49 0%, #6c376c 43%,
+    #d75d70 75%, #ffad64 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* BACKGROUND SENJA */
+.sky {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 72% 34%,
+    rgba(255,192,100,.9) 0%,
+    rgba(246,115,116,.35) 20%,
+    transparent 47%),
+    linear-gradient(160deg,#24204f,#75416f 55%,#e87577);
+}
+
+.sun {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  top: 85px;
+  right: 13%;
+  background: linear-gradient(#fff0a8,#ff9b60);
+  box-shadow: 0 0 100px 35px rgba(255,174,104,.3);
+  animation: sunset 7s ease-in-out infinite alternate;
+}
+
+@keyframes sunset {
+  from { transform: translateY(0); }
+  to { transform: translateY(16px); }
+}
+
+.cloud {
+  position: absolute;
+  width: 240px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255,173,170,.18);
+  filter: blur(12px);
+  animation: drift 28s linear infinite alternate;
+}
+
+.cloud.one { top: 170px; left: 5%; }
+.cloud.two { top: 290px; right: 5%; animation-duration: 35s; }
+.cloud.three { top: 65%; left: 30%; animation-duration: 40s; }
+
+@keyframes drift {
+  from { transform: translateX(-30px); }
+  to { transform: translateX(80px); }
+}
+
+/* NAVBAR */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(30,22,55,.85);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+  max-width: 1250px;
+  margin: auto;
+  padding: 15px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.brand {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.brand span { color: var(--orange); }
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  padding: 9px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  transition: .3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: var(--purple);
+}
+
+/* GENERAL */
+.container {
+  width: min(1100px, 92%);
+  margin: auto;
+}
+
+section {
+  padding: 65px 0;
+  scroll-margin-top: 75px;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(20,10,40,.2);
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-heading h2 {
+  font-size: clamp(28px,5vw,42px);
+  margin: 0 0 10px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* HOME */
+.hero {
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.hero-content {
+  max-width: 730px;
+}
+
+.hero-label {
+  display: inline-block;
+  background: rgba(255,255,255,.14);
+  border: 1px solid var(--border);
+  padding: 9px 17px;
+  border-radius: 30px;
+  font-size: 13px;
+}
+
+.hero h1 {
+  font-size: clamp(36px,7vw,65px);
+  line-height: 1.1;
+  margin: 22px 0;
+}
+
+.hero h1 span {
+  color: #ffd18c;
+}
+
+.hero p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.primary-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 13px 22px;
+  border-radius: 12px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: linear-gradient(110deg,#ffad64,#e54d91);
+  border: none;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255,145,120,.35);
+}
+
+/* BIODATA */
+.profile-card {
+  max-width: 760px;
+  margin: auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 25px;
+  align-items: center;
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#ffb56d,#d84d98,#6544ac);
+  display: grid;
+  place-items: center;
+  font-size: 55px;
+  border: 4px solid rgba(255,255,255,.6);
+}
+
+.profile-card h3 { margin-top: 0; font-size: 25px; }
+
+.bio-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bio-table td {
+  padding: 9px 5px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  vertical-align: top;
+}
+
+.bio-table td:first-child {
+  color: #ffd19b;
+  width: 125px;
+}
+
+/* BUKTI BELAJAR */
+#bukti { padding-top: 55px; }
+
+.subtitle {
+  color: #f7d9ee;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.level-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 22px 0 28px;
+}
+
+.level-info span {
+  font-size: 12px;
+  padding: 7px 12px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+/* TABS */
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.tab-btn {
+  background: rgba(35,25,62,.8);
+  color: white;
+  border: 1px solid var(--border);
+  padding: 16px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.tab-btn:hover {
+  background: rgba(255,255,255,.15);
+}
+
+.tab-btn.active {
+  background: linear-gradient(110deg,#8850c8,#d85d9d);
+  border-color: #f6b4d9;
+  box-shadow: 0 5px 20px rgba(196,83,170,.3);
+}
+
+.tab-panel {
+  display: none;
+  padding: 27px;
+  animation: appear .35s ease;
+}
+
+.tab-panel.active { display: block; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.panel-title {
+  margin-top: 0;
+  font-size: 25px;
+}
+
+.level-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #a65bcb;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* FORM */
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 25px;
+}
+
+.field {
+  margin-bottom: 17px;
+}
+
+.field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.95);
+  color: #29213b;
+  font-size: 15px;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #ffb1a7;
+  box-shadow: 0 0 0 3px rgba(255,180,160,.2);
+}
+
+.calc-btn {
+  width: 100%;
+  padding: 14px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(110deg,#ffad64,#e94c8d);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.calc-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+.result-box {
+  min-height: 200px;
+  background: rgba(24,20,52,.62);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  padding: 20px;
+  overflow-wrap: anywhere;
+}
+
+.result-box h4 {
+  margin: 0 0 14px;
+  color: #ffd29a;
+}
+
+.result-value {
+  font-size: 27px;
+  font-weight: 800;
+  color: #ffd18b;
+  margin: 12px 0;
+}
+
+.steps {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #eee3f9;
+  white-space: pre-line;
+  margin-top: 12px;
+}
+
+.success { color: #8ef5bd; }
+.error { color: #ffb1b1; }
+
+.note {
+  background: rgba(255,255,255,.09);
+  border-left: 3px solid #ffb46f;
+  border-radius: 7px;
+  padding: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 18px;
+}
+
+/* NUMBER SYSTEM */
+.number-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.number-item {
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--border);
+  padding: 13px;
+  border-radius: 10px;
+}
+
+.number-item small {
+  color: #ffd29a;
+  display: block;
+  margin-bottom: 7px;
+}
+
+.number-item strong {
+  font-size: 19px;
+  overflow-wrap: anywhere;
+}
+
+/* ABOUT */
+.about-card {
+  padding: 28px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.about-card h3 { color: white; }
+
+/* FOOTER */
+footer {
+  padding: 25px 15px;
+  text-align: center;
+  background: rgba(25,18,47,.75);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media(max-width:750px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .nav-links a { white-space: nowrap; }
+
+  .hero { min-height: 370px; }
+
+  .profile-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .avatar { margin: auto; }
+
+  .bio-table { text-align: left; }
+
+  .calculator-grid { grid-template-columns: 1fr; }
+
+  .tabs {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .tab-panel { padding: 19px; }
+
+  .panel-title { font-size: 21px; }
+}
+
+@media(max-width:400px) {
+  .number-results { grid-template-columns: 1fr; }
+  .tab-btn { font-size: 12px; padding: 12px 4px; }
+  .bio-table td:first-child { width: 105px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sky">
+  <div class="sun"></div>
+  <div class="cloud one"></div>
+  <div class="cloud two"></div>
+  <div class="cloud three"></div>
+</div>
+
+<header>
+  <nav class="navbar">
+    <div class="brand">MY <span>PROFILE.</span></div>
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#biodata">Biodata</a>
+      <a href="#bukti">Bukti Belajar</a>
+      <a href="#about">Tentang</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- LEVEL 3: HOME -->
+<section id="home" class="hero container">
+  <div class="hero-content">
+    <div class="hero-label">✦ BIODATA ONLINE PRIBADI</div>
+    <h1>Menjelajahi Ilmu di Bawah <span>Langit Senja.</span></h1>
+    <p>
+      Selamat datang di website pribadi saya.
+      Tempat mengenal diri saya, melihat perjalanan pendidikan,
+      dan mendokumentasikan hasil belajar Matematika Informatika.
+    </p>
+    <a href="#biodata" class="primary-btn">Kenali Saya →</a>
+  </div>
+</section>
+
+<!-- BIODATA -->
+<section id="biodata" class="container">
+  <div class="section-heading">
+    <h2>✦ Biodata Pribadi</h2>
+    <p>Mengenal lebih dekat tentang diri saya.</p>
+  </div>
+
+  <div class="profile-card glass">
+    <div class="avatar">👨🏻‍💻</div>
+    <div>
+      <h3>Muhammad Julfikar Al-Hadid</h3>
+      <p class="description">Mahasiswa Program Studi Sistem Informasi</p>
+      <table class="bio-table">
+        <tr><td>Nama</td><td>Muhammad Julfikar Al-Hadid</td></tr>
+        <tr><td>Panggilan</td><td>Julfikar</td></tr>
+        <tr><td>Universitas</td><td>Ma'soem University</td></tr>
+        <tr><td>Program Studi</td><td>Sistem Informasi</td></tr>
+        <tr><td>Asal Sekolah</td><td>SMAN 1 Cileunyi</td></tr>
+        <tr><td>Asal Daerah</td><td>Cibiru Wetan</td></tr>
+        <tr><td>Hobi</td><td>Editing Video</td></tr>
+        <tr><td>Cita-cita</td><td>Menjadi Orang Sukses</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 4: BUKTI BELAJAR -->
+<section id="bukti" class="container">
+  <div class="section-heading">
+    <h2>✦ Bukti Belajar</h2>
+    <p class="subtitle">
+      Perjalanan belajar Matematika Informatika bersama Pa Iin TA 20261
+    </p>
+    <div class="level-info">
+      <span>LEVEL 1 · Modulo</span>
+      <span>LEVEL 2 · Kongruensi</span>
+      <span>LEVEL 3 · Integrasi Biodata</span>
+      <span>LEVEL 4 · Showcase</span>
+      <span>LEVEL 5 · Sistem Bilangan</span>
+      <span>LEVEL 6 · Kombinatorika</span>
+    </div>
+  </div>
+
+  <!-- TAB NAVIGATION -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="modulo">01. Modulo</button>
+    <button class="tab-btn" data-tab="congruence">02. Kongruensi</button>
+    <button class="tab-btn" data-tab="number">03. Sistem Bilangan</button>
+    <button class="tab-btn" data-tab="combinatorics">04. Kombinatorika</button>
+  </div>
+
+  <!-- LEVEL 1 -->
+  <div id="modulo" class="tab-panel glass active">
+    <h3 class="panel-title">
+      Modulo Calculator <span class="level-badge">Level 1</span>
+    </h3>
+    <p class="description">
+      Menghitung sisa pembagian dua bilangan bulat.
+      Kalkulator ini juga mendukung bilangan negatif.
+    </p>
+
+    <div class="calculator-grid">
+      <div>
+        <div class="field">
+          <label for="modA">Bilangan a</label>
+          <input type="number" id="modA" step="1" placeholder="Contoh: -17">
+        </div>
+        <div class="field">
+          <label for="modM">Modulus m (positif)</label>
+          <input type="number" id="modM" step="1" min="1" placeholder="Contoh: 5">
+        </div>
+        <button class="calc-btn" onclick="calculateModulo()">✦ Hitung Modulo</button>
+      </div>
+
+      <div class="result-box" id="modResult" aria-live="polite">
+        <h4>Hasil Perhitungan</h4>
+        <p class="description">Masukkan bilangan untuk memulai perhitungan.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Konsep:</b> Modulo merupakan operasi untuk mendapatkan sisa
+      pembagian. Untuk modulus positif, hasil modulo selalu berada
+      antara 0 sampai m - 1.
+    </div>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div id="congruence" class="tab-panel glass">
+    <h3 class="panel-title">
+      Congruence Checker <span class="level-badge">Level 2</span>
+    </h3>
+    <p class="description">
+      Memeriksa apakah dua bilangan memiliki sisa pembagian yang sama
+      terhadap modulus tertentu.
+    </p>
+
+    <div class="calculator-grid">
+      <div>
+        <div class="field">
+          <label for="conA">Bilangan a</label>
+          <input type="number" id="conA" step="1" placeholder="Contoh: 17">
+        </div>
+        <div class="field">
+          <label for="conB">Bilangan b</label>
+          <input type="number" id="conB" step="1" placeholder="Contoh: 2">
+        </div>
+        <div class="field">
+          <label for="conM">Modulus m</label>
+          <input type="number" id="conM" step="1" min="1" placeholder="Contoh: 5">
+        </div>
+        <button class="calc-btn" onclick="checkCongruence()">✦ Periksa Kongruensi</button>
+      </div>
+
+      <div class="result-box" id="conResult" aria-live="polite">
+        <h4>Hasil Pemeriksaan</h4>
+        <p class="description">Masukkan tiga bilangan untuk memulai.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Konsep:</b> a ≡ b (mod m) jika dan hanya jika m membagi
+      (a - b) tanpa sisa.
+    </div>
+  </div>
+
+  <!-- LEVEL 5 -->
+  <div id="number" class="tab-panel glass">
+    <h3 class="panel-title">
+      Number System Calculator <span class="level-badge">Level 5</span>
+    </h3>
+    <p class="description">
+      Mengonversi bilangan ke empat sistem bilangan:
+      Biner, Desimal, Oktal, dan Heksadesimal.
+    </p>
+
+    <div class="calculator-grid">
+      <div>
+        <div class="field">
+          <label for="numberInput">Masukkan Bilangan</label>
+          <input type="text" id="numberInput" placeholder="Contoh: 1010">
+        </div>
+        <div class="field">
+          <label for="numberBase">Basis Asal</label>
+          <select id="numberBase">
+            <option value="2">Biner (Basis 2)</option>
+            <option value="10" selected>Desimal (Basis 10)</option>
+            <option value="8">Oktal (Basis 8)</option>
+            <option value="16">Heksadesimal (Basis 16)</option>
+          </select>
+        </div>
+        <button class="calc-btn" onclick="convertNumber()">✦ Konversi Bilangan</button>
+      </div>
+
+      <div class="result-box" id="numberResult" aria-live="polite">
+        <h4>Hasil Konversi</h4>
+        <p class="description">Hasil empat sistem bilangan akan muncul di sini.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Konsep:</b> Sistem bilangan merupakan metode penulisan angka
+      berdasarkan basis tertentu. Biner menggunakan 0–1, desimal
+      menggunakan 0–9, oktal menggunakan 0–7, dan heksadesimal
+      menggunakan 0–9 serta A–F.
+    </div>
+  </div>
+
+  <!-- LEVEL 6 -->
+  <div id="combinatorics" class="tab-panel glass">
+    <h3 class="panel-title">
+      Combinatorics Calculator <span class="level-badge">Level 6</span>
+    </h3>
+    <p class="description">
+      Menghitung permutasi dan kombinasi menggunakan nilai n dan r.
+    </p>
+
+    <div class="calculator-grid">
+      <div>
+        <div class="field">
+          <label for="combN">Nilai n</label>
+          <input type="number" id="combN" min="0" max="500" step="1" placeholder="Contoh: 5">
+        </div>
+        <div class="field">
+          <label for="combR">Nilai r</label>
+          <input type="number" id="combR" min="0" max="500" step="1" placeholder="Contoh: 2">
+        </div>
+        <button class="calc-btn" onclick="calculateCombinatorics()">✦ Hitung</button>
+      </div>
+
+      <div class="result-box" id="combResult" aria-live="polite">
+        <h4>Hasil Perhitungan</h4>
+        <p class="description">Masukkan n dan r untuk memulai.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Permutasi:</b> Memperhatikan urutan pemilihan.
+      <br>
+      <b>Kombinasi:</b> Tidak memperhatikan urutan pemilihan.
+      <br>
+      Keduanya menggunakan syarat 0 ≤ r ≤ n.
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container">
+  <div class="section-heading">
+    <h2>✦ Tentang Project</h2>
+    <p>Dokumentasi pembelajaran Matematika Informatika.</p>
+  </div>
+
+  <div class="about-card glass">
+    <h3>Matematika Informatika</h3>
+    <p>
+      Website ini dibuat sebagai bagian dari project Biodata Online
+      Pribadi sekaligus bukti pemahaman saya terhadap materi
+      Matematika Informatika.
+    </p>
+    <p>
+      Di dalam website ini terdapat empat kalkulator interaktif,
+      yaitu Modulo Calculator, Congruence Checker, Number System
+      Calculator, dan Combinatorics Calculator.
+    </p>
+    <p>
+      Setiap fitur dikembangkan menggunakan HTML, CSS, dan JavaScript
+      dengan tujuan memahami konsep matematika sekaligus menerapkannya
+      ke dalam sebuah aplikasi web.
+    </p>
+    <p>
+      <b>Teknologi:</b> HTML5 · CSS3 · JavaScript
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 Muhammad Julfikar Al-Hadid</p>
+  <p>Made with ☀ and JavaScript · Matematika Informatika</p>
+</footer>
+
+<script>
+/* ==================================
+   FUNGSI UMUM
+================================== */
+
+function showError(elementId, message) {
+  document.getElementById(elementId).innerHTML =
+    `<h4>⚠ Terjadi Kesalahan</h4>
+     <p class="error">${message}</p>`;
+}
+
+function isInteger(value) {
+  return Number.isSafeInteger(value);
+}
+
+function getInteger(id, label) {
+  const raw = document.getElementById(id).value.trim();
+
+  if (raw === "") {
+    throw new Error(label + " wajib diisi.");
+  }
+
+  const value = Number(raw);
+
+  if (!isInteger(value)) {
+    throw new Error(label + " harus berupa bilangan bulat yang valid.");
+  }
+
+  return value;
+}
+
+/* ==================================
+   LEVEL 1: MODULO CALCULATOR
+================================== */
+
+function calculateModulo() {
+  try {
+    const a = getInteger("modA", "Bilangan a");
+    const m = getInteger("modM", "Modulus m");
+
+    if (m <= 0) {
+      throw new Error("Modulus harus merupakan bilangan bulat positif.");
+    }
+
+    // Menghasilkan modulo nonnegatif untuk m positif.
+    const result = ((a % m) + m) % m;
+
+    // Menentukan q agar a = q*m + result.
+    const q = (a - result) / m;
+
+    document.getElementById("modResult").innerHTML = `
+      <h4>✓ Hasil Perhitungan</h4>
+      <div class="result-value">${a} mod ${m} = ${result}</div>
+      <div class="steps">
+        Proses Perhitungan:
+
+        a = q × m + r
+
+        ${a} = (${q}) × ${m} + ${result}
+
+        ${q * m} + ${result} = ${a}
+
+        Jadi, sisa pembagian adalah ${result}.
+      </div>
+   
