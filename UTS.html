@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Biodata  – Muhammad Julfikar Al-Hadid</title>
+<title>Biodata Online – Muhammad Julfikar Al-Hadid</title>
 <meta name="description" content="Biodata online dan Bukti Belajar Matematika Informatika">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&family=STIX+Two+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -37,17 +37,17 @@ a{color:inherit}button{font-family:inherit}
 .top{display:none}
 /* Utama */
 .main{margin-left:300px;min-height:100vh}
-.banner{position:relative;overflow:hidden;padding:2.2rem 2.5rem 6.5rem;
+.banner{position:relative;overflow:hidden;padding:2.2rem 2.5rem 7rem;
  background:linear-gradient(180deg,#3b1a80 0%,#b0357f 50%,#ff7a45 85%,#ffb347 100%)}
-.banner .sunb{position:absolute;right:11%;bottom:-10px;width:150px;height:150px;border-radius:50%;
+.banner .sunb{position:absolute;right:8%;bottom:-30px;width:110px;height:110px;z-index:0;pointer-events:none;border-radius:50%;
  background:radial-gradient(circle,#fff3b0,#ffc23d 55%,#ff8a3d);box-shadow:0 0 70px 20px rgba(255,170,70,.6)}
-.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:70px;fill:#1c0c3d}
+.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:70px;fill:#1c0c3d;z-index:0;pointer-events:none}
 .bpill{position:relative;display:inline-flex;gap:.6rem;align-items:center;padding:.5rem 1.2rem;border-radius:999px;background:rgba(20,10,48,.7);border:1px solid var(--line);font-weight:500}
 .banner h1{position:relative;font-size:clamp(1.9rem,4.6vw,3rem);font-weight:700;margin:.9rem 0 .3rem;line-height:1.15}
 .banner h1 b{color:var(--gold)}
 .banner p{position:relative;font-weight:500;max-width:60ch}
-.bquote{position:absolute;right:2.2rem;top:1.6rem;max-width:300px;text-align:right;font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.2;transform:rotate(-3deg)}
-.wrap{padding:0 2rem 2rem;margin-top:-4.5rem;position:relative}
+.bquote{flex:0 1 280px;margin-left:auto;text-align:right;font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.2;transform:rotate(-3deg)}
+.wrap{padding:0 2rem 2rem;margin-top:-2.2rem;position:relative;z-index:1}
 .page,.panel-k{display:none}.page.active,.panel-k.active{display:block}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:1.6rem;box-shadow:0 0 40px rgba(139,92,246,.28);backdrop-filter:blur(8px)}
 .ph{display:flex;align-items:center;gap:1rem}.ph .ic{width:3.2rem;height:3.2rem;color:#a98bff}
@@ -88,11 +88,11 @@ input,select{width:100%;height:46px;font:inherit;font-size:1rem;color:#1b0f33;ba
 .conv{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;font-family:'Poppins',sans-serif;font-size:1rem}
 .conv div{background:rgba(255,255,255,.07);border-radius:10px;padding:.4rem .7rem}
 .conv small{display:block;color:var(--mut);font-size:.75rem}.conv b{color:var(--green)}
-.art{position:relative;min-height:250px;border-radius:16px;overflow:hidden;display:grid;place-content:start center;text-align:center;padding:1.4rem .8rem;
- background:radial-gradient(circle at 70% 78%,#ffc65a 0,#ff8a4c 12%,transparent 13%),linear-gradient(180deg,#4b2a9a,#b0397f 60%,#ff8a4c)}
-.a-big{font-family:'STIX Two Text',serif;font-style:italic;font-weight:700;font-size:clamp(1.8rem,3vw,2.8rem);text-shadow:0 0 18px #b99cff;line-height:1.2}
-.a-sub{font-family:'STIX Two Text',serif;font-style:italic;font-size:1.1rem;margin-top:.5rem;color:#ffeccc}
-.torii{position:absolute;right:12%;bottom:0;width:90px;height:72px;fill:#1c0c3d}
+.art{position:relative;min-height:250px;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.4rem .8rem 0;
+ background:radial-gradient(circle at 70% 90%,#ffc65a 0,#ff8a4c 12%,transparent 13%),linear-gradient(180deg,#4b2a9a,#b0397f 60%,#ff8a4c)}
+.a-big{font-family:'STIX Two Text',serif;font-style:italic;font-weight:700;font-size:clamp(1.5rem,2.3vw,2.4rem);text-shadow:0 0 18px #b99cff;line-height:1.2}
+.a-sub{font-family:'STIX Two Text',serif;font-style:italic;font-size:1.1rem;margin:.5rem 0 1rem;color:#ffeccc}
+.torii{flex:none;margin-top:auto;align-self:flex-end;margin-right:12%;width:90px;height:72px;fill:#1c0c3d}
 .short{display:flex;gap:1rem;align-items:center;margin-top:1.2rem;padding:1.1rem 1.4rem;background:rgba(14,8,40,.6);border:1px solid var(--line);border-radius:18px}
 .short>div{flex:1}.trophy .ic{width:2.4rem;height:2.4rem;color:var(--gold)}
 .short h4{font-size:1.1rem;font-weight:600}.short p{color:#eee3ff}
@@ -106,14 +106,16 @@ input,select{width:100%;height:46px;font:inherit;font-size:1rem;color:#1b0f33;ba
 .btn{display:inline-block;margin-top:1.2rem;padding:.8rem 1.6rem;border-radius:10px;text-decoration:none;font-weight:600;background:linear-gradient(90deg,#ff9a2e,#ff4f7b)}
 .lv{margin:1rem 0 0 1.3rem;display:grid;gap:.4rem}
 footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
+.bhead{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:flex-start;justify-content:space-between}
+.btext{flex:1 1 420px;min-width:0}
 /* Responsif */
-@media(max-width:1180px){.cols{grid-template-columns:1fr 1fr}.art{display:none}.bquote{display:none}}
+@media(max-width:1180px){.cols{grid-template-columns:1fr 1fr}.art{display:none}}
 @media(max-width:900px){
  .side{transform:translateX(-100%);width:280px}body.open .side{transform:none}
  .top{display:flex;position:fixed;top:0;left:0;right:0;height:56px;z-index:20;align-items:center;gap:.8rem;padding:0 1rem;background:rgba(20,10,48,.95);border-bottom:1px solid var(--line);font-weight:600}
  .top button{background:none;border:1px solid var(--line);color:#fff;border-radius:8px;padding:.3rem .5rem;cursor:pointer}
  .main{margin-left:0;padding-top:56px}
- .banner{padding:1.6rem 1.2rem 6rem}.wrap{padding:0 .9rem 1.4rem}
+ .banner{padding:1.6rem 1.2rem 7rem}.bquote{text-align:left;margin-left:0;transform:none}.wrap{padding:0 .9rem 1.4rem}
  .tabs{grid-template-columns:1fr 1fr}
  .cols{grid-template-columns:1fr}.short{flex-wrap:wrap}.morebtn{width:100%;justify-content:center}
 }
@@ -139,10 +141,13 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
 
 <div class="main">
   <header class="banner">
+    <div class="bhead"><div class="btext">
     <span class="bpill"><svg class="ic "><use href="#i-cap"/></svg>Biodata Online Pribadi</span>
     <h1>Selamat Datang di <b>Website Saya!</b></h1>
     <p>Kenali lebih dekat tentang diri saya dan perjalanan belajar saya di dunia Matematika Informatika.</p>
+    </div>
     <p class="bquote">“Matematika bukan sekadar angka, tapi kunci untuk memahami dunia.”</p>
+    </div>
     <span class="sunb"></span>
     <svg class="skyline" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70V48Q150 22 300 46T620 40T900 50T1200 30V70z"/><path d="M930 40h130l-14-14h-102zM950 40v30M1040 40v30" /></svg>
   </header>
