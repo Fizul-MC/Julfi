@@ -1,1146 +1,400 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#352052">
-<title>Biodata Online | Julfikar</title>
-
-<style>
-:root {
-  --purple: #7139a9;
-  --pink: #e75d91;
-  --orange: #ffad64;
-  --dark: #211b3c;
-  --glass: rgba(39, 27, 66, .78);
-  --border: rgba(255,255,255,.2);
-  --white: #fff;
-  --muted: #e5d9f5;
-}
-
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: var(--white);
-  background:
-    linear-gradient(160deg, #211b49 0%, #6c376c 43%,
-    #d75d70 75%, #ffad64 100%);
-  background-attachment: fixed;
-  min-height: 100vh;
-}
-
-/* BACKGROUND SENJA */
-.sky {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    radial-gradient(ellipse at 72% 34%,
-    rgba(255,192,100,.9) 0%,
-    rgba(246,115,116,.35) 20%,
-    transparent 47%),
-    linear-gradient(160deg,#24204f,#75416f 55%,#e87577);
-}
-
-.sun {
-  position: absolute;
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  top: 85px;
-  right: 13%;
-  background: linear-gradient(#fff0a8,#ff9b60);
-  box-shadow: 0 0 100px 35px rgba(255,174,104,.3);
-  animation: sunset 7s ease-in-out infinite alternate;
-}
-
-@keyframes sunset {
-  from { transform: translateY(0); }
-  to { transform: translateY(16px); }
-}
-
-.cloud {
-  position: absolute;
-  width: 240px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(255,173,170,.18);
-  filter: blur(12px);
-  animation: drift 28s linear infinite alternate;
-}
-
-.cloud.one { top: 170px; left: 5%; }
-.cloud.two { top: 290px; right: 5%; animation-duration: 35s; }
-.cloud.three { top: 65%; left: 30%; animation-duration: 40s; }
-
-@keyframes drift {
-  from { transform: translateX(-30px); }
-  to { transform: translateX(80px); }
-}
-
-/* NAVBAR */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(30,22,55,.85);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--border);
-}
-
-.navbar {
-  max-width: 1250px;
-  margin: auto;
-  padding: 15px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.brand {
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: .5px;
-}
-
-.brand span { color: var(--orange); }
-
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  padding: 9px 13px;
-  border-radius: 20px;
-  font-size: 13px;
-  transition: .3s;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  background: var(--purple);
-}
-
-/* GENERAL */
-.container {
-  width: min(1100px, 92%);
-  margin: auto;
-}
-
-section {
-  padding: 65px 0;
-  scroll-margin-top: 75px;
-}
-
-.glass {
-  background: var(--glass);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(20,10,40,.2);
-}
-
-.section-heading {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.section-heading h2 {
-  font-size: clamp(28px,5vw,42px);
-  margin: 0 0 10px;
-}
-
-.section-heading p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-/* HOME */
-.hero {
-  min-height: 440px;
-  display: flex;
-  align-items: center;
-  padding: 50px 0;
-}
-
-.hero-content {
-  max-width: 730px;
-}
-
-.hero-label {
-  display: inline-block;
-  background: rgba(255,255,255,.14);
-  border: 1px solid var(--border);
-  padding: 9px 17px;
-  border-radius: 30px;
-  font-size: 13px;
-}
-
-.hero h1 {
-  font-size: clamp(36px,7vw,65px);
-  line-height: 1.1;
-  margin: 22px 0;
-}
-
-.hero h1 span {
-  color: #ffd18c;
-}
-
-.hero p {
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--muted);
-}
-
-.primary-btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 13px 22px;
-  border-radius: 12px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  background: linear-gradient(110deg,#ffad64,#e54d91);
-  border: none;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.primary-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255,145,120,.35);
-}
-
-/* BIODATA */
-.profile-card {
-  max-width: 760px;
-  margin: auto;
-  padding: 30px;
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 25px;
-  align-items: center;
-}
-
-.avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#ffb56d,#d84d98,#6544ac);
-  display: grid;
-  place-items: center;
-  font-size: 55px;
-  border: 4px solid rgba(255,255,255,.6);
-}
-
-.profile-card h3 { margin-top: 0; font-size: 25px; }
-
-.bio-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.bio-table td {
-  padding: 9px 5px;
-  border-bottom: 1px solid rgba(255,255,255,.12);
-  vertical-align: top;
-}
-
-.bio-table td:first-child {
-  color: #ffd19b;
-  width: 125px;
-}
-
-/* BUKTI BELAJAR */
-#bukti { padding-top: 55px; }
-
-.subtitle {
-  color: #f7d9ee;
-  font-style: italic;
-  font-size: 16px;
-}
-
-.level-info {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin: 22px 0 28px;
-}
-
-.level-info span {
-  font-size: 12px;
-  padding: 7px 12px;
-  background: rgba(255,255,255,.12);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-}
-
-/* TABS */
-.tabs {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 9px;
-  margin-bottom: 22px;
-}
-
-.tab-btn {
-  background: rgba(35,25,62,.8);
-  color: white;
-  border: 1px solid var(--border);
-  padding: 16px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 700;
-  transition: .3s;
-}
-
-.tab-btn:hover {
-  background: rgba(255,255,255,.15);
-}
-
-.tab-btn.active {
-  background: linear-gradient(110deg,#8850c8,#d85d9d);
-  border-color: #f6b4d9;
-  box-shadow: 0 5px 20px rgba(196,83,170,.3);
-}
-
-.tab-panel {
-  display: none;
-  padding: 27px;
-  animation: appear .35s ease;
-}
-
-.tab-panel.active { display: block; }
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.panel-title {
-  margin-top: 0;
-  font-size: 25px;
-}
-
-.level-badge {
-  display: inline-block;
-  font-size: 11px;
-  padding: 5px 10px;
-  border-radius: 20px;
-  background: #a65bcb;
-  vertical-align: middle;
-  margin-left: 5px;
-}
-
-.description {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-/* FORM */
-.calculator-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  margin-top: 25px;
-}
-
-.field {
-  margin-bottom: 17px;
-}
-
-.field label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.field input,
-.field select {
-  width: 100%;
-  padding: 13px 14px;
-  border-radius: 10px;
-  outline: none;
-  border: 1px solid rgba(255,255,255,.25);
-  background: rgba(255,255,255,.95);
-  color: #29213b;
-  font-size: 15px;
-}
-
-.field input:focus,
-.field select:focus {
-  border-color: #ffb1a7;
-  box-shadow: 0 0 0 3px rgba(255,180,160,.2);
-}
-
-.calc-btn {
-  width: 100%;
-  padding: 14px;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(110deg,#ffad64,#e94c8d);
-  cursor: pointer;
-  transition: .3s;
-}
-
-.calc-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
-
-.result-box {
-  min-height: 200px;
-  background: rgba(24,20,52,.62);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 14px;
-  padding: 20px;
-  overflow-wrap: anywhere;
-}
-
-.result-box h4 {
-  margin: 0 0 14px;
-  color: #ffd29a;
-}
-
-.result-value {
-  font-size: 27px;
-  font-weight: 800;
-  color: #ffd18b;
-  margin: 12px 0;
-}
-
-.steps {
-  font-size: 13px;
-  line-height: 1.9;
-  color: #eee3f9;
-  white-space: pre-line;
-  margin-top: 12px;
-}
-
-.success { color: #8ef5bd; }
-.error { color: #ffb1b1; }
-
-.note {
-  background: rgba(255,255,255,.09);
-  border-left: 3px solid #ffb46f;
-  border-radius: 7px;
-  padding: 12px;
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-top: 18px;
-}
-
-/* NUMBER SYSTEM */
-.number-results {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.number-item {
-  background: rgba(255,255,255,.08);
-  border: 1px solid var(--border);
-  padding: 13px;
-  border-radius: 10px;
-}
-
-.number-item small {
-  color: #ffd29a;
-  display: block;
-  margin-bottom: 7px;
-}
-
-.number-item strong {
-  font-size: 19px;
-  overflow-wrap: anywhere;
-}
-
-/* ABOUT */
-.about-card {
-  padding: 28px;
-  line-height: 1.9;
-  color: var(--muted);
-}
-
-.about-card h3 { color: white; }
-
-/* FOOTER */
-footer {
-  padding: 25px 15px;
-  text-align: center;
-  background: rgba(25,18,47,.75);
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* RESPONSIVE */
-@media(max-width:750px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    width: 100%;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 5px;
-  }
-
-  .nav-links a { white-space: nowrap; }
-
-  .hero { min-height: 370px; }
-
-  .profile-card {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .avatar { margin: auto; }
-
-  .bio-table { text-align: left; }
-
-  .calculator-grid { grid-template-columns: 1fr; }
-
-  .tabs {
-    grid-template-columns: repeat(2,1fr);
-  }
-
-  .tab-panel { padding: 19px; }
-
-  .panel-title { font-size: 21px; }
-}
-
-@media(max-width:400px) {
-  .number-results { grid-template-columns: 1fr; }
-  .tab-btn { font-size: 12px; padding: 12px 4px; }
-  .bio-table td:first-child { width: 105px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biodata Online – Muhammad Julfikar Al-Hadid</title>
+  <meta name="description" content="Biodata online dan Bukti Belajar Matematika Informatika">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --night:#1a1033; --dusk:#3b1d6e; --plum:#7a2f8f; --rose:#e63f7d;
+  --ember:#ff8a4c; --gold:#ffd36e; --text:#fff3e6; --muted:#d9c3dc;
+  --glass:rgba(26,16,51,.62); --line:rgba(255,211,110,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',system-ui,sans-serif; color:var(--text); line-height:1.6;
+  background:linear-gradient(180deg,var(--night) 0%,var(--dusk) 28%,var(--plum) 55%,var(--rose) 80%,var(--ember) 100%) fixed;
+  min-height:100vh;
+}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.15}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* Navigasi */
+.nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+  padding:.8rem 1.25rem;background:rgba(26,16,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-family:'Fraunces',serif;font-weight:800;font-size:1.2rem;text-decoration:none}
+nav{display:flex;gap:1.4rem}
+nav a{text-decoration:none;color:var(--muted);font-weight:500;padding:.25rem 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--gold);border-color:var(--gold)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--text);font-size:1.4rem;border-radius:8px;padding:.1rem .6rem;cursor:pointer}
+
+/* Hero */
+.hero{text-align:center;padding:4.5rem 1.25rem 3.5rem;max-width:760px;margin:0 auto}
+.sun{width:min(220px,55vw);height:auto;margin-bottom:1.5rem;filter:drop-shadow(0 0 40px rgba(255,138,76,.65));animation:rise 1.4s ease-out both}
+@keyframes rise{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.hero h1{font-size:clamp(2rem,6.5vw,3.6rem);font-weight:800;margin-bottom:1rem}
+.tagline{color:var(--muted);font-size:1.1rem;max-width:52ch;margin:0 auto 2rem}
+
+/* Tombol */
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;font:700 1rem 'DM Sans',sans-serif;
+  color:var(--night);background:linear-gradient(90deg,var(--gold),var(--ember));padding:.75rem 1.5rem;border-radius:999px;
+  transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,138,76,.45)}
+
+/* Section */
+.section{max-width:1080px;margin:0 auto;padding:3.5rem 1.25rem;scroll-margin-top:60px}
+.section h2{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:800;margin-bottom:.6rem}
+.subtitle{font-family:'Fraunces',serif;font-size:clamp(1.05rem,2.8vw,1.35rem);color:var(--gold);margin-bottom:2.2rem;max-width:40ch}
+
+/* Biodata */
+.bio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
+.bio div{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem}
+.bio dt{color:var(--gold);font-size:.9rem;font-weight:500}
+.bio dd{font-size:1.1rem;font-weight:700}
+
+/* Kalkulator */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:1.5rem}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:20px;padding:1.5rem;backdrop-filter:blur(6px)}
+.card h3{font-size:1.4rem;margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem}
+.ico{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:12px;font-size:1.2rem;
+  background:linear-gradient(135deg,var(--rose),var(--ember))}
+.hint{color:var(--muted);font-size:.95rem;margin-bottom:1.1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem}
+.row.three{grid-template-columns:repeat(3,1fr)}
+label{display:flex;flex-direction:column;gap:.3rem;font-size:.9rem;color:var(--muted);min-width:0}
+input,select{width:100%;font:inherit;font-size:1rem;color:var(--text);background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:.6rem .7rem}
+select option{color:#1a1033}
+input::placeholder{color:rgba(255,243,230,.4)}
+
+/* Hasil */
+.out{margin-top:1.1rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.out:empty{display:none}
+.res{background:rgba(0,0,0,.28);border-left:4px solid var(--gold);border-radius:12px;padding:1rem 1.1rem}
+.res .big{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:800;color:var(--gold);margin-bottom:.4rem}
+.res ol,.res ul{margin:.4rem 0 0 1.2rem}
+.res li{margin:.2rem 0}
+.res .formula{color:var(--muted);margin-top:.3rem}
+.badge{display:inline-block;font-weight:700;padding:.15rem .8rem;border-radius:999px;color:var(--night)}
+.badge.ok{background:#7be0a4}.badge.no{background:#ff9a8a}
+.err{background:rgba(255,120,120,.18);border-left:4px solid #ff9a8a;border-radius:12px;padding:.8rem 1rem}
+.conv{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;list-style:none;margin:0!important}
+.conv li{background:rgba(255,255,255,.07);border-radius:10px;padding:.5rem .8rem}
+.conv b{display:block;font-size:.8rem;font-weight:500;color:var(--muted)}
+.conv span{font-weight:700;font-size:1.1rem}
+
+footer{text-align:center;padding:2.5rem 1rem;color:var(--night);font-weight:500;background:rgba(255,211,110,.35)}
+
+/* Responsif */
+@media(max-width:720px){
+  .burger{display:block}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:rgba(26,16,51,.97);border-bottom:1px solid var(--line)}
+  nav.open{display:flex}
+  nav a{padding:.9rem 1.25rem;border:0}
+  .row.three{grid-template-columns:1fr 1fr}
+  .row.three label:last-child{grid-column:1/-1}
+  .hero{padding-top:3rem}
 }
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
-
 <body>
 
-<div class="sky">
-  <div class="sun"></div>
-  <div class="cloud one"></div>
-  <div class="cloud two"></div>
-  <div class="cloud three"></div>
-</div>
-
-<header>
-  <nav class="navbar">
-    <div class="brand">MY <span>PROFILE.</span></div>
-    <div class="nav-links">
-      <a href="#home" class="active">Home</a>
-      <a href="#biodata">Biodata</a>
-      <a href="#bukti">Bukti Belajar</a>
-      <a href="#about">Tentang</a>
-    </div>
+<header class="nav">
+  <a class="brand" href="#beranda">🌇 Julfikar</a>
+  <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false">☰</button>
+  <nav id="menu">
+    <a href="#beranda">Beranda</a>
+    <a href="#biodata">Biodata</a>
+    <a href="#bukti-belajar">Bukti Belajar</a>
   </nav>
 </header>
 
 <main>
+  <!-- BERANDA -->
+  <section class="hero" id="beranda">
+    <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
+      <defs>
+        <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffd36e"/><stop offset=".55" stop-color="#ff8a4c"/><stop offset="1" stop-color="#e63f7d"/>
+        </linearGradient>
+        <mask id="cut">
+          <rect width="200" height="200" fill="#fff"/>
+          <rect y="120" width="200" height="5" fill="#000"/>
+          <rect y="140" width="200" height="8" fill="#000"/>
+          <rect y="162" width="200" height="11" fill="#000"/>
+        </mask>
+      </defs>
+      <circle cx="100" cy="100" r="95" fill="url(#sg)" mask="url(#cut)"/>
+    </svg>
+    <h1>Muhammad Julfikar Al-Hadid</h1>
+    <p class="tagline">Mahasiswa Sistem Informasi yang sedang belajar berpikir seperti komputer, dimulai dari bilangan.</p>
+    <a class="btn" href="#bukti-belajar">Lihat Bukti Belajar</a>
+  </section>
 
-<!-- HOME -->
-<section id="home" class="hero container">
-  <div class="hero-content">
-    <div class="hero-label">✦ BIODATA ONLINE PRIBADI</div>
-    <h1>Menjelajahi Ilmu di Bawah <span>Langit Senja.</span></h1>
-    <p>
-      Selamat datang di website pribadi saya.
-      Tempat mengenal diri saya, melihat perjalanan pendidikan,
-      dan mendokumentasikan hasil belajar Matematika Informatika.
-    </p>
-    <a href="#biodata" class="primary-btn">Kenali Saya →</a>
-  </div>
-</section>
+  <!-- BIODATA -->
+  <section class="section" id="biodata">
+    <h2>Biodata</h2>
+    <dl class="bio">
+      <div><dt>👤 Nama</dt><dd>Muhammad Julfikar Al-Hadid</dd></div>
+      <div><dt>🪪 NIM</dt><dd>262505008</dd></div>
+      <div><dt>💻 Fakultas</dt><dd>Fakultas Komputer</dd></div>
+      <div><dt>🎓 Program Studi</dt><dd>Sistem Informasi</dd></div>
+      <div><dt>📘 Semester</dt><dd>1</dd></div>
+      <div><dt>📍 Alamat</dt><dd>Jl. Mekar Indah VI</dd></div>
+    </dl>
+  </section>
 
-<!-- BIODATA -->
-<section id="biodata" class="container">
-  <div class="section-heading">
-    <h2>✦ Biodata Pribadi</h2>
-    <p>Siapa kah diri saya.</p>
-  </div>
+  <!-- BUKTI BELAJAR -->
+  <section class="section" id="bukti-belajar">
+    <h2>Bukti Belajar</h2>
+    <p class="subtitle">Perjalanan belajar Matematika Informatika bersama Pa Iin TA 20261</p>
 
-  <div class="profile-card glass">
-    <div class="avatar">👨🏻‍💻</div>
-    <div>
-      <h3>Muhammad Julfikar Al-Hadid</h3>
-      <p class="description">Mahasiswa Program Studi Sistem Informasi</p>
-      <table class="bio-table">
-        <tr><td>Nama</td><td>Muhammad Julfikar Al-Hadid</td></tr>
-        <tr><td>Panggilan</td><td>Julfikar</td></tr>
-        <tr><td>NIM</td><td>262505008</td></tr>
-        <tr><td>Universitas</td><td>Ma'soem University</td></tr>
-        <tr><td>Fakultas</td><td>Komputer</td></tr>
-        <tr><td>Program Studi</td><td>Sistem Informasi</td></tr>
-        <tr><td>Asal Daerah</td><td>Cibiru Wetan</td></tr>
-        <tr><td>Cita-cita</td><td>Menjadi Orang Sukses</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
+    <div class="grid">
 
-<!-- BUKTI BELAJAR -->
-<section id="bukti" class="container">
-  <div class="section-heading">
-    <h2>✦ Bukti Belajar</h2>
-    <p class="subtitle">
-      Perjalanan belajar Matematika Informatika bersama Pa Iin TA 20261
-    </p>
-    <div class="level-info">
-      <span>LEVEL 1 · Modulo</span>
-      <span>LEVEL 2 · Kongruensi</span>
-      <span>LEVEL 3 · Integrasi Biodata</span>
-      <span>LEVEL 4 · Showcase</span>
-      <span>LEVEL 5 · Sistem Bilangan</span>
-      <span>LEVEL 6 · Kombinatorika</span>
-    </div>
-  </div>
-
-  <!-- TAB NAVIGATION -->
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="modulo">01. Modulo</button>
-    <button class="tab-btn" data-tab="congruence">02. Kongruensi</button>
-    <button class="tab-btn" data-tab="number">03. Sistem Bilangan</button>
-    <button class="tab-btn" data-tab="combinatorics">04. Kombinatorika</button>
-  </div>
-
-  <!-- MODULO -->
-  <div id="modulo" class="tab-panel glass active">
-    <h3 class="panel-title">
-      Modulo Calculator <span class="level-badge">Level 1</span>
-    </h3>
-    <p class="description">
-      Menghitung sisa pembagian dua bilangan bulat.
-      Kalkulator ini juga mendukung bilangan negatif.
-    </p>
-
-    <div class="calculator-grid">
-      <div>
-        <div class="field">
-          <label for="modA">Bilangan a</label>
-          <input type="number" id="modA" step="1" placeholder="Contoh: -17">
+      <!-- Level 1 -->
+      <article class="card">
+        <h3><span class="ico">➗</span> Kalkulator Modulo</h3>
+        <p class="hint">Sisa pembagian: a mod m, dengan m bilangan bulat positif.</p>
+        <div class="row">
+          <label>Bilangan a<input id="mod-a" type="text" inputmode="numeric" placeholder="-17"></label>
+          <label>Modulus m<input id="mod-m" type="text" inputmode="numeric" placeholder="5"></label>
         </div>
-        <div class="field">
-          <label for="modM">Modulus m (positif)</label>
-          <input type="number" id="modM" step="1" min="1" placeholder="Contoh: 5">
+        <button class="btn" id="mod-btn">Hitung</button>
+        <div class="out" id="mod-out" aria-live="polite"></div>
+      </article>
+
+      <!-- Level 2 -->
+      <article class="card">
+        <h3><span class="ico">🟰</span> Pengecek Kongruensi</h3>
+        <p class="hint">a ≡ b (mod m) jika dan hanya jika m membagi (a − b).</p>
+        <div class="row three">
+          <label>a<input id="cg-a" type="text" inputmode="numeric" placeholder="17"></label>
+          <label>b<input id="cg-b" type="text" inputmode="numeric" placeholder="2"></label>
+          <label>m<input id="cg-m" type="text" inputmode="numeric" placeholder="5"></label>
         </div>
-        <button class="calc-btn" onclick="calculateModulo()">✦ Hitung Modulo</button>
-      </div>
+        <button class="btn" id="cg-btn">Periksa Kongruensi</button>
+        <div class="out" id="cg-out" aria-live="polite"></div>
+      </article>
 
-      <div class="result-box" id="modResult" aria-live="polite">
-        <h4>Hasil Perhitungan</h4>
-        <p class="description">Masukkan bilangan untuk memulai perhitungan.</p>
-      </div>
-    </div>
-
-    <div class="note">
-      <b>Konsep:</b> Modulo merupakan operasi untuk mendapatkan sisa
-      pembagian. Untuk modulus positif, hasil modulo selalu berada
-      antara 0 sampai m - 1.
-    </div>
-  </div>
-
-  <!-- CONGRUNCE -->
-  <div id="congruence" class="tab-panel glass">
-    <h3 class="panel-title">
-      Congruence Checker <span class="level-badge">Level 2</span>
-    </h3>
-    <p class="description">
-      Memeriksa apakah dua bilangan memiliki sisa pembagian yang sama
-      terhadap modulus tertentu.
-    </p>
-
-    <div class="calculator-grid">
-      <div>
-        <div class="field">
-          <label for="conA">Bilangan a</label>
-          <input type="number" id="conA" step="1" placeholder="Contoh: 17">
+      <!-- Level 5 -->
+      <article class="card">
+        <h3><span class="ico">🔢</span> Sistem Bilangan</h3>
+        <p class="hint">Konversi antara biner, desimal, oktal, dan heksadesimal.</p>
+        <div class="row">
+          <label>Bilangan<input id="ns-val" type="text" autocapitalize="characters" placeholder="1010"></label>
+          <label>Basis asal
+            <select id="ns-base">
+              <option value="2">Biner (2)</option>
+              <option value="10">Desimal (10)</option>
+              <option value="8">Oktal (8)</option>
+              <option value="16">Heksadesimal (16)</option>
+            </select>
+          </label>
         </div>
-        <div class="field">
-          <label for="conB">Bilangan b</label>
-          <input type="number" id="conB" step="1" placeholder="Contoh: 2">
+        <button class="btn" id="ns-btn">Konversi</button>
+        <div class="out" id="ns-out" aria-live="polite"></div>
+      </article>
+
+      <!-- Level 6 -->
+      <article class="card">
+        <h3><span class="ico">🎲</span> Kombinatorika</h3>
+        <p class="hint">Permutasi memperhatikan urutan, kombinasi tidak.</p>
+        <div class="row three">
+          <label>n<input id="cb-n" type="text" inputmode="numeric" placeholder="5"></label>
+          <label>r<input id="cb-r" type="text" inputmode="numeric" placeholder="3"></label>
+          <label>Jenis
+            <select id="cb-type">
+              <option value="P">Permutasi P(n,r)</option>
+              <option value="C">Kombinasi C(n,r)</option>
+            </select>
+          </label>
         </div>
-        <div class="field">
-          <label for="conM">Modulus m</label>
-          <input type="number" id="conM" step="1" min="1" placeholder="Contoh: 5">
-        </div>
-        <button class="calc-btn" onclick="checkCongruence()">✦ Periksa Kongruensi</button>
-      </div>
+        <button class="btn" id="cb-btn">Hitung</button>
+        <div class="out" id="cb-out" aria-live="polite"></div>
+      </article>
 
-      <div class="result-box" id="conResult" aria-live="polite">
-        <h4>Hasil Pemeriksaan</h4>
-        <p class="description">Masukkan tiga bilangan untuk memulai.</p>
-      </div>
     </div>
-
-    <div class="note">
-      <b>Konsep:</b> a ≡ b (mod m) jika dan hanya jika m membagi
-      (a - b) tanpa sisa.
-    </div>
-  </div>
-
-  <!-- HIMPUNAN -->
-  <div id="number" class="tab-panel glass">
-    <h3 class="panel-title">
-      Number System Calculator <span class="level-badge">Level 5</span>
-    </h3>
-    <p class="description">
-      Mengonversi bilangan ke empat sistem bilangan:
-      Biner, Desimal, Oktal, dan Heksadesimal.
-    </p>
-
-    <div class="calculator-grid">
-      <div>
-        <div class="field">
-          <label for="numberInput">Masukkan Bilangan</label>
-          <input type="text" id="numberInput" placeholder="Contoh: 1010">
-        </div>
-        <div class="field">
-          <label for="numberBase">Basis Asal</label>
-          <select id="numberBase">
-            <option value="2">Biner (Basis 2)</option>
-            <option value="10" selected>Desimal (Basis 10)</option>
-            <option value="8">Oktal (Basis 8)</option>
-            <option value="16">Heksadesimal (Basis 16)</option>
-          </select>
-        </div>
-        <button class="calc-btn" onclick="convertNumber()">✦ Konversi Bilangan</button>
-      </div>
-
-      <div class="result-box" id="numberResult" aria-live="polite">
-        <h4>Hasil Konversi</h4>
-        <p class="description">Hasil empat sistem bilangan akan muncul di sini.</p>
-      </div>
-    </div>
-
-    <div class="note">
-      <b>Konsep:</b> Sistem bilangan merupakan metode penulisan angka
-      berdasarkan basis tertentu. Biner menggunakan 0–1, desimal
-      menggunakan 0–9, oktal menggunakan 0–7, dan heksadesimal
-      menggunakan 0–9 serta A–F.
-    </div>
-  </div>
-
-  <!-- Combinatorics -->
-  <div id="combinatorics" class="tab-panel glass">
-    <h3 class="panel-title">
-      Combinatorics Calculator <span class="level-badge">Level 6</span>
-    </h3>
-    <p class="description">
-      Menghitung permutasi dan kombinasi menggunakan nilai n dan r.
-    </p>
-
-    <div class="calculator-grid">
-      <div>
-        <div class="field">
-          <label for="combN">Nilai n</label>
-          <input type="number" id="combN" min="0" max="500" step="1" placeholder="Contoh: 5">
-        </div>
-        <div class="field">
-          <label for="combR">Nilai r</label>
-          <input type="number" id="combR" min="0" max="500" step="1" placeholder="Contoh: 2">
-        </div>
-        <button class="calc-btn" onclick="calculateCombinatorics()">✦ Hitung</button>
-      </div>
-
-      <div class="result-box" id="combResult" aria-live="polite">
-        <h4>Hasil Perhitungan</h4>
-        <p class="description">Masukkan n dan r untuk memulai.</p>
-      </div>
-    </div>
-
-    <div class="note">
-      <b>Permutasi:</b> Memperhatikan urutan pemilihan.
-      <br>
-      <b>Kombinasi:</b> Tidak memperhatikan urutan pemilihan.
-      <br>
-      Keduanya menggunakan syarat 0 ≤ r ≤ n.
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="container">
-  <div class="section-heading">
-    <h2>✦ Tentang Project</h2>
-    <p>Dokumentasi pembelajaran Matematika Informatika.</p>
-  </div>
-
-  <div class="about-card glass">
-    <h3>Matematika Informatika</h3>
-    <p>
-      Website ini dibuat sebagai bagian dari project Biodata Online
-      Pribadi sekaligus bukti pemahaman saya terhadap materi
-      Matematika Informatika.
-    </p>
-    <p>
-      Di dalam website ini terdapat empat kalkulator interaktif,
-      yaitu Modulo Calculator, Congruence Checker, Number System
-      Calculator, dan Combinatorics Calculator.
-    </p>
-    <p>
-      Setiap fitur dikembangkan menggunakan HTML, CSS, dan JavaScript
-      dengan tujuan memahami konsep matematika sekaligus menerapkannya
-      ke dalam sebuah aplikasi web.
-    </p>
-    <p>
-      <b>Teknologi:</b> HTML5 · CSS3 · JavaScript
-    </p>
-  </div>
-</section>
-
+  </section>
 </main>
 
 <footer>
-  <p>© 2026 Muhammad Julfikar Al-Hadid - 262505008</p>
-  <p>Made with ☀ and JavaScript · Matematika Informatika</p>
+  <p>© <span id="year"></span> Muhammad Julfikar Al-Hadid · NIM 262505008 · Sistem Informasi</p>
 </footer>
 
 <script>
-/* ==================================
-   FUNGSI UMUM
-================================== */
-
-function showError(elementId, message) {
-  document.getElementById(elementId).innerHTML =
-    `<h4>⚠ Terjadi Kesalahan</h4>
-     <p class="error">${message}</p>`;
-}
-
-function isInteger(value) {
-  return Number.isSafeInteger(value);
-}
-
-function getInteger(id, label) {
-  const raw = document.getElementById(id).value.trim();
-
-  if (raw === "") {
-    throw new Error(label + " wajib diisi.");
-  }
-
-  const value = Number(raw);
-
-  if (!isInteger(value)) {
-    throw new Error(label + " harus berupa bilangan bulat yang valid.");
-  }
-
-  return value;
-}
-
-/* ==================================
-        MODULO CALCULATOR
-================================== */
-
-function calculateModulo() {
-  try {
-    const a = getInteger("modA", "Bilangan a");
-    const m = getInteger("modM", "Modulus m");
-
-    if (m <= 0) {
-      throw new Error("Modulus harus merupakan bilangan bulat positif.");
-    }
-
-    // Menghasilkan modulo nonnegatif untuk m positif.
-    const result = ((a % m) + m) % m;
-
-    // Menentukan q agar a = q*m + result.
-    const q = (a - result) / m;
-
-    document.getElementById("modResult").innerHTML = `
-      <h4>✓ Hasil Perhitungan</h4>
-      <div class="result-value">${a} mod ${m} = ${result}</div>
-      <div class="steps">
-        Proses Perhitungan:
-
-        a = q × m + r
-
-        ${a} = (${q}) × ${m} + ${result}
-
-        ${q * m} + ${result} = ${a}
-
-        Jadi, sisa pembagian adalah ${result}.
-      </div>
-      <div class="note success">Hasil modulo: ${result}</div>
-    `;
-  } catch (error) {
-    showError("modResult", error.message);
-  }
-}
-
-/* ==================================
-        CONGRUENCE CHECKER
-================================== */
-
-function checkCongruence() {
-  try {
-    const a = getInteger("conA", "Bilangan a");
-    const b = getInteger("conB", "Bilangan b");
-    const m = getInteger("conM", "Modulus m");
-
-    if (m <= 0) {
-      throw new Error("Modulus harus bilangan bulat positif.");
-    }
-
-    const difference = a - b;
-    const remainder = ((difference % m) + m) % m;
-    const congruent = remainder === 0;
-
-    const resultA = ((a % m) + m) % m;
-    const resultB = ((b % m) + m) % m;
-
-    document.getElementById("conResult").innerHTML = `
-      <h4>✓ Hasil Pemeriksaan</h4>
-      <div class="result-value" style="font-size:23px">
-        ${a} ≡ ${b} (mod ${m})
-      </div>
-      <h3 class="${congruent ? 'success' : 'error'}">
-        ${congruent ? '✓ KONGRUEN' : '✕ TIDAK KONGRUEN'}
-      </h3>
-      <div class="steps">
-        Proses Pengecekan:
-
-        a - b = ${a} - (${b})
-
-        a - b = ${difference}
-
-        ${difference} mod ${m} = ${remainder}
-
-        Sisa a mod m = ${resultA}
-        Sisa b mod m = ${resultB}
-
-        ${congruent
-          ? 'Karena sisanya 0, maka kedua bilangan KONGRUEN.'
-          : 'Karena sisanya bukan 0, maka kedua bilangan TIDAK KONGRUEN.'}
-      </div>
-    `;
-  } catch (error) {
-    showError("conResult", error.message);
-  }
-}
-
-/* ==================================
-       NUMBER SYSTEM CALCULATOR
-================================== */
-
-function convertNumber() {
-  try {
-    const input = document.getElementById("numberInput").value.trim();
-    const base = Number(document.getElementById("numberBase").value);
-
-    if (!input) {
-      throw new Error("Silakan masukkan bilangan terlebih dahulu.");
-    }
-
-    // Validasi digit berdasarkan basis asal.
-    const patterns = {
-      2: /^[+-]?[01]+$/,
-      8: /^[+-]?[0-7]+$/,
-      10: /^[+-]?[0-9]+$/,
-      16: /^[+-]?[0-9a-fA-F]+$/
-    };
-
-    if (!patterns[base].test(input)) {
-      throw new Error("Input tidak sesuai dengan basis " + base + ".");
-    }
-
-    // BigInt agar bilangan besar tetap akurat.
-    const number = BigInt(input);
-
-    const binary = number.toString(2).toUpperCase();
-    const decimal = number.toString(10);
-    const octal = number.toString(8).toUpperCase();
-    const hexadecimal = number.toString(16).toUpperCase();
-
-    const data = [
-      ["Biner (Basis 2)", binary],
-      ["Desimal (Basis 10)", decimal],
-      ["Oktal (Basis 8)", octal],
-      ["Heksadesimal (Basis 16)", hexadecimal]
-    ];
-
-    document.getElementById("numberResult").innerHTML = `
-      <h4>✓ Hasil Konversi</h4>
-      <p class="description">
-        Input: ${input} (Basis ${base})
-      </p>
-      <div class="number-results">
-        ${data.map(item => `
-          <div class="number-item">
-            <small>${item[0]}</small>
-            <strong>${item[1]}</strong>
-          </div>
-        `).join("")}
-      </div>
-      <div class="note success">
-        Konversi berhasil dilakukan.
-      </div>
-    `;
-  } catch (error) {
-    showError("numberResult", error.message);
-  }
-}
-
-/* ==================================
-       COMBINATORICS CALCULATOR
-================================== */
-
-// Menghitung faktorial menggunakan BigInt.
-function factorial(n) {
-  let result = 1n;
-
-  for (let i = 2; i <= n; i++) {
-    result *= BigInt(i);
-  }
-
-  return result;
-}
-
-// Menghitung permutasi secara langsung.
-function permutation(n, r) {
-  let result = 1n;
-
-  for (let i = 0; i < r; i++) {
-    result *= BigInt(n - i);
-  }
-
-  return result;
-}
-
-// Menghitung kombinasi secara efisien.
-function combination(n, r) {
-  r = Math.min(r, n - r);
-
-  let result = 1n;
-
-  for (let i = 1; i <= r; i++) {
-    result = result * BigInt(n - r + i) / BigInt(i);
-  }
-
-  return result;
-}
-
-function formatBigInt(value) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
-function calculateCombinatorics() {
-  try {
-    const n = getInteger("combN", "Nilai n");
-    const r = getInteger("combR", "Nilai r");
-
-    if (n < 0 || r < 0) {
-      throw new Error("Nilai n dan r tidak boleh negatif.");
-    }
-
-    if (r > n) {
-      throw new Error("Nilai r tidak boleh lebih besar dari n.");
-    }
-
-    if (n > 500) {
-      throw new Error("Untuk menjaga performa, nilai n maksimal 500.");
-    }
-
-    const p = permutation(n, r);
-    const c = combination(n, r);
-
-    const numerator = factorial(n);
-    const denominatorP = factorial(n - r);
-    const denominatorC = factorial(r) * denominatorP;
-
-    document.getElementById("combResult").innerHTML = `
-      <h4>✓ Hasil Perhitungan</h4>
-
-      <div class="note">
-        <b>Rumus Permutasi:</b><br>
-        P(n,r) = n! / (n-r)!<br>
-        P(${n},${r}) = ${formatBigInt(numerator)} /
-        ${formatBigInt(denominatorP)}<br>
-        <strong class="success">Hasil = ${formatBigInt(p)}</strong>
-      </div>
-
-      <div class="note">
-        <b>Rumus Kombinasi:</b><br>
-        C(n,r) = n! / (r!(n-r)!)<br>
-        C(${n},${r}) = ${formatBigInt(numerator)} /
-        (${formatBigInt(factorial(r))} ×
-        ${formatBigInt(denominatorP)})<br>
-        <strong class="success">Hasil = ${formatBigInt(c)}</strong>
-      </div>
-
-      <div class="steps">
-        Perbedaan:
-
-        Permutasi memperhatikan urutan.
-        Kombinasi tidak memperhatikan urutan.
-
-        Nilai n = ${n}
-        Nilai r = ${r}
-
-        Faktorial n! = ${formatBigInt(numerator)}
-        Faktorial r! = ${formatBigInt(factorial(r))}
-        Faktorial (n-r)! = ${formatBigInt(denominatorP)}
-      </div>
-    `;
-  } catch (error) {
-    showError("combResult", error.message);
-  }
-}
-
-/* ==================================
-   SISTEM TAB
-================================== */
-
-const tabButtons = document.querySelectorAll(".tab-btn");
-const tabPanels = document.querySelectorAll(".tab-panel");
-
-tabButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const target = button.dataset.tab;
-
-    tabButtons.forEach(btn => btn.classList.remove("active"));
-    tabPanels.forEach(panel => panel.classList.remove("active"));
-
-    button.classList.add("active");
-    document.getElementById(target).classList.add("active");
-  });
+"use strict";
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => "&#" + c.charCodeAt(0) + ";");
+const par = (x) => (x < 0n ? `(${x})` : `${x}`); // tanda kurung untuk bilangan negatif
+
+/* ---------- Navigasi ---------- */
+const burger = $("burger"), menu = $("menu");
+burger.addEventListener("click", () => {
+  const open = menu.classList.toggle("open");
+  burger.setAttribute("aria-expanded", open);
 });
-
-/* ==================================
-   NAVIGASI AKTIF
-================================== */
-
-const navLinks = document.querySelectorAll(".nav-links a");
-
-navLinks.forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.forEach(item => item.classList.remove("active"));
-    link.classList.add("active");
-  });
+menu.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }
 });
+$("year").textContent = new Date().getFullYear();
 
+/* ---------- Helper ---------- */
+// Membaca bilangan bulat dari input (BigInt supaya tidak overflow)
+function readInt(id, nama) {
+  const v = $(id).value.trim();
+  if (v === "") throw new Error(`${nama} belum diisi.`);
+  if (!/^[+-]?\d+$/.test(v)) throw new Error(`${nama} harus berupa bilangan bulat (tanpa huruf, spasi, atau desimal).`);
+  if (v.replace(/\D/g, "").length > 200) throw new Error(`${nama} terlalu panjang (maksimal 200 digit).`);
+  return BigInt(v);
+}
+// Pembagian dengan pembulatan ke bawah (m > 0) agar sisa tidak pernah negatif
+function floorDiv(a, m) {
+  let q = a / m;
+  if (a % m < 0n) q -= 1n;
+  return q;
+}
+function run(outId, fn) {
+  const el = $(outId);
+  try { el.innerHTML = fn(); }
+  catch (e) { el.innerHTML = `<div class="err">⚠️ ${e.message}</div>`; }
+}
+function readModulus(id) {
+  const m = readInt(id, "Modulus m");
+  if (m <= 0n) throw new Error("Modulus m harus bilangan bulat positif (m > 0).");
+  return m;
+}
+
+/* ---------- Level 1: Modulo ---------- */
+$("mod-btn").addEventListener("click", () => run("mod-out", () => {
+  const a = readInt("mod-a", "Bilangan a");
+  const m = readModulus("mod-m");
+  const q = floorDiv(a, m), r = a - m * q;
+  return `<div class="res">
+    <div class="big">${a} mod ${m} = ${r}</div>
+    <ol>
+      <li>Hitung hasil bagi (dibulatkan ke bawah): q = ⌊${a} ÷ ${m}⌋ = ${q}</li>
+      <li>Gunakan a = m × q + r, sehingga r = a − m × q</li>
+      <li>r = ${a} − ${par(m)} × ${par(q)} = ${a} − ${par(m * q)} = <b>${r}</b></li>
+      <li>Cek: 0 ≤ ${r} &lt; ${m} ✔</li>
+    </ol>
+    ${a < 0n ? `<p class="formula">Karena a negatif, q dibulatkan ke bawah supaya sisa tetap di antara 0 dan ${m - 1n}.</p>` : ""}
+  </div>`;
+}));
+
+/* ---------- Level 2: Kongruensi ---------- */
+$("cg-btn").addEventListener("click", () => run("cg-out", () => {
+  const a = readInt("cg-a", "Bilangan a");
+  const b = readInt("cg-b", "Bilangan b");
+  const m = readModulus("cg-m");
+  const d = a - b;
+  const rd = d - m * floorDiv(d, m);
+  const ok = rd === 0n;
+  const ra = a - m * floorDiv(a, m), rb = b - m * floorDiv(b, m);
+  return `<div class="res">
+    <div class="big">${a} ${ok ? "≡" : "≢"} ${b} (mod ${m})</div>
+    <p>Status: <span class="badge ${ok ? "ok" : "no"}">${ok ? "KONGRUEN" : "TIDAK KONGRUEN"}</span></p>
+    <ol>
+      <li>Hitung selisih: a − b = ${a} − ${par(b)} = ${d}</li>
+      <li>Periksa apakah ${m} membagi ${d}: ${d} mod ${m} = ${rd}
+        ${ok ? `(karena ${d} = ${m} × ${par(d / m)})` : "(sisa tidak nol)"}</li>
+      <li>Cek silang: ${a} mod ${m} = ${ra} dan ${b} mod ${m} = ${rb}
+        → ${ra === rb ? "sisanya sama" : "sisanya berbeda"}</li>
+    </ol>
+    <p class="formula">${ok ? `${m} membagi (${a} − ${par(b)}), maka ${a} ≡ ${b} (mod ${m}).`
+                           : `${m} tidak membagi (${a} − ${par(b)}), maka ${a} ≢ ${b} (mod ${m}).`}</p>
+  </div>`;
+}));
+
+/* ---------- Level 5: Sistem Bilangan ---------- */
+const DIGITS = "0123456789ABCDEF";
+const BASES = [["Biner", 2], ["Desimal", 10], ["Oktal", 8], ["Heksadesimal", 16]];
+
+function convert() {
+  run("ns-out", () => {
+    const raw = $("ns-val").value.trim().toUpperCase();
+    const base = Number($("ns-base").value);
+    const nama = BASES.find((b) => b[1] === base)[0];
+    const allowed = DIGITS.slice(0, base);
+    if (raw === "") throw new Error("Bilangan belum diisi.");
+    if (raw.length > 200) throw new Error("Bilangan terlalu panjang (maksimal 200 karakter).");
+    for (const ch of raw) {
+      if (!allowed.includes(ch))
+        throw new Error(`Karakter "${esc(ch)}" tidak valid untuk ${nama} (basis ${base}). Digit yang boleh: ${allowed.split("").join(", ")}.`);
+    }
+    let n = 0n;
+    for (const ch of raw) n = n * BigInt(base) + BigInt(parseInt(ch, 16));
+    const items = BASES.map(([label, b]) =>
+      `<li><b>${label} (basis ${b})${b === base ? " · asal" : ""}</b><span>${n.toString(b).toUpperCase()}</span></li>`
+    ).join("");
+    return `<div class="res"><ul class="conv">${items}</ul></div>`;
+  });
+}
+$("ns-btn").addEventListener("click", convert);
+$("ns-val").addEventListener("input", () => { $("ns-val").value.trim() ? convert() : ($("ns-out").innerHTML = ""); });
+$("ns-base").addEventListener("change", () => { if ($("ns-val").value.trim()) convert(); });
+
+/* ---------- Level 6: Kombinatorika ---------- */
+const fact = (k) => { let f = 1n; for (let i = 2n; i <= k; i++) f *= i; return f; };
+// n × (n−1) × ... × (n−r+1)
+const prod = (n, r) => { let p = 1n; for (let i = 0n; i < r; i++) p *= n - i; return p; };
+function expand(n, r) {
+  if (r === 0) return "1";
+  const t = Array.from({ length: r }, (_, i) => n - i);
+  return r <= 6 ? t.join(" × ") : `${t.slice(0, 3).join(" × ")} × … × ${t.slice(-2).join(" × ")}`;
+}
+
+$("cb-btn").addEventListener("click", () => run("cb-out", () => {
+  const nB = readInt("cb-n", "Nilai n"), rB = readInt("cb-r", "Nilai r");
+  if (nB < 0n) throw new Error("n harus bilangan bulat tidak negatif (n ≥ 0).");
+  if (rB < 0n) throw new Error("r harus bilangan bulat tidak negatif (r ≥ 0).");
+  if (rB > nB) throw new Error(`Syarat 0 ≤ r ≤ n tidak terpenuhi: r = ${rB} lebih besar dari n = ${nB}.`);
+  if (nB > 100n) throw new Error("n dibatasi maksimal 100 agar hasil tetap mudah dibaca.");
+  const n = Number(nB), r = Number(rB), nr = n - r;
+  const type = $("cb-type").value;
+  const P = prod(nB, rB);
+  const small = n <= 20; // tampilkan nilai faktorial hanya jika masih pendek
+
+  if (type === "P") {
+    return `<div class="res">
+      <div class="big">P(${n},${r}) = ${P}</div>
+      <p class="formula">Rumus: P(n,r) = n! / (n−r)!</p>
+      <ol>
+        <li>Substitusi: P(${n},${r}) = ${n}! / (${n}−${r})! = ${n}! / ${nr}!</li>
+        ${small ? `<li>Nilai faktorial: ${n}! = ${fact(nB)} dan ${nr}! = ${fact(BigInt(nr))}</li>` : ""}
+        <li>Sederhanakan: ${n}! / ${nr}! = ${expand(n, r)}</li>
+        <li>Hasil = <b>${P}</b></li>
+      </ol>
+      <p class="formula">Permutasi memperhatikan urutan: susunan ABC dan BAC dihitung berbeda.</p>
+    </div>`;
+  }
+  const rf = fact(rB), C = P / rf;
+  return `<div class="res">
+    <div class="big">C(${n},${r}) = ${C}</div>
+    <p class="formula">Rumus: C(n,r) = n! / (r!(n−r)!)</p>
+    <ol>
+      <li>Substitusi: C(${n},${r}) = ${n}! / (${r}! × ${nr}!)</li>
+      ${small ? `<li>Nilai faktorial: ${n}! = ${fact(nB)}, ${r}! = ${rf}, ${nr}! = ${fact(BigInt(nr))}</li>` : ""}
+      <li>Sederhanakan: ${n}! / ${nr}! = ${expand(n, r)} = ${P}, lalu bagi dengan ${r}! = ${rf}</li>
+      <li>Hasil = ${P} ÷ ${rf} = <b>${C}</b></li>
+    </ol>
+    <p class="formula">Kombinasi tidak memperhatikan urutan: ABC dan BAC dianggap satu pilihan yang sama, sehingga C(n,r) = P(n,r) ÷ r!.</p>
+  </div>`;
+}));
+
+/* Tekan Enter di kolom input = klik tombol pada kartu yang sama */
+document.querySelectorAll(".card input").forEach((inp) =>
+  inp.addEventListener("keydown", (e) => { if (e.key === "Enter") inp.closest(".card").querySelector(".btn").click(); })
+);
 </script>
 </body>
 </html>
