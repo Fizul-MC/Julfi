@@ -245,7 +245,7 @@ table.t th{background:rgba(124,77,255,.35)}
   <div class="wrap">
     <div class="page" id="page-beranda"><div class="panel">
       <div class="ph"><svg class="ic "><use href="#i-home"/></svg><h2>Home</h2></div>
-      <p class="lead">Halo, saya Muhammad Julfikar Al-Hadid, mahasiswa Sistem Informasi semester 1 di Fakultas Komputer. Website ini berisi biodata saya dan kumpulan kalkulator sebagai bukti belajar mata kuliah Matematika Informatika.</p>
+      <p class="lead">Halo, saya Muhammad Julfikar Al-Hadid, mahasiswa Sistem Informasi semester 1 di Fakultas Komputer Ma'soem University. Website ini berisi biodata saya dan kumpulan kalkulator sebagai bukti belajar mata kuliah Matematika Informatika.</p>
       <a class="btn" href="#bukti-belajar">Lihat Bukti Belajar</a>
     </div></div>
 
@@ -403,7 +403,7 @@ function show(out,main,steps,note){
 }
 const run=(out,fn)=>{try{fn()}catch(e){$(out).innerHTML=`<div class="r-head bad">${icon("info")}Input belum valid</div><p class="r-err">${e.message}</p>`}};
 
-/* ---------- Level 1: Modulo ---------- */
+/* ---------- Modulo ---------- */
 function hitungModulo(){run("mod-out",()=>{
   const a=readInt("mod-a","Bilangan a"),m=readModulus("mod-m");
   const q=floorDiv(a,m),r=a-m*q;
@@ -420,7 +420,7 @@ function hitungModulo(){run("mod-out",()=>{
 })}
 on("mod-btn","click",hitungModulo);
 
-/* ---------- Level 2: Kongruensi ---------- */
+/* ---------- Kongruensi ---------- */
 function periksaKongruensi(){run("cg-out",()=>{
   const a=readInt("cg-a","Bilangan a"),b=readInt("cg-b","Bilangan b"),m=readModulus("cg-m");
   const d=a-b,qd=floorDiv(d,m),rd=d-m*qd,ok=rd===0n;
@@ -434,7 +434,7 @@ function periksaKongruensi(){run("cg-out",()=>{
 })}
 on("cg-btn","click",periksaKongruensi);
 
-/* ---------- Level 5: Sistem Bilangan ---------- */
+/* ---------- Sistem Bilangan ---------- */
 const DIGITS="0123456789ABCDEF";
 const BASES=[["Biner",2],["Desimal",10],["Oktal",8],["Heksadesimal",16]];
 function konversi(){run("ns-out",()=>{
@@ -456,7 +456,7 @@ on("ns-btn","click",konversi);
 on("ns-val","input",()=>{$("ns-val").value.trim()?konversi():($("ns-out").innerHTML="")});
 on("ns-base","change",()=>{if($("ns-val").value.trim())konversi()});
 
-/* ---------- Level 6: Kombinatorika ---------- */
+/* ---------- Kombinatorika ---------- */
 const fact=k=>{let x=1n;for(let i=2n;i<=k;i++)x*=i;return x};
 const prod=(n,r)=>{let p=1n;for(let i=0n;i<r;i++)p*=n-i;return p};
 function expand(n,r){
