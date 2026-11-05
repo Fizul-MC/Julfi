@@ -108,6 +108,33 @@ input,select{width:100%;height:46px;font:inherit;font-size:1rem;color:#1b0f33;ba
 footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
 .bhead{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:flex-start;justify-content:space-between}
 .btext{flex:1 1 420px;min-width:0}
+/* Interaktif */
+.page.active,.panel-k.active{animation:fade .35s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.theme{display:flex;gap:.25rem;background:rgba(255,255,255,.08);border-radius:999px;padding:.25rem}
+.theme button{flex:1;border:0;border-radius:999px;padding:.4rem .2rem;background:none;color:#fff;cursor:pointer;font-size:.8rem}
+.theme button.on{background:var(--violet)}
+body[data-theme=fajar]{background:linear-gradient(180deg,#1d2f6b 0%,#6a4fa3 40%,#e88a8a 75%,#ffd49a 100%) fixed}
+body[data-theme=fajar] .banner{background:linear-gradient(180deg,#31509b 0%,#a778b8 50%,#ffb48a 85%,#ffe0a3 100%)}
+body[data-theme=malam]{background:linear-gradient(180deg,#05061a 0%,#12163f 50%,#241a55 100%) fixed}
+body[data-theme=malam] .banner{background:linear-gradient(180deg,#05061a 0%,#141a4a 60%,#2b2266 100%)}
+body[data-theme=malam] .banner .sunb{background:radial-gradient(circle,#fff,#dfe6ff 55%,#a9b8ff);box-shadow:0 0 50px 12px rgba(180,195,255,.45)}
+body[data-theme=malam] .banner::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background-image:radial-gradient(1.5px 1.5px at 20% 30%,#fff,transparent),radial-gradient(1.5px 1.5px at 60% 20%,#fff,transparent),radial-gradient(1px 1px at 80% 55%,#fff,transparent),radial-gradient(1px 1px at 35% 65%,#fff,transparent),radial-gradient(1.5px 1.5px at 92% 18%,#fff,transparent),radial-gradient(1px 1px at 8% 70%,#fff,transparent)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-size:.85rem;color:var(--mut)}
+.chip{border:1px solid var(--line);background:rgba(124,77,255,.35);color:#fff;border-radius:999px;padding:.25rem .85rem;cursor:pointer;font-size:.85rem}
+.chip:hover,.chip.on{background:var(--violet)}
+.cells{display:flex;flex-wrap:wrap;gap:4px;margin:.5rem 0 .2rem;font-family:'Poppins',sans-serif}
+.cells span{width:28px;height:28px;display:grid;place-items:center;border-radius:6px;background:rgba(255,255,255,.1);font-size:.75rem}
+.cells span.hit{background:var(--green);color:#10201a;font-weight:700;box-shadow:0 0 12px var(--green)}
+.prog{display:flex;align-items:center;gap:.8rem;margin:0 0 1rem;font-size:.9rem;color:var(--mut);flex-wrap:wrap}
+.bar{flex:1 1 160px;height:10px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffc23d,#ff4f7b);transition:width .5s}
+.tab.done::after{content:"\2714";color:var(--green);font-size:.85rem}
+.qsel,.quiz-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.quiz-q{font-size:1.4rem;font-weight:600;margin-top:1.2rem}
+.quiz-row input{max-width:260px}.quiz-row .go{padding:0 1.4rem}
+.quiz-fb{margin-top:.8rem;font-weight:600}.quiz-fb.ok{color:var(--green)}.quiz-fb.no{color:#ff9a8a}
 /* Responsif */
 @media(max-width:1180px){.cols{grid-template-columns:1fr 1fr}.art{display:none}}
 @media(max-width:900px){
@@ -134,8 +161,9 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
   <div class="sep"></div>
   <ul class="facts"><li><svg class="ic "><use href="#i-cap"/></svg><span>Ma'soem University<br>Sistem Informasi</span></li><li><svg class="ic "><use href="#i-school"/></svg><span>SMAN 1 Cileunyi</span></li><li><svg class="ic "><use href="#i-pin"/></svg><span>Cibiru Wetan</span></li><li><svg class="ic "><use href="#i-star"/></svg><span>Editing Video</span></li><li><svg class="ic "><use href="#i-award"/></svg><span>Menjadi Orang Sukses</span></li></ul>
   <div class="sep"></div>
-  <nav class="menu"><a href="#beranda"><svg class="ic "><use href="#i-home"/></svg>Home</a><a href="#biodata"><svg class="ic "><use href="#i-user"/></svg>Biodata</a><a href="#bukti-belajar"><svg class="ic "><use href="#i-calc"/></svg>Bukti Belajar</a><a href="#proyek"><svg class="ic "><use href="#i-code"/></svg>Tentang Project</a><a href="#kontak"><svg class="ic "><use href="#i-mail"/></svg>Kontak</a></nav>
+  <nav class="menu"><a href="#beranda"><svg class="ic "><use href="#i-home"/></svg>Home</a><a href="#biodata"><svg class="ic "><use href="#i-user"/></svg>Biodata</a><a href="#bukti-belajar"><svg class="ic "><use href="#i-calc"/></svg>Bukti Belajar</a><a href="#kuis"><svg class="ic"><use href="#i-star"/></svg>Kuis Latihan</a><a href="#proyek"><svg class="ic "><use href="#i-code"/></svg>Tentang Project</a><a href="#kontak"><svg class="ic "><use href="#i-mail"/></svg>Kontak</a></nav>
   <div class="sep"></div>
+  <div class="theme" role="group" aria-label="Waktu langit"><button data-t="fajar">🌅 Fajar</button><button data-t="senja">🌇 Senja</button><button data-t="malam">🌙 Malam</button></div>
   <p class="quote">“Terus belajar,<br>terus berkembang,<br>menuju masa depan yang lebih baik.”</p>
 </aside>
 
@@ -167,6 +195,7 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
     <div class="page" id="page-bukti-belajar"><div class="panel">
       <div class="ph"><svg class="ic "><use href="#i-book"/></svg><h2>Bukti Belajar</h2></div>
       <p class="sub">Perjalanan belajar Matematika Informatika bersama Pa Iin TA 20261</p>
+      <div class="prog"><span id="progtxt"></span><div class="bar"><i id="progbar"></i></div></div>
       <div class="tabs"><a class="tab" href="#modulo"><svg class="ic "><use href="#i-calc"/></svg><span><i>1.</i> Modulo Calculator</span></a><a class="tab" href="#kongruensi"><svg class="ic "><use href="#i-scale"/></svg><span><i>2.</i> Congruence Checker</span></a><a class="tab" href="#bilangan"><svg class="ic "><use href="#i-swap"/></svg><span><i>5.</i> Number System</span></a><a class="tab" href="#kombinatorika"><svg class="ic "><use href="#i-sigma"/></svg><span><i>6.</i> Combinatorics</span></a></div>
       <div class="panel-k" id="panel-modulo">
   <div class="calc">
@@ -174,7 +203,8 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
     <p class="cdesc">Menghitung sisa pembagian (modulo) dengan bilangan bulat, termasuk bilangan negatif.</p>
     <div class="cols">
       <div class="form"><label>Bilangan a :<input id="mod-a" type="text" inputmode="numeric" value="-17"></label>
- <label>Modulus m :<input id="mod-m" type="text" inputmode="numeric" value="5"></label><button class="go" id="mod-btn"><svg class="ic fill"><use href="#i-play"/></svg>Hitung</button></div>
+ <label>Modulus m :<input id="mod-m" type="text" inputmode="numeric" value="5"></label><div class="chips">Coba contoh: <button class="chip" data-ex="-17,5">−17 mod 5</button><button class="chip" data-ex="29,6">29 mod 6</button><button class="chip" data-ex="-100,7">−100 mod 7</button></div>
+ <button class="go" id="mod-btn"><svg class="ic fill"><use href="#i-play"/></svg>Hitung</button></div>
       <div class="result" id="mod-out" aria-live="polite"></div>
       <div class="art" aria-hidden="true"><div class="a-big">a mod m</div><div class="a-sub">a ÷ m  →  sisa</div><svg class="torii"><use href="#torii"/></svg></div>
     </div>
@@ -189,7 +219,8 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
     <div class="cols">
       <div class="form"><div class="two"><label>Bilangan a :<input id="cg-a" type="text" inputmode="numeric" value="17"></label>
  <label>Bilangan b :<input id="cg-b" type="text" inputmode="numeric" value="2"></label></div>
- <label>Modulus m :<input id="cg-m" type="text" inputmode="numeric" value="5"></label><button class="go" id="cg-btn"><svg class="ic fill"><use href="#i-play"/></svg>Periksa Kongruensi</button></div>
+ <label>Modulus m :<input id="cg-m" type="text" inputmode="numeric" value="5"></label><div class="chips">Coba contoh: <button class="chip" data-ex="17,2,5">17 dan 2</button><button class="chip" data-ex="10,3,4">10 dan 3</button><button class="chip" data-ex="-7,5,6">−7 dan 5</button></div>
+ <button class="go" id="cg-btn"><svg class="ic fill"><use href="#i-play"/></svg>Periksa Kongruensi</button></div>
       <div class="result" id="cg-out" aria-live="polite"></div>
       <div class="art" aria-hidden="true"><div class="a-big">a ≡ b (mod m)</div><div class="a-sub">m membagi (a − b)</div><svg class="torii"><use href="#torii"/></svg></div>
     </div>
@@ -203,7 +234,8 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
     <p class="cdesc">Mengonversi bilangan antara biner, desimal, oktal, dan heksadesimal.</p>
     <div class="cols">
       <div class="form"><label>Bilangan :<input id="ns-val" type="text" autocapitalize="characters" value="1010"></label>
- <label>Basis asal :<select id="ns-base"><option value="2">Biner (basis 2)</option><option value="10">Desimal (basis 10)</option><option value="8">Oktal (basis 8)</option><option value="16">Heksadesimal (basis 16)</option></select></label><button class="go" id="ns-btn"><svg class="ic fill"><use href="#i-play"/></svg>Konversi</button></div>
+ <label>Basis asal :<select id="ns-base"><option value="2">Biner (basis 2)</option><option value="10">Desimal (basis 10)</option><option value="8">Oktal (basis 8)</option><option value="16">Heksadesimal (basis 16)</option></select></label><div class="chips">Coba contoh: <button class="chip" data-ex="1010,2">1010 biner</button><button class="chip" data-ex="255,10">255 desimal</button><button class="chip" data-ex="FF,16">FF heksa</button><button class="chip" data-ex="777,8">777 oktal</button></div>
+ <button class="go" id="ns-btn"><svg class="ic fill"><use href="#i-play"/></svg>Konversi</button></div>
       <div class="result" id="ns-out" aria-live="polite"></div>
       <div class="art" aria-hidden="true"><div class="a-big">2 · 8 · 10 · 16</div><div class="a-sub">1010 → 10 → 12 → A</div><svg class="torii"><use href="#torii"/></svg></div>
     </div>
@@ -218,7 +250,8 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
     <div class="cols">
       <div class="form"><div class="two"><label>Nilai n :<input id="cb-n" type="text" inputmode="numeric" value="5"></label>
  <label>Nilai r :<input id="cb-r" type="text" inputmode="numeric" value="3"></label></div>
- <label>Jenis :<select id="cb-type"><option value="P">Permutasi P(n,r)</option><option value="C">Kombinasi C(n,r)</option></select></label><button class="go" id="cb-btn"><svg class="ic fill"><use href="#i-play"/></svg>Hitung</button></div>
+ <label>Jenis :<select id="cb-type"><option value="P">Permutasi P(n,r)</option><option value="C">Kombinasi C(n,r)</option></select></label><div class="chips">Coba contoh: <button class="chip" data-ex="5,3,P">P(5,3)</button><button class="chip" data-ex="10,4,C">C(10,4)</button><button class="chip" data-ex="52,5,C">C(52,5)</button></div>
+ <button class="go" id="cb-btn"><svg class="ic fill"><use href="#i-play"/></svg>Hitung</button></div>
       <div class="result" id="cb-out" aria-live="polite"></div>
       <div class="art" aria-hidden="true"><div class="a-big">P(n,r)  C(n,r)</div><div class="a-sub">urutan penting · urutan tidak penting</div><svg class="torii"><use href="#torii"/></svg></div>
     </div>
@@ -227,6 +260,16 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
     <div><h4>Penjelasan Singkat</h4><p>Permutasi memperhatikan urutan, kombinasi tidak. Dari huruf A, B, C ambil 2: permutasi ada 6 susunan (AB, BA, AC, CA, BC, CB), kombinasi ada 3 pilihan (AB, AC, BC).</p><ul class="more" hidden><li><b>n</b>: jumlah seluruh objek, <b>r</b>: jumlah yang dipilih (0 ≤ r ≤ n, n maksimal 100)</li><li><b>n!</b>: n faktorial = n × (n − 1) × (n − 2) dan seterusnya sampai 1. Contoh: 4! = 24. Khusus 0! = 1.</li><li>P(n,r) = n! / (n − r)!  dan  C(n,r) = n! / (r! × (n − r)!)</li><li><b>/</b>: dibagi</li></ul></div>
     <button class="morebtn"><svg class="ic "><use href="#i-bulb"/></svg><span>Pelajari Lebih Lanjut</span></button></div>
 </div>
+    </div></div>
+
+    <div class="page" id="page-kuis"><div class="panel">
+      <div class="ph"><svg class="ic"><use href="#i-star"/></svg><h2>Kuis Latihan</h2></div>
+      <p class="lead">Uji pemahamanmu dengan soal acak. Pilih topik, jawab, lalu lihat hasilnya langsung.</p>
+      <div class="qsel" id="qsel"><button class="chip on" data-q="mod">Modulo</button><button class="chip" data-q="cg">Kongruensi</button><button class="chip" data-q="ns">Sistem Bilangan</button><button class="chip" data-q="cb">Kombinatorika</button></div>
+      <p class="quiz-q" id="qtext"></p>
+      <div class="quiz-row"><input id="qans" type="text" autocomplete="off" placeholder="Jawabanmu"><button class="go" id="qcheck">Periksa</button><button class="chip" id="qnext">Soal baru</button></div>
+      <p class="quiz-fb" id="qfb" aria-live="polite"></p>
+      <p class="lead" id="qscore">Skor: 0 benar dari 0 soal</p>
     </div></div>
 
     <div class="page" id="page-proyek"><div class="panel">
@@ -253,6 +296,21 @@ const f=x=>String(x).replace(/-/g,"\u2212");
 const par=x=>x<0n?`(${f(x)})`:f(x);
 const icon=n=>`<svg class="ic"><use href="#i-${n}"/></svg>`;
 
+/* ---------- Progres belajar (disimpan di browser) ---------- */
+const KEYS={"mod-out":"modulo","cg-out":"kongruensi","ns-out":"bilangan","cb-out":"kombinatorika"};
+let ready=false,done=new Set();
+try{done=new Set(JSON.parse(localStorage.getItem("bb-done")||"[]"))}catch(e){}
+function paint(){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("done",done.has(t.getAttribute("href").slice(1))));
+  $("progtxt").textContent=`Progres: ${done.size} dari 4 kalkulator sudah dicoba`+(done.size===4?" 🎉":"");
+  $("progbar").style.width=done.size*25+"%";
+}
+function markDone(out){
+  const k=KEYS[out];
+  if(k&&!done.has(k)){done.add(k);try{localStorage.setItem("bb-done",JSON.stringify([...done]))}catch(e){}paint()}
+}
+paint();
+
 /* ---------- Fungsi bantu ---------- */
 function readInt(id,nama){
   const v=$(id).value.trim();
@@ -268,6 +326,7 @@ function readModulus(id){
 }
 function floorDiv(a,m){let q=a/m;if(a%m<0n)q-=1n;return q}   // dibulatkan ke bawah
 function show(out,main,steps,note){
+  if(ready) markDone(out);
   $(out).innerHTML=`<div class="r-head">${icon("check")}Hasil Perhitungan</div>
    <div class="r-main">${main}</div><hr><div class="r-t">Proses Perhitungan:</div>
    <ol class="steps">${steps.map(s=>`<li>${s}</li>`).join("")}</ol>
@@ -285,6 +344,10 @@ function hitungModulo(){run("mod-out",()=>{
     `Sisa harus di antara 0 dan ${m-1n}. Hasil ${r} memenuhi syarat.`,
     `Jadi, ${f(a)} mod ${m} = ${r}`],
     a<0n?"Karena a negatif, hasil bagi dibulatkan ke bawah supaya sisa tidak negatif.":"Modulo adalah operasi untuk memperoleh sisa pembagian.");
+  if(m<=40n){   // visual jam modulo: kotak 0 sampai m-1, sisa disorot
+    const cells=Array.from({length:Number(m)},(_,i)=>`<span class="${BigInt(i)===r?"hit":""}">${i}</span>`).join("");
+    $("mod-out").insertAdjacentHTML("beforeend",`<div class="r-t" style="margin-top:.8rem">Posisi sisa pada jam modulo ${m}:</div><div class="cells">${cells}</div>`);
+  }
 })}
 on("mod-btn","click",hitungModulo);
 
@@ -368,10 +431,75 @@ document.querySelectorAll(".morebtn").forEach(b=>b.addEventListener("click",()=>
   b.querySelector("span").textContent=box.hidden?"Pelajari Lebih Lanjut":"Sembunyikan";
 }));
 [hitungModulo,periksaKongruensi,konversi,hitungKombinatorika].forEach(fn=>fn());
+ready=true;
+
+/* ---------- Contoh cepat & hitung otomatis ---------- */
+document.querySelectorAll(".chip[data-ex]").forEach(c=>c.addEventListener("click",()=>{
+  const fm=c.closest(".form"),v=c.dataset.ex.split(",");
+  [...fm.querySelectorAll("input,select")].forEach((el,i)=>{if(v[i]!==undefined)el.value=v[i]});
+  fm.querySelector(".go").click();
+}));
+document.querySelectorAll(".form").forEach(fm=>{
+  const go=fm.querySelector(".go");
+  fm.addEventListener("input",()=>{   // hitung otomatis jika semua isian sudah lengkap
+    const ok=[...fm.querySelectorAll("input")].every(i=>i.id==="ns-val"?i.value.trim()!=="":/^[+-]?\d+$/.test(i.value.trim()));
+    if(ok) go.click();
+  });
+  fm.addEventListener("change",e=>{if(e.target.tagName==="SELECT") go.click()});
+});
+
+/* ---------- Waktu langit: Fajar / Senja / Malam ---------- */
+function setTheme(t){
+  document.body.dataset.theme=t;
+  document.querySelectorAll(".theme button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));
+  try{localStorage.setItem("bb-theme",t)}catch(e){}
+}
+document.querySelectorAll(".theme button").forEach(b=>b.addEventListener("click",()=>setTheme(b.dataset.t)));
+let tema="senja";try{tema=localStorage.getItem("bb-theme")||"senja"}catch(e){}
+setTheme(tema);
+
+/* ---------- Kuis latihan ---------- */
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const KUIS={
+  mod:()=>{const m=rnd(2,12),a=rnd(-60,90);return{t:`Berapa ${f(a)} mod ${m}?`,a:String(((a%m)+m)%m)}},
+  cg:()=>{const m=rnd(2,9),a=rnd(-20,40),y=Math.random()<.5,b=y?a-m*rnd(-4,4):a+rnd(1,m-1);
+    return{t:`Apakah ${f(a)} ≡ ${f(b)} (mod ${m})? Jawab: ya atau tidak.`,a:y?"YA":"TIDAK"}},
+  ns:()=>{const n=rnd(5,255),k=rnd(0,2);
+    return k===0?{t:`Ubah ${n} (desimal) ke biner.`,a:n.toString(2)}
+         :k===1?{t:`Ubah ${n} (desimal) ke heksadesimal.`,a:n.toString(16).toUpperCase()}
+         :{t:`Ubah ${n.toString(2)} (biner) ke desimal.`,a:String(n)}},
+  cb:()=>{const n=rnd(3,9),r=rnd(1,n),p=Math.random()<.5,P=prod(BigInt(n),BigInt(r));
+    return p?{t:`Berapa P(${n},${r})?`,a:String(P)}:{t:`Berapa C(${n},${r})?`,a:String(P/fact(BigInt(r)))}}
+};
+let topik="mod",q=null,sudah=false,benar=0,total=0;
+function soalBaru(){
+  q=KUIS[topik]();sudah=false;
+  $("qtext").textContent=q.t;$("qans").value="";$("qfb").textContent="";$("qfb").className="quiz-fb";
+}
+function periksa(){
+  if(sudah) return;
+  let u=$("qans").value.trim().toUpperCase();
+  if(u===""){$("qfb").textContent="Isi jawabanmu dulu ya.";$("qfb").className="quiz-fb no";return}
+  if(topik==="cg") u=u[0]==="Y"?"YA":u[0]==="T"?"TIDAK":u;
+  sudah=true;total++;
+  const ok=u===q.a.toUpperCase();if(ok)benar++;
+  $("qfb").textContent=ok?"Benar! 🎉":`Belum tepat. Jawaban yang benar: ${q.a}`;
+  $("qfb").className="quiz-fb "+(ok?"ok":"no");
+  $("qscore").textContent=`Skor: ${benar} benar dari ${total} soal`;
+}
+document.querySelectorAll("#qsel .chip").forEach(c=>c.addEventListener("click",()=>{
+  topik=c.dataset.q;
+  document.querySelectorAll("#qsel .chip").forEach(x=>x.classList.toggle("on",x===c));
+  soalBaru();
+}));
+$("qcheck").addEventListener("click",periksa);
+$("qnext").addEventListener("click",soalBaru);
+$("qans").addEventListener("keydown",e=>{if(e.key==="Enter")periksa()});
+soalBaru();
 
 /* ---------- Router satu file ---------- */
 const CALC=["modulo","kongruensi","bilangan","kombinatorika"];
-const PAGES={beranda:"Home",biodata:"Biodata","bukti-belajar":"Bukti Belajar",proyek:"Tentang Project",kontak:"Kontak"};
+const PAGES={beranda:"Home",biodata:"Biodata","bukti-belajar":"Bukti Belajar",proyek:"Tentang Project",kontak:"Kontak",kuis:"Kuis Latihan"};
 function route(){
   let h=location.hash.slice(1)||"beranda";
   if(h==="bukti-belajar") h="modulo";
