@@ -7,13 +7,14 @@
 <title>Biodata Online – Muhammad Julfikar Al-Hadid</title>
 <meta name="description" content="Biodata online dan Bukti Belajar Matematika Informatika">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&family=STIX+Two+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;500;600;700&family=STIX+Two+Text:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--panel:rgba(26,14,60,.72);--line:rgba(160,120,255,.45);--violet:#8b5cf6;--gold:#ffc23d;--mut:#d3c6ee;--green:#2be37a}
+:root{--panel:rgba(26,14,60,.6);--line:rgba(160,120,255,.45);--violet:#8b5cf6;--gold:#ffc23d;--mut:#d3c6ee;--green:#2be37a}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Poppins',system-ui,sans-serif;color:#fff;line-height:1.55;min-height:100vh;
- background:linear-gradient(180deg,#24104f 0%,#4a1b78 40%,#9b3380 72%,#e2574c 100%) fixed}
+ background:#24104f}
 a{color:inherit}button{font-family:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .ic{width:1.35em;height:1.35em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -50,7 +51,7 @@ a{color:inherit}button{font-family:inherit}
 .bquote{flex:0 1 280px;margin-left:auto;text-align:right;font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.2;transform:rotate(-3deg)}
 .wrap{padding:0 2rem 2rem;margin-top:-2.2rem;position:relative;z-index:1}
 .page,.panel-k{display:none}.page.active,.panel-k.active{display:block}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:1.6rem;box-shadow:0 0 40px rgba(139,92,246,.28);backdrop-filter:blur(8px)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:1.6rem;box-shadow:0 0 24px rgba(139,92,246,.2)}
 .ph{display:flex;align-items:center;gap:1rem}.ph .ic{width:3.2rem;height:3.2rem;color:#a98bff}
 .ph h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;line-height:1.1}
 .sub{display:flex;align-items:center;gap:1rem;margin:.3rem 0 1.3rem;font-style:italic;font-size:1.1rem;color:#f1e6ff}
@@ -130,25 +131,27 @@ footer{text-align:center;padding:0 1rem 1.6rem;color:#fff3e6;font-size:.9rem}
 html{-webkit-text-size-adjust:100%}body{overflow-x:hidden}
 .wrap{max-width:1360px;margin-left:auto;margin-right:auto}
 .bhead{max-width:1296px;margin-left:auto;margin-right:auto}
-/* Langit mengikuti scroll: --p = 0 (senja) sampai 1 (malam), diisi oleh JavaScript */
+/* Langit mengikuti scroll: hanya opacity dan transform (ringan), nilainya diatur JavaScript */
 .sky{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.sky-night{position:absolute;inset:0;opacity:var(--p,0);background:linear-gradient(180deg,#05061a 0%,#12163f 50%,#241a55 100%)}
-.stars{position:absolute;inset:0;animation:tw 3s ease-in-out infinite alternate;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 40%,#fff,transparent),radial-gradient(1.5px 1.5px at 45% 12%,#fff,transparent),radial-gradient(1px 1px at 62% 34%,#fff,transparent),radial-gradient(1.5px 1.5px at 78% 16%,#fff,transparent),radial-gradient(1px 1px at 90% 44%,#fff,transparent),radial-gradient(1px 1px at 8% 62%,#fff,transparent),radial-gradient(1.5px 1.5px at 35% 78%,#fff,transparent),radial-gradient(1px 1px at 70% 70%,#fff,transparent),radial-gradient(1.5px 1.5px at 92% 85%,#fff,transparent)}
-@keyframes tw{from{opacity:.5}to{opacity:1}}
-.moon{position:absolute;top:14%;right:9%;width:72px;height:72px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#dfe6ff 60%,#a9b8ff);
- box-shadow:0 0 40px 10px rgba(180,195,255,.4);transform:translateY(calc((1 - var(--p,0))*90px))}
-.cloud{position:absolute;height:60px;border-radius:50%;filter:blur(16px);background:rgba(255,190,150,.4);opacity:calc(1 - var(--p,0))}
-.c1{width:320px;top:22%;left:-60px;transform:translateX(calc(var(--p,0)*340px))}
-.c2{width:240px;top:58%;right:-40px;transform:translateX(calc(var(--p,0)*-300px))}
-.banner::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:var(--p,0);
- background:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 40%,#fff,transparent),radial-gradient(1.5px 1.5px at 45% 12%,#fff,transparent),radial-gradient(1px 1px at 62% 34%,#fff,transparent),radial-gradient(1.5px 1.5px at 78% 16%,#fff,transparent),radial-gradient(1px 1px at 90% 44%,#fff,transparent),radial-gradient(1px 1px at 8% 62%,#fff,transparent),radial-gradient(1.5px 1.5px at 35% 78%,#fff,transparent),radial-gradient(1px 1px at 70% 70%,#fff,transparent),radial-gradient(1.5px 1.5px at 92% 85%,#fff,transparent),linear-gradient(180deg,#05061a,#141a4a 60%,#2b2266)}
-.banner .sunb{transform:translateY(calc(var(--p,0)*30px));
- box-shadow:0 0 70px 20px rgba(255,170,70,calc(.6*(1 - var(--p,0)))),0 0 50px 12px rgba(180,195,255,calc(.45*var(--p,0)))}
-.banner .sunb::after{content:"";position:absolute;inset:0;border-radius:50%;opacity:var(--p,0);background:radial-gradient(circle at 35% 35%,#fff,#dfe6ff 60%,#a9b8ff)}
-.orb{position:fixed;right:10px;top:calc(70px + var(--p,0)*(100vh - 160px));z-index:15;width:24px;height:24px;border-radius:50%;pointer-events:none;
- background:radial-gradient(circle,#fff3b0,#ffc23d 55%,#ff8a3d);box-shadow:0 0 14px rgba(255,170,70,.9)}
-.orb::after{content:"";position:absolute;inset:0;border-radius:50%;opacity:var(--p,0);background:radial-gradient(circle at 35% 35%,#fff,#a9b8ff)}
-@media(prefers-reduced-motion:reduce){.stars{animation:none}}
+.sky-day{position:absolute;inset:0;background:linear-gradient(180deg,#24104f 0%,#4a1b78 40%,#9b3380 72%,#e2574c 100%)}
+.sky-night{position:absolute;inset:0;opacity:0;will-change:opacity;background:linear-gradient(180deg,#05061a 0%,#12163f 50%,#241a55 100%)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff 45%,transparent),radial-gradient(2px 2px at 28% 40%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 45% 12%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 62% 34%,#fff 45%,transparent),radial-gradient(2px 2px at 78% 16%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 90% 44%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 8% 62%,#fff 45%,transparent),radial-gradient(2px 2px at 35% 78%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 70% 70%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 92% 85%,#fff 45%,transparent),radial-gradient(2px 2px at 20% 90%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 55% 55%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 83% 28%,#fff 45%,transparent),radial-gradient(2px 2px at 4% 35%,#fff 45%,transparent);animation:tw1 3.2s ease-in-out infinite alternate}
+.stars.s2{background-image:radial-gradient(1.5px 1.5px at 18% 8%,#fff 45%,transparent),radial-gradient(2px 2px at 38% 25%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 52% 38%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 68% 14%,#fff 45%,transparent),radial-gradient(2px 2px at 86% 10%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 96% 60%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 14% 48%,#fff 45%,transparent),radial-gradient(2px 2px at 30% 66%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 48% 88%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 64% 82%,#fff 45%,transparent),radial-gradient(2px 2px at 78% 52%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 24% 30%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 58% 70%,#fff 45%,transparent),radial-gradient(2px 2px at 90% 30%,#fff 45%,transparent);animation:tw2 4.6s ease-in-out infinite alternate}
+@keyframes tw1{from{opacity:.35}to{opacity:1}}@keyframes tw2{from{opacity:1}to{opacity:.3}}
+.cloud{position:absolute;width:380px;height:110px;will-change:transform;animation:drift 16s ease-in-out infinite alternate;
+ background:radial-gradient(60px 34px at 25% 62%,var(--cc),transparent 72%),radial-gradient(85px 48px at 52% 48%,var(--cc),transparent 72%),radial-gradient(62px 34px at 78% 64%,var(--cc),transparent 72%)}
+@keyframes drift{from{translate:0 0}to{translate:40px 6px}}
+.cd{--cc:rgba(255,175,140,.6)}.cn{--cc:rgba(175,190,255,.45)}
+.c1{top:16%;left:-80px}.c2{top:50%;right:-80px;width:300px}.c3{top:30%;right:-60px}.c4{top:66%;left:-80px;width:320px}
+.bc1{top:16%;left:4%;width:300px;height:90px}.bc2{top:50%;left:48%;width:260px;height:80px}
+@media(prefers-reduced-motion:reduce){.stars,.cloud{animation:none}}
+.bnight{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;will-change:opacity;background:radial-gradient(1.5px 1.5px at 12% 18%,#fff 45%,transparent),radial-gradient(2px 2px at 28% 40%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 45% 12%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 62% 34%,#fff 45%,transparent),radial-gradient(2px 2px at 78% 16%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 90% 44%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 8% 62%,#fff 45%,transparent),radial-gradient(2px 2px at 35% 78%,#fff 45%,transparent),radial-gradient(2.5px 2.5px at 70% 70%,#fff 45%,transparent),radial-gradient(1.5px 1.5px at 92% 85%,#fff 45%,transparent),linear-gradient(180deg,#05061a,#141a4a 60%,#2b2266)}
+.banner .sunb{will-change:transform;box-shadow:0 0 40px 12px rgba(255,215,160,.45)}
+.banner .sunb i{position:absolute;inset:0;border-radius:50%;opacity:0;background:radial-gradient(circle at 35% 35%,#fff,#dfe6ff 60%,#a9b8ff)}
+.orb{position:fixed;right:10px;top:70px;z-index:15;width:24px;height:24px;border-radius:50%;pointer-events:none;will-change:transform;
+ background:radial-gradient(circle,#fff3b0,#ffc23d 55%,#ff8a3d);box-shadow:0 0 10px rgba(255,170,70,.8)}
+.orb i{position:absolute;inset:0;border-radius:50%;opacity:0;background:radial-gradient(circle at 35% 35%,#fff,#a9b8ff)}
+.lbox{content-visibility:auto;contain-intrinsic-size:auto 280px}
 /* Game */
 .gstats{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1rem;color:var(--mut)}.gstats b{color:var(--gold);font-size:1.2rem}
 .arena{position:relative;height:360px;margin-top:.8rem;border-radius:18px;overflow:hidden;border:1px solid var(--line);
@@ -194,7 +197,6 @@ table.t th{background:rgba(124,77,255,.35)}
  .top{display:flex;position:fixed;top:0;left:0;right:0;z-index:20;align-items:center;gap:.8rem;padding:env(safe-area-inset-top) 1rem 0;height:calc(56px + env(safe-area-inset-top));background:rgba(20,10,48,.95);border-bottom:1px solid var(--line);font-weight:600}
  .top button{background:none;border:1px solid var(--line);color:#fff;border-radius:8px;padding:.35rem .55rem;cursor:pointer}
  .main{margin-left:0;padding-top:calc(56px + env(safe-area-inset-top))}
- body{background-attachment:scroll!important}
  .chip{padding:.45rem .9rem}
 }
 @media(max-width:760px){
@@ -210,8 +212,8 @@ table.t th{background:rgba(124,77,255,.35)}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h4"/></symbol><symbol id="i-code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1z"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></symbol><symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 5H6l6 7-6 7h12"/></symbol><symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5zM6 12v5c3 2 9 2 12 0v-5"/></symbol><symbol id="i-school" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M10 21v-6h4v6"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="torii" viewBox="0 0 100 80"><path d="M3 12Q50 2 97 12L94 20Q50 12 6 20z"/><rect x="14" y="24" width="72" height="6"/><rect x="22" y="20" width="7" height="58"/><rect x="71" y="20" width="7" height="58"/><rect x="46" y="14" width="8" height="12"/></symbol></svg>
 <div class="top"><button id="burger" aria-label="Buka menu"><svg class="ic "><use href="#i-menu"/></svg></button>🌇 Julfikar</div>
 
-<div class="sky" aria-hidden="true"><div class="cloud c1"></div><div class="cloud c2"></div><div class="sky-night"><div class="stars"></div><div class="moon"></div></div></div>
-<div class="orb" aria-hidden="true"></div>
+<div class="sky" aria-hidden="true"><div class="sky-day"></div><div class="cloud cd c1" id="cl1"></div><div class="cloud cd c2" id="cl2"></div><div class="sky-night" id="skyN"><div class="stars"></div><div class="stars s2"></div><div class="cloud cn c3" id="cl3"></div><div class="cloud cn c4" id="cl4"></div></div></div>
+<div class="orb" id="orb" aria-hidden="true"><i></i></div>
 <div class="scrim" id="scrim"></div>
 <aside class="side">
   <div class="avatar"><span>MJ</span><img src="foto.jpg" alt="Foto Muhammad Julfikar Al-Hadid" onerror="this.remove()"></div>
@@ -234,7 +236,9 @@ table.t th{background:rgba(124,77,255,.35)}
     </div>
     <p class="bquote">“Matematika bukan sekadar angka, tapi kunci untuk memahami dunia.”</p>
     </div>
-    <span class="sunb"></span>
+    <div class="cloud cd bc1" id="bc1"></div><div class="cloud cd bc2" id="bc2"></div>
+    <div class="bnight" id="bnight"></div>
+    <span class="sunb" id="sunb"><i></i></span>
     <svg class="skyline" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70V48Q150 22 300 46T620 40T900 50T1200 30V70z"/><path d="M930 40h130l-14-14h-102zM950 40v30M1040 40v30" /></svg>
   </header>
 
@@ -513,16 +517,32 @@ document.querySelectorAll(".form").forEach(fm=>{
   fm.addEventListener("change",e=>{if(e.target.tagName==="SELECT") go.click()});
 });
 
-/* ---------- Langit mengikuti scroll: senja menuju malam ---------- */
-const root=document.documentElement;let tick=false;
+/* ---------- Langit mengikuti scroll: senja menuju malam (hanya opacity & transform) ---------- */
+const root=document.documentElement;
+const E={n:$("skyN"),c1:$("cl1"),c2:$("cl2"),c3:$("cl3"),c4:$("cl4"),k1:$("bc1"),k2:$("bc2"),b:$("bnight"),
+  sf:document.querySelector("#sunb i"),sun:$("sunb"),orb:$("orb"),of:document.querySelector("#orb i")};
+let tick=false,jarak=500,tinggi=innerHeight,pLama=-1;
+function ukur(){   // ukuran dibaca sekali saat berubah, bukan di setiap scroll
+  tinggi=innerHeight;
+  jarak=Math.max(150,Math.min(500,root.scrollHeight-tinggi));   // perubahan tuntas dalam maksimal 500px scroll
+  pLama=-1;langit();
+}
 function langit(){
   tick=false;
-  const maks=Math.max(600,root.scrollHeight-innerHeight);   // minimal 600px agar halaman pendek tetap terasa
-  root.style.setProperty("--p",Math.min(1,Math.max(0,scrollY/maks)).toFixed(3));
+  const p=Math.min(1,Math.max(0,scrollY/jarak));
+  if(p===pLama) return;
+  pLama=p;
+  E.n.style.opacity=E.b.style.opacity=E.sf.style.opacity=E.of.style.opacity=p;
+  E.c1.style.transform=`translate3d(${p*340}px,0,0)`;E.c2.style.transform=`translate3d(${-p*300}px,0,0)`;
+  E.c3.style.transform=`translate3d(${-p*260}px,0,0)`;E.c4.style.transform=`translate3d(${p*220}px,0,0)`;
+  E.k1.style.transform=`translate3d(${p*140}px,0,0)`;E.k2.style.transform=`translate3d(${-p*120}px,0,0)`;
+  E.sun.style.transform=`translate3d(0,${p*30}px,0)`;
+  E.orb.style.transform=`translate3d(0,${p*(tinggi-160)}px,0)`;
 }
 addEventListener("scroll",()=>{if(!tick){tick=true;requestAnimationFrame(langit)}},{passive:true});
-addEventListener("resize",langit);
-langit();
+addEventListener("resize",ukur);
+if("ResizeObserver" in window) new ResizeObserver(ukur).observe(document.querySelector(".main"));
+ukur();
 
 /* ---------- Bank soal (dipakai Game Senja) ---------- */
 const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
@@ -562,6 +582,11 @@ function pilihan(q){
   }
   return [...set].sort(()=>Math.random()-.5);
 }
+function dimensi(){   // ukuran dibaca sekali per babak, bukan tiap frame
+  gm.W=GA.clientWidth;gm.H=GA.clientHeight-34;
+  gm.bubs.forEach(b=>{b._w=b.offsetWidth;b._h=b.offsetHeight});
+}
+addEventListener("resize",()=>{if(gm.on)dimensi()});
 function babak(){
   const t=gm.topik==="acak"?["mod","cg","ns","cb"][rnd(0,3)]:gm.topik;
   gm.q=KUIS[t]();gm.lock=false;$("gq").textContent=gm.q.t;
@@ -570,7 +595,7 @@ function babak(){
     const b=document.createElement("button");b.className="bub";b.textContent=txt;
     b.addEventListener("click",()=>jawab(b));GA.appendChild(b);return b;
   });
-  gm.t0=performance.now();gm.dur=Math.max(3500,9500-gm.lvl*900);   // makin tinggi level, makin cepat
+  dimensi();gm.t0=performance.now();gm.dur=Math.max(3500,9500-gm.lvl*900);   // makin tinggi level, makin cepat
 }
 function lanjut(){
   hud();
@@ -593,10 +618,10 @@ function jawab(b){
 function loop(ts){
   if(!gm.on) return;
   if(!gm.lock){
-    const p=(ts-gm.t0)/gm.dur,W=GA.clientWidth,H=GA.clientHeight-34,n=gm.bubs.length;
+    const p=(ts-gm.t0)/gm.dur,W=gm.W,H=gm.H,n=gm.bubs.length;
     gm.bubs.forEach((b,i)=>{
       const lane=W/n;
-      b.style.transform=`translate(${i*lane+(lane-b.offsetWidth)/2+Math.sin(ts/500+i*2)*5}px,${Math.min(p,1)*(H-b.offsetHeight)}px)`;
+      b.style.transform=`translate3d(${i*lane+(lane-b._w)/2+Math.sin(ts/500+i*2)*5}px,${Math.min(p,1)*(H-b._h)}px,0)`;
     });
     if(p>=1){   // bubble menyentuh tanah
       gm.lock=true;gm.combo=0;gm.nyawa--;
@@ -649,7 +674,7 @@ function route(){
   document.querySelectorAll(".menu a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+page));
   document.body.classList.remove("open");
   document.title=(isCalc?"Bukti Belajar":isMat?"Materi Belajar":PAGES[h])+" – Biodata Online Muhammad Julfikar Al-Hadid";
-  window.scrollTo({top:0,behavior:"instant"});langit();
+  window.scrollTo({top:0,behavior:"instant"});ukur();
 }
 window.addEventListener("hashchange",route);
 $("burger").addEventListener("click",()=>document.body.classList.toggle("open"));
