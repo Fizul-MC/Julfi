@@ -2,7 +2,8 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#24104f">
 <title>Biodata Online – Muhammad Julfikar Al-Hadid</title>
 <meta name="description" content="Biodata online dan Bukti Belajar Matematika Informatika">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>">
@@ -135,15 +136,26 @@ body[data-theme=malam] .banner::before{content:"";position:absolute;inset:0;z-in
 .quiz-q{font-size:1.4rem;font-weight:600;margin-top:1.2rem}
 .quiz-row input{max-width:260px}.quiz-row .go{padding:0 1.4rem}
 .quiz-fb{margin-top:.8rem;font-weight:600}.quiz-fb.ok{color:var(--green)}.quiz-fb.no{color:#ff9a8a}
+.scrim{display:none}
+html{-webkit-text-size-adjust:100%}body{overflow-x:hidden}
+.wrap{max-width:1360px;margin-left:auto;margin-right:auto}
+.bhead{max-width:1296px;margin-left:auto;margin-right:auto}
 /* Responsif */
-@media(max-width:1180px){.cols{grid-template-columns:1fr 1fr}.art{display:none}}
-@media(max-width:900px){
- .side{transform:translateX(-100%);width:280px}body.open .side{transform:none}
- .top{display:flex;position:fixed;top:0;left:0;right:0;height:56px;z-index:20;align-items:center;gap:.8rem;padding:0 1rem;background:rgba(20,10,48,.95);border-bottom:1px solid var(--line);font-weight:600}
- .top button{background:none;border:1px solid var(--line);color:#fff;border-radius:8px;padding:.3rem .5rem;cursor:pointer}
- .main{margin-left:0;padding-top:56px}
- .banner{padding:1.6rem 1.2rem 7rem}.bquote{text-align:left;margin-left:0;transform:none}.wrap{padding:0 .9rem 1.4rem}
- .tabs{grid-template-columns:1fr 1fr}
+@media(max-width:1279px){.cols{grid-template-columns:1fr 1fr}.art{display:none}.tabs{grid-template-columns:1fr 1fr}}
+@media(max-width:1100px){
+ .side{transform:translateX(-100%);width:290px;max-width:85vw;padding-top:calc(1.6rem + env(safe-area-inset-top));padding-bottom:calc(1.6rem + env(safe-area-inset-bottom))}
+ body.open .side{transform:none;box-shadow:0 0 40px rgba(0,0,0,.6)}
+ body.open{overflow:hidden}
+ body.open .scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:25}
+ .top{display:flex;position:fixed;top:0;left:0;right:0;z-index:20;align-items:center;gap:.8rem;padding:env(safe-area-inset-top) 1rem 0;height:calc(56px + env(safe-area-inset-top));background:rgba(20,10,48,.95);border-bottom:1px solid var(--line);font-weight:600}
+ .top button{background:none;border:1px solid var(--line);color:#fff;border-radius:8px;padding:.35rem .55rem;cursor:pointer}
+ .main{margin-left:0;padding-top:calc(56px + env(safe-area-inset-top))}
+ body{background-attachment:scroll!important}
+ .chip{padding:.45rem .9rem}
+}
+@media(max-width:760px){
+ .banner{padding:1.4rem 1.1rem 7rem}.bquote{text-align:left;margin-left:0;transform:none}
+ .wrap{padding:0 .8rem 1.2rem}
  .cols{grid-template-columns:1fr}.short{flex-wrap:wrap}.morebtn{width:100%;justify-content:center}
 }
 @media(max-width:480px){.tab{font-size:.85rem;padding:.7rem .4rem}.r-main{font-size:1.6rem}.panel{padding:1.1rem}}
@@ -154,6 +166,7 @@ body[data-theme=malam] .banner::before{content:"";position:absolute;inset:0;z-in
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h4"/></symbol><symbol id="i-code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1z"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></symbol><symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 5H6l6 7-6 7h12"/></symbol><symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5zM6 12v5c3 2 9 2 12 0v-5"/></symbol><symbol id="i-school" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M10 21v-6h4v6"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="torii" viewBox="0 0 100 80"><path d="M3 12Q50 2 97 12L94 20Q50 12 6 20z"/><rect x="14" y="24" width="72" height="6"/><rect x="22" y="20" width="7" height="58"/><rect x="71" y="20" width="7" height="58"/><rect x="46" y="14" width="8" height="12"/></symbol></svg>
 <div class="top"><button id="burger" aria-label="Buka menu"><svg class="ic "><use href="#i-menu"/></svg></button>🌇 Julfikar</div>
 
+<div class="scrim" id="scrim"></div>
 <aside class="side">
   <div class="avatar"><span>MJ</span><img src="foto.jpg" alt="Foto Muhammad Julfikar Al-Hadid" onerror="this.remove()"></div>
   <p class="name">Muhammad Julfikar Al-Hadid</p>
@@ -202,7 +215,7 @@ body[data-theme=malam] .banner::before{content:"";position:absolute;inset:0;z-in
     <div class="ctop"><span class="cico"><svg class="ic "><use href="#i-calc"/></svg></span><h3>Modulo Calculator</h3><span class="lvl">Level 1</span></div>
     <p class="cdesc">Menghitung sisa pembagian (modulo) dengan bilangan bulat, termasuk bilangan negatif.</p>
     <div class="cols">
-      <div class="form"><label>Bilangan a :<input id="mod-a" type="text" inputmode="numeric" value="-17"></label>
+      <div class="form"><label>Bilangan a :<input id="mod-a" type="text" inputmode="text" autocomplete="off" autocorrect="off" spellcheck="false" value="-17"></label>
  <label>Modulus m :<input id="mod-m" type="text" inputmode="numeric" value="5"></label><div class="chips">Coba contoh: <button class="chip" data-ex="-17,5">−17 mod 5</button><button class="chip" data-ex="29,6">29 mod 6</button><button class="chip" data-ex="-100,7">−100 mod 7</button></div>
  <button class="go" id="mod-btn"><svg class="ic fill"><use href="#i-play"/></svg>Hitung</button></div>
       <div class="result" id="mod-out" aria-live="polite"></div>
@@ -217,8 +230,8 @@ body[data-theme=malam] .banner::before{content:"";position:absolute;inset:0;z-in
     <div class="ctop"><span class="cico"><svg class="ic "><use href="#i-scale"/></svg></span><h3>Congruence Checker</h3><span class="lvl">Level 2</span></div>
     <p class="cdesc">Memeriksa apakah dua bilangan kongruen pada modulus tertentu.</p>
     <div class="cols">
-      <div class="form"><div class="two"><label>Bilangan a :<input id="cg-a" type="text" inputmode="numeric" value="17"></label>
- <label>Bilangan b :<input id="cg-b" type="text" inputmode="numeric" value="2"></label></div>
+      <div class="form"><div class="two"><label>Bilangan a :<input id="cg-a" type="text" inputmode="text" autocomplete="off" autocorrect="off" spellcheck="false" value="17"></label>
+ <label>Bilangan b :<input id="cg-b" type="text" inputmode="text" autocomplete="off" autocorrect="off" spellcheck="false" value="2"></label></div>
  <label>Modulus m :<input id="cg-m" type="text" inputmode="numeric" value="5"></label><div class="chips">Coba contoh: <button class="chip" data-ex="17,2,5">17 dan 2</button><button class="chip" data-ex="10,3,4">10 dan 3</button><button class="chip" data-ex="-7,5,6">−7 dan 5</button></div>
  <button class="go" id="cg-btn"><svg class="ic fill"><use href="#i-play"/></svg>Periksa Kongruensi</button></div>
       <div class="result" id="cg-out" aria-live="polite"></div>
@@ -516,6 +529,11 @@ function route(){
 }
 window.addEventListener("hashchange",route);
 $("burger").addEventListener("click",()=>document.body.classList.toggle("open"));
+const tutup=()=>document.body.classList.remove("open");
+$("scrim").addEventListener("click",tutup);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")tutup()});
+document.querySelectorAll(".menu a").forEach(a=>a.addEventListener("click",tutup));
+window.addEventListener("resize",()=>{if(innerWidth>1100)tutup()});
 $("year").textContent=new Date().getFullYear();
 route();
 
