@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Biodata Online – Muhammad Julfikar Al-Hadid</title>
-  <meta name="description" content="Biodata online dan Bukti Belajar Matematika Informatika">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
   <style>
 :root{
@@ -104,7 +101,34 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--night);font-weight:500;
   .hero{padding-top:3rem}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
-</style>
+
+/* ---------- Multi halaman ---------- */
+nav a[aria-current]{color:var(--gold);border-color:var(--gold)}
+.narrow{max-width:760px}
+.back{display:inline-block;color:var(--gold);text-decoration:none;font-weight:500;margin-bottom:1rem}
+.back:hover{text-decoration:underline}
+.ptitle{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:800;margin-bottom:.6rem}
+.hero .btn{margin-top:.5rem}
+.menu-card{display:block;text-decoration:none;background:var(--glass);border:1px solid var(--line);border-radius:20px;
+  padding:1.5rem;backdrop-filter:blur(6px);transition:transform .15s,border-color .15s}
+.menu-card:hover{transform:translateY(-3px);border-color:var(--gold)}
+.menu-card h3{font-size:1.4rem;display:flex;align-items:center;gap:.6rem}
+.menu-card p{color:var(--muted);margin:.6rem 0 1rem}
+.menu-card .go{color:var(--gold);font-weight:700}
+.info{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:1.2rem 1.4rem;margin-top:1.5rem}
+.info h3{font-size:1.15rem;color:var(--gold);margin-bottom:.5rem}
+.info p+h3,.info ul+h3{margin-top:1rem}
+.info ul{margin-left:1.2rem}
+.info li{margin:.3rem 0}
+.pager{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.pager a{text-decoration:none;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:.6rem 1.1rem;background:var(--glass)}
+.pager a:hover{border-color:var(--gold);color:var(--gold)}
+.pager .next{margin-left:auto}
+
+/* Satu file: hanya halaman aktif yang tampil */
+.page{display:none}
+.page.active{display:block}
+  </style>
 </head>
 <body>
 
@@ -119,8 +143,8 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--night);font-weight:500;
 </header>
 
 <main>
-  <!-- BERANDA -->
-  <section class="hero" id="beranda">
+<div class="page" id="page-beranda">
+  <section class="hero">
     <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
       <defs>
         <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
@@ -140,7 +164,6 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--night);font-weight:500;
     <a class="btn" href="#bukti-belajar">Lihat Bukti Belajar</a>
   </section>
 
-  <!-- BIODATA -->
   <section class="section" id="biodata">
     <h2>Biodata</h2>
     <dl class="bio">
@@ -152,78 +175,191 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--night);font-weight:500;
       <div><dt>📍 Alamat</dt><dd>Jl. Mekar Indah VI</dd></div>
     </dl>
   </section>
-
-  <!-- BUKTI BELAJAR -->
-  <section class="section" id="bukti-belajar">
-    <h2>Bukti Belajar</h2>
+</div>
+<div class="page" id="page-bukti-belajar">
+  <section class="section">
+    <h1 class="ptitle">Bukti Belajar</h1>
     <p class="subtitle">Perjalanan belajar Matematika Informatika bersama Pa Iin TA 20261</p>
-
+    <p class="hint">Pilih salah satu kalkulator untuk mencoba dan melihat langkah perhitungannya.</p>
     <div class="grid">
-
-      <!-- Level 1 -->
-      <article class="card">
+      <a class="menu-card" href="#modulo">
         <h3><span class="ico">➗</span> Kalkulator Modulo</h3>
-        <p class="hint">Sisa pembagian: a mod m, dengan m bilangan bulat positif.</p>
-        <div class="row">
-          <label>Bilangan a<input id="mod-a" type="text" inputmode="numeric" placeholder="-17"></label>
-          <label>Modulus m<input id="mod-m" type="text" inputmode="numeric" placeholder="5"></label>
-        </div>
-        <button class="btn" id="mod-btn">Hitung</button>
-        <div class="out" id="mod-out" aria-live="polite"></div>
-      </article>
-
-      <!-- Level 2 -->
-      <article class="card">
+        <p>Cari sisa pembagian, termasuk untuk bilangan negatif.</p>
+        <span class="go">Buka kalkulator</span>
+      </a>
+      <a class="menu-card" href="#kongruensi">
         <h3><span class="ico">🟰</span> Pengecek Kongruensi</h3>
-        <p class="hint">a ≡ b (mod m) jika dan hanya jika m membagi (a − b).</p>
-        <div class="row three">
-          <label>a<input id="cg-a" type="text" inputmode="numeric" placeholder="17"></label>
-          <label>b<input id="cg-b" type="text" inputmode="numeric" placeholder="2"></label>
-          <label>m<input id="cg-m" type="text" inputmode="numeric" placeholder="5"></label>
-        </div>
-        <button class="btn" id="cg-btn">Periksa Kongruensi</button>
-        <div class="out" id="cg-out" aria-live="polite"></div>
-      </article>
-
-      <!-- Level 5 -->
-      <article class="card">
-        <h3><span class="ico">🔢</span> Sistem Bilangan</h3>
-        <p class="hint">Konversi antara biner, desimal, oktal, dan heksadesimal.</p>
-        <div class="row">
-          <label>Bilangan<input id="ns-val" type="text" autocapitalize="characters" placeholder="1010"></label>
-          <label>Basis asal
-            <select id="ns-base">
-              <option value="2">Biner (2)</option>
-              <option value="10">Desimal (10)</option>
-              <option value="8">Oktal (8)</option>
-              <option value="16">Heksadesimal (16)</option>
-            </select>
-          </label>
-        </div>
-        <button class="btn" id="ns-btn">Konversi</button>
-        <div class="out" id="ns-out" aria-live="polite"></div>
-      </article>
-
-      <!-- Level 6 -->
-      <article class="card">
-        <h3><span class="ico">🎲</span> Kombinatorika</h3>
-        <p class="hint">Permutasi memperhatikan urutan, kombinasi tidak.</p>
-        <div class="row three">
-          <label>n<input id="cb-n" type="text" inputmode="numeric" placeholder="5"></label>
-          <label>r<input id="cb-r" type="text" inputmode="numeric" placeholder="3"></label>
-          <label>Jenis
-            <select id="cb-type">
-              <option value="P">Permutasi P(n,r)</option>
-              <option value="C">Kombinasi C(n,r)</option>
-            </select>
-          </label>
-        </div>
-        <button class="btn" id="cb-btn">Hitung</button>
-        <div class="out" id="cb-out" aria-live="polite"></div>
-      </article>
-
+        <p>Periksa apakah dua bilangan memiliki sisa yang sama pada modulus tertentu.</p>
+        <span class="go">Buka kalkulator</span>
+      </a>
+      <a class="menu-card" href="#bilangan">
+        <h3><span class="ico">🔢</span> Kalkulator Sistem Bilangan</h3>
+        <p>Ubah bilangan antara biner, desimal, oktal, dan heksadesimal.</p>
+        <span class="go">Buka kalkulator</span>
+      </a>
+      <a class="menu-card" href="#kombinatorika">
+        <h3><span class="ico">🎲</span> Kalkulator Kombinatorika</h3>
+        <p>Hitung permutasi dan kombinasi lengkap dengan rumus dan langkahnya.</p>
+        <span class="go">Buka kalkulator</span>
+      </a>
     </div>
   </section>
+</div>
+<div class="page" id="page-modulo">
+  <section class="section narrow">
+  <a class="back" href="#bukti-belajar">Kembali ke Bukti Belajar</a>
+  <h1 class="ptitle">➗ Kalkulator Modulo</h1>
+  <p class="hint">Hitung sisa pembagian a mod m. Modulus m harus bilangan bulat positif.</p>
+  <article class="card">
+    <div class="row">
+      <label>Bilangan a<input id="mod-a" type="text" inputmode="numeric" placeholder="-17"></label>
+      <label>Modulus m<input id="mod-m" type="text" inputmode="numeric" placeholder="5"></label>
+    </div>
+    <button class="btn" id="mod-btn">Hitung</button>
+    <div class="out" id="mod-out" aria-live="polite"></div>
+  </article>
+  <div class="info">
+    <h3>Apa itu modulo?</h3>
+    <p>Modulo adalah operasi untuk mencari sisa pembagian. Contoh: 17 dibagi 5 hasilnya 3 dengan sisa 2, jadi 17 mod 5 = 2.</p>
+    <h3>Aturan penting</h3>
+    <ul>
+      <li>Modulus m harus bilangan bulat positif (lebih dari 0).</li>
+      <li>Sisa selalu berada di antara 0 dan m - 1, termasuk untuk bilangan negatif. Contoh: -17 mod 5 = 3, karena -17 = (5 × -4) + 3.</li>
+    </ul>
+  </div>
+  <div class="info">
+    <h3>Arti simbol</h3>
+    <ul>
+      <li><b>a</b>: bilangan yang dibagi</li>
+      <li><b>m</b>: pembagi (disebut modulus)</li>
+      <li><b>q</b>: hasil bagi</li>
+      <li><b>r</b>: sisa pembagian</li>
+      <li><b>×</b>: kali</li>
+    </ul>
+  </div>
+  <div class="pager"><a class="next" href="#kongruensi">Berikutnya: Pengecek Kongruensi</a></div>
+  </section>
+</div>
+<div class="page" id="page-kongruensi">
+  <section class="section narrow">
+  <a class="back" href="#bukti-belajar">Kembali ke Bukti Belajar</a>
+  <h1 class="ptitle">🟰 Pengecek Kongruensi</h1>
+  <p class="hint">Periksa apakah a kongruen dengan b modulo m.</p>
+  <article class="card">
+    <div class="row three">
+      <label>Bilangan a<input id="cg-a" type="text" inputmode="numeric" placeholder="17"></label>
+      <label>Bilangan b<input id="cg-b" type="text" inputmode="numeric" placeholder="2"></label>
+      <label>Modulus m<input id="cg-m" type="text" inputmode="numeric" placeholder="5"></label>
+    </div>
+    <button class="btn" id="cg-btn">Periksa Kongruensi</button>
+    <div class="out" id="cg-out" aria-live="polite"></div>
+  </article>
+  <div class="info">
+    <h3>Apa itu kongruensi?</h3>
+    <p>Dua bilangan a dan b disebut kongruen modulo m jika sisa pembagian keduanya oleh m sama. Cara memeriksanya: m harus habis membagi selisih a - b.</p>
+    <p>Contoh: a = 17, b = 2, m = 5. Selisihnya 17 - 2 = 15, dan 15 habis dibagi 5. Maka 17 ≡ 2 (mod 5), statusnya KONGRUEN.</p>
+  </div>
+  <div class="info">
+    <h3>Arti simbol</h3>
+    <ul>
+      <li><b>≡</b>: dibaca "kongruen dengan"</li>
+      <li><b>(mod m)</b>: dibaca "modulo m"</li>
+      <li><b>a - b</b>: selisih kedua bilangan</li>
+      <li><b>m</b>: modulus, harus bilangan bulat positif</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#modulo">Sebelumnya: Kalkulator Modulo</a><a class="next" href="#bilangan">Berikutnya: Kalkulator Sistem Bilangan</a></div>
+  </section>
+</div>
+<div class="page" id="page-bilangan">
+  <section class="section narrow">
+  <a class="back" href="#bukti-belajar">Kembali ke Bukti Belajar</a>
+  <h1 class="ptitle">🔢 Kalkulator Sistem Bilangan</h1>
+  <p class="hint">Masukkan bilangan, pilih basis asalnya, lalu lihat hasil konversinya.</p>
+  <article class="card">
+    <div class="row">
+      <label>Bilangan<input id="ns-val" type="text" autocapitalize="characters" placeholder="1010"></label>
+      <label>Basis asal
+        <select id="ns-base">
+          <option value="2">Biner (basis 2)</option>
+          <option value="10">Desimal (basis 10)</option>
+          <option value="8">Oktal (basis 8)</option>
+          <option value="16">Heksadesimal (basis 16)</option>
+        </select>
+      </label>
+    </div>
+    <button class="btn" id="ns-btn">Konversi</button>
+    <div class="out" id="ns-out" aria-live="polite"></div>
+  </article>
+  <div class="info">
+    <h3>Digit yang dipakai</h3>
+    <ul>
+      <li>Biner (basis 2): 0 dan 1</li>
+      <li>Oktal (basis 8): 0 sampai 7</li>
+      <li>Desimal (basis 10): 0 sampai 9</li>
+      <li>Heksadesimal (basis 16): 0 sampai 9, lalu A sampai F (A = 10, B = 11, C = 12, D = 13, E = 14, F = 15)</li>
+    </ul>
+    <h3>Contoh</h3>
+    <p>1010 biner = 10 desimal = 12 oktal = A heksadesimal.</p>
+  </div>
+  <div class="info">
+    <h3>Cara kerja</h3>
+    <ul>
+      <li>Hasil tampil otomatis saat mengetik, atau tekan tombol Konversi.</li>
+      <li>Huruf heksadesimal boleh huruf besar atau kecil.</li>
+      <li>Hanya bilangan bulat tidak negatif. Digit yang tidak sesuai basis akan ditolak.</li>
+      <li>Nilai tempat adalah nilai posisi sebuah digit. Pada biner nilainya 1, 2, 4, 8, dan seterusnya dari kanan ke kiri.</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#kongruensi">Sebelumnya: Pengecek Kongruensi</a><a class="next" href="#kombinatorika">Berikutnya: Kalkulator Kombinatorika</a></div>
+  </section>
+</div>
+<div class="page" id="page-kombinatorika">
+  <section class="section narrow">
+  <a class="back" href="#bukti-belajar">Kembali ke Bukti Belajar</a>
+  <h1 class="ptitle">🎲 Kalkulator Kombinatorika</h1>
+  <p class="hint">Hitung permutasi P(n,r) atau kombinasi C(n,r). Syaratnya r tidak negatif dan tidak lebih besar dari n.</p>
+  <article class="card">
+    <div class="row three">
+      <label>Nilai n<input id="cb-n" type="text" inputmode="numeric" placeholder="5"></label>
+      <label>Nilai r<input id="cb-r" type="text" inputmode="numeric" placeholder="3"></label>
+      <label>Jenis
+        <select id="cb-type">
+          <option value="P">Permutasi P(n,r)</option>
+          <option value="C">Kombinasi C(n,r)</option>
+        </select>
+      </label>
+    </div>
+    <button class="btn" id="cb-btn">Hitung</button>
+    <div class="out" id="cb-out" aria-live="polite"></div>
+  </article>
+  <div class="info">
+    <h3>Beda permutasi dan kombinasi</h3>
+    <p>Dari 3 huruf A, B, C kita ambil 2 huruf.</p>
+    <ul>
+      <li><b>Permutasi</b> (urutan penting): AB, BA, AC, CA, BC, CB. Totalnya 6 susunan.</li>
+      <li><b>Kombinasi</b> (urutan tidak penting): AB, AC, BC. Totalnya 3 pilihan.</li>
+    </ul>
+    <h3>Rumus</h3>
+    <ul>
+      <li>Permutasi: P(n,r) = n! / (n - r)!</li>
+      <li>Kombinasi: C(n,r) = n! / (r! × (n - r)!)</li>
+      <li>Syarat: 0 ≤ r ≤ n. Pada kalkulator ini n paling besar 100.</li>
+    </ul>
+  </div>
+  <div class="info">
+    <h3>Arti simbol</h3>
+    <ul>
+      <li><b>n</b>: jumlah seluruh objek</li>
+      <li><b>r</b>: jumlah objek yang dipilih</li>
+      <li><b>n!</b>: dibaca "n faktorial", yaitu n × (n - 1) × (n - 2) dan seterusnya sampai 1. Contoh: 4! = 4 × 3 × 2 × 1 = 24. Khusus 0! = 1.</li>
+      <li><b>/</b>: dibagi</li>
+      <li><b>≤</b>: kurang dari atau sama dengan</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#bilangan">Sebelumnya: Kalkulator Sistem Bilangan</a></div>
+  </section>
+</div>
 </main>
 
 <footer>
@@ -233,85 +369,93 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--night);font-weight:500;
 <script>
 "use strict";
 
+/* Satu file script dipakai semua halaman.
+   Setiap kalkulator hanya aktif jika elemennya ada di halaman tersebut. */
+
 const $ = (id) => document.getElementById(id);
+const on = (id, ev, fn) => { const el = $(id); if (el) el.addEventListener(ev, fn); };
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => "&#" + c.charCodeAt(0) + ";");
-const par = (x) => (x < 0n ? `(${x})` : `${x}`); // tanda kurung untuk bilangan negatif
+const par = (x) => (x < 0n ? `(${x})` : `${x}`); // beri tanda kurung pada bilangan negatif
 
-/* ---------- Navigasi ---------- */
+/* ---------- Navigasi & footer ---------- */
 const burger = $("burger"), menu = $("menu");
-burger.addEventListener("click", () => {
-  const open = menu.classList.toggle("open");
-  burger.setAttribute("aria-expanded", open);
-});
-menu.addEventListener("click", (e) => {
-  if (e.target.tagName === "A") { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }
-});
-$("year").textContent = new Date().getFullYear();
+if (burger && menu) {
+  burger.addEventListener("click", () => {
+    const open = menu.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+  });
+  menu.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }
+  });
+}
+if ($("year")) $("year").textContent = new Date().getFullYear();
 
-/* ---------- Helper ---------- */
-// Membaca bilangan bulat dari input (BigInt supaya tidak overflow)
+/* ---------- Fungsi bantu ---------- */
+// Baca bilangan bulat dari input (BigInt supaya bilangan besar tetap akurat)
 function readInt(id, nama) {
   const v = $(id).value.trim();
   if (v === "") throw new Error(`${nama} belum diisi.`);
-  if (!/^[+-]?\d+$/.test(v)) throw new Error(`${nama} harus berupa bilangan bulat (tanpa huruf, spasi, atau desimal).`);
+  if (!/^[+-]?\d+$/.test(v)) throw new Error(`${nama} harus berupa bilangan bulat (tanpa huruf, spasi, atau koma).`);
   if (v.replace(/\D/g, "").length > 200) throw new Error(`${nama} terlalu panjang (maksimal 200 digit).`);
   return BigInt(v);
 }
-// Pembagian dengan pembulatan ke bawah (m > 0) agar sisa tidak pernah negatif
+function readModulus(id) {
+  const m = readInt(id, "Modulus m");
+  if (m <= 0n) throw new Error("Modulus m harus bilangan bulat positif (lebih dari 0).");
+  return m;
+}
+// Hasil bagi dibulatkan ke bawah (m > 0) supaya sisa tidak pernah negatif
 function floorDiv(a, m) {
   let q = a / m;
   if (a % m < 0n) q -= 1n;
   return q;
 }
+// Jalankan perhitungan dan tampilkan hasil atau pesan kesalahan
 function run(outId, fn) {
   const el = $(outId);
   try { el.innerHTML = fn(); }
   catch (e) { el.innerHTML = `<div class="err">⚠️ ${e.message}</div>`; }
 }
-function readModulus(id) {
-  const m = readInt(id, "Modulus m");
-  if (m <= 0n) throw new Error("Modulus m harus bilangan bulat positif (m > 0).");
-  return m;
-}
 
 /* ---------- Level 1: Modulo ---------- */
-$("mod-btn").addEventListener("click", () => run("mod-out", () => {
+on("mod-btn", "click", () => run("mod-out", () => {
   const a = readInt("mod-a", "Bilangan a");
   const m = readModulus("mod-m");
   const q = floorDiv(a, m), r = a - m * q;
   return `<div class="res">
     <div class="big">${a} mod ${m} = ${r}</div>
+    <p>Artinya: sisa pembagian ${a} oleh ${m} adalah ${r}.</p>
     <ol>
-      <li>Hitung hasil bagi (dibulatkan ke bawah): q = ⌊${a} ÷ ${m}⌋ = ${q}</li>
-      <li>Gunakan a = m × q + r, sehingga r = a − m × q</li>
-      <li>r = ${a} − ${par(m)} × ${par(q)} = ${a} − ${par(m * q)} = <b>${r}</b></li>
-      <li>Cek: 0 ≤ ${r} &lt; ${m} ✔</li>
+      <li>Bagi ${a} dengan ${m}, lalu bulatkan hasilnya ke bawah (ke bilangan bulat yang lebih kecil). Hasil bagi: q = ${q}.</li>
+      <li>Gunakan rumus a = (m × q) + r, sehingga sisa r = a - (m × q).</li>
+      <li>Masukkan angka: r = ${a} - (${m} × ${par(q)}) = ${a} - ${par(m * q)} = ${r}.</li>
+      <li>Periksa: sisa harus di antara 0 dan ${m - 1n}. Hasil ${r} memenuhi syarat.</li>
     </ol>
-    ${a < 0n ? `<p class="formula">Karena a negatif, q dibulatkan ke bawah supaya sisa tetap di antara 0 dan ${m - 1n}.</p>` : ""}
+    ${a < 0n ? `<p class="formula">Catatan: karena a negatif, hasil bagi dibulatkan ke bawah (bukan ke arah nol) supaya sisa tidak bernilai negatif.</p>` : ""}
   </div>`;
 }));
 
 /* ---------- Level 2: Kongruensi ---------- */
-$("cg-btn").addEventListener("click", () => run("cg-out", () => {
+on("cg-btn", "click", () => run("cg-out", () => {
   const a = readInt("cg-a", "Bilangan a");
   const b = readInt("cg-b", "Bilangan b");
   const m = readModulus("cg-m");
   const d = a - b;
-  const rd = d - m * floorDiv(d, m);
+  const qd = floorDiv(d, m), rd = d - m * qd;
   const ok = rd === 0n;
   const ra = a - m * floorDiv(a, m), rb = b - m * floorDiv(b, m);
+  const kata = ok ? "kongruen" : "tidak kongruen";
   return `<div class="res">
-    <div class="big">${a} ${ok ? "≡" : "≢"} ${b} (mod ${m})</div>
+    <div class="big">${ok ? `${a} ≡ ${b} (mod ${m})` : `${a} tidak kongruen dengan ${b} (mod ${m})`}</div>
     <p>Status: <span class="badge ${ok ? "ok" : "no"}">${ok ? "KONGRUEN" : "TIDAK KONGRUEN"}</span></p>
+    <p>Dibaca: ${a} ${kata} dengan ${b} modulo ${m}.</p>
     <ol>
-      <li>Hitung selisih: a − b = ${a} − ${par(b)} = ${d}</li>
-      <li>Periksa apakah ${m} membagi ${d}: ${d} mod ${m} = ${rd}
-        ${ok ? `(karena ${d} = ${m} × ${par(d / m)})` : "(sisa tidak nol)"}</li>
-      <li>Cek silang: ${a} mod ${m} = ${ra} dan ${b} mod ${m} = ${rb}
-        → ${ra === rb ? "sisanya sama" : "sisanya berbeda"}</li>
+      <li>Hitung selisih: a - b = ${a} - ${par(b)} = ${d}.</li>
+      <li>Periksa apakah ${d} habis dibagi ${m}: ${d} dibagi ${m} hasilnya ${qd}${d < 0n ? " (dibulatkan ke bawah)" : ""} dengan sisa ${rd}.
+        ${ok ? "Sisanya 0, berarti habis dibagi." : "Sisanya bukan 0, berarti tidak habis dibagi."}</li>
+      <li>Cek silang: ${a} mod ${m} = ${ra} dan ${b} mod ${m} = ${rb}. ${ra === rb ? "Sisanya sama." : "Sisanya berbeda."}</li>
     </ol>
-    <p class="formula">${ok ? `${m} membagi (${a} − ${par(b)}), maka ${a} ≡ ${b} (mod ${m}).`
-                           : `${m} tidak membagi (${a} − ${par(b)}), maka ${a} ≢ ${b} (mod ${m}).`}</p>
+    <p class="formula">Kesimpulan: karena ${m} ${ok ? "membagi" : "tidak membagi"} (${a} - ${par(b)}), maka ${a} ${kata} dengan ${b} modulo ${m}.</p>
   </div>`;
 }));
 
@@ -327,67 +471,87 @@ function convert() {
     const allowed = DIGITS.slice(0, base);
     if (raw === "") throw new Error("Bilangan belum diisi.");
     if (raw.length > 200) throw new Error("Bilangan terlalu panjang (maksimal 200 karakter).");
+    if (raw[0] === "-") throw new Error("Kalkulator ini hanya untuk bilangan bulat tidak negatif.");
     for (const ch of raw) {
       if (!allowed.includes(ch))
-        throw new Error(`Karakter "${esc(ch)}" tidak valid untuk ${nama} (basis ${base}). Digit yang boleh: ${allowed.split("").join(", ")}.`);
+        throw new Error(`Karakter "${esc(ch)}" tidak valid untuk ${nama} (basis ${base}). Digit yang boleh dipakai: ${allowed.split("").join(", ")}.`);
     }
+    // Ubah ke nilai desimal: setiap digit dikali nilai tempatnya
     let n = 0n;
     for (const ch of raw) n = n * BigInt(base) + BigInt(parseInt(ch, 16));
+    let uraian = "";
+    if (raw.length <= 10) {
+      const bagian = [...raw].map((ch, i) => `${parseInt(ch, 16)} × ${BigInt(base) ** BigInt(raw.length - 1 - i)}`);
+      uraian = `<li>Kalikan setiap digit dengan nilai tempatnya, lalu jumlahkan: ${bagian.join(" + ")} = ${n}.</li>`;
+    }
     const items = BASES.map(([label, b]) =>
-      `<li><b>${label} (basis ${b})${b === base ? " · asal" : ""}</b><span>${n.toString(b).toUpperCase()}</span></li>`
+      `<li><b>${label} (basis ${b})${b === base ? " - bilangan asal" : ""}</b><span>${n.toString(b).toUpperCase()}</span></li>`
     ).join("");
-    return `<div class="res"><ul class="conv">${items}</ul></div>`;
+    return `<div class="res">
+      <ol>
+        <li>Bilangan asal: ${raw} (${nama}, basis ${base}).</li>
+        ${uraian}
+        <li>Nilai desimalnya ${n}, lalu diubah ke basis lainnya.</li>
+      </ol>
+      <p class="formula">Hasil konversi:</p>
+      <ul class="conv">${items}</ul>
+    </div>`;
   });
 }
-$("ns-btn").addEventListener("click", convert);
-$("ns-val").addEventListener("input", () => { $("ns-val").value.trim() ? convert() : ($("ns-out").innerHTML = ""); });
-$("ns-base").addEventListener("change", () => { if ($("ns-val").value.trim()) convert(); });
+on("ns-btn", "click", convert);
+on("ns-val", "input", () => { $("ns-val").value.trim() ? convert() : ($("ns-out").innerHTML = ""); });
+on("ns-base", "change", () => { if ($("ns-val").value.trim()) convert(); });
 
 /* ---------- Level 6: Kombinatorika ---------- */
 const fact = (k) => { let f = 1n; for (let i = 2n; i <= k; i++) f *= i; return f; };
-// n × (n−1) × ... × (n−r+1)
+// n × (n-1) × ... sebanyak r bilangan
 const prod = (n, r) => { let p = 1n; for (let i = 0n; i < r; i++) p *= n - i; return p; };
 function expand(n, r) {
   if (r === 0) return "1";
   const t = Array.from({ length: r }, (_, i) => n - i);
-  return r <= 6 ? t.join(" × ") : `${t.slice(0, 3).join(" × ")} × … × ${t.slice(-2).join(" × ")}`;
+  return r <= 6
+    ? t.join(" × ")
+    : `${t[0]} × ${t[1]} × ${t[2]} dan seterusnya sampai ${t[r - 1]} (sebanyak ${r} bilangan)`;
 }
 
-$("cb-btn").addEventListener("click", () => run("cb-out", () => {
+on("cb-btn", "click", () => run("cb-out", () => {
   const nB = readInt("cb-n", "Nilai n"), rB = readInt("cb-r", "Nilai r");
-  if (nB < 0n) throw new Error("n harus bilangan bulat tidak negatif (n ≥ 0).");
-  if (rB < 0n) throw new Error("r harus bilangan bulat tidak negatif (r ≥ 0).");
-  if (rB > nB) throw new Error(`Syarat 0 ≤ r ≤ n tidak terpenuhi: r = ${rB} lebih besar dari n = ${nB}.`);
+  if (nB < 0n) throw new Error("n harus bilangan bulat tidak negatif.");
+  if (rB < 0n) throw new Error("r harus bilangan bulat tidak negatif.");
+  if (rB > nB) throw new Error(`Syarat 0 ≤ r ≤ n tidak terpenuhi: r (${rB}) tidak boleh lebih besar dari n (${nB}).`);
   if (nB > 100n) throw new Error("n dibatasi maksimal 100 agar hasil tetap mudah dibaca.");
   const n = Number(nB), r = Number(rB), nr = n - r;
-  const type = $("cb-type").value;
   const P = prod(nB, rB);
-  const small = n <= 20; // tampilkan nilai faktorial hanya jika masih pendek
+  const kecil = n <= 20; // nilai faktorial hanya ditampilkan jika masih pendek
+  const nol = r === 0 || nr === 0 ? `<p class="formula">Catatan: 0! bernilai 1.</p>` : "";
 
-  if (type === "P") {
+  if ($("cb-type").value === "P") {
     return `<div class="res">
       <div class="big">P(${n},${r}) = ${P}</div>
-      <p class="formula">Rumus: P(n,r) = n! / (n−r)!</p>
+      <p class="formula">Rumus: P(n,r) = n! / (n - r)!  (tanda / berarti dibagi)</p>
       <ol>
-        <li>Substitusi: P(${n},${r}) = ${n}! / (${n}−${r})! = ${n}! / ${nr}!</li>
-        ${small ? `<li>Nilai faktorial: ${n}! = ${fact(nB)} dan ${nr}! = ${fact(BigInt(nr))}</li>` : ""}
-        <li>Sederhanakan: ${n}! / ${nr}! = ${expand(n, r)}</li>
-        <li>Hasil = <b>${P}</b></li>
+        <li>Masukkan angka: P(${n},${r}) = ${n}! / (${n} - ${r})! = ${n}! / ${nr}!</li>
+        ${kecil ? `<li>Hitung faktorial: ${n}! = ${fact(nB)} dan ${nr}! = ${fact(BigInt(nr))}.</li>` : ""}
+        <li>Sederhanakan: ${n}! dibagi ${nr}! sama dengan hasil kali ${r} bilangan, mulai dari ${n} turun satu per satu: ${expand(n, r)}.</li>
+        <li>Hasil akhir: P(${n},${r}) = ${P}.</li>
       </ol>
-      <p class="formula">Permutasi memperhatikan urutan: susunan ABC dan BAC dihitung berbeda.</p>
+      ${nol}
+      <p class="formula">Permutasi memperhatikan urutan, jadi susunan ABC dan BAC dihitung berbeda.</p>
     </div>`;
   }
   const rf = fact(rB), C = P / rf;
   return `<div class="res">
     <div class="big">C(${n},${r}) = ${C}</div>
-    <p class="formula">Rumus: C(n,r) = n! / (r!(n−r)!)</p>
+    <p class="formula">Rumus: C(n,r) = n! / (r! × (n - r)!)  (tanda / berarti dibagi)</p>
     <ol>
-      <li>Substitusi: C(${n},${r}) = ${n}! / (${r}! × ${nr}!)</li>
-      ${small ? `<li>Nilai faktorial: ${n}! = ${fact(nB)}, ${r}! = ${rf}, ${nr}! = ${fact(BigInt(nr))}</li>` : ""}
-      <li>Sederhanakan: ${n}! / ${nr}! = ${expand(n, r)} = ${P}, lalu bagi dengan ${r}! = ${rf}</li>
-      <li>Hasil = ${P} ÷ ${rf} = <b>${C}</b></li>
+      <li>Masukkan angka: C(${n},${r}) = ${n}! / (${r}! × ${nr}!)</li>
+      ${kecil ? `<li>Hitung faktorial: ${n}! = ${fact(nB)}, ${r}! = ${rf}, dan ${nr}! = ${fact(BigInt(nr))}.</li>` : ""}
+      <li>Hitung ${n}! dibagi ${nr}! lebih dulu: ${expand(n, r)} = ${P}.</li>
+      <li>Karena urutan tidak diperhatikan, bagi lagi dengan ${r}! = ${rf}: ${P} dibagi ${rf} = ${C}.</li>
+      <li>Hasil akhir: C(${n},${r}) = ${C}.</li>
     </ol>
-    <p class="formula">Kombinasi tidak memperhatikan urutan: ABC dan BAC dianggap satu pilihan yang sama, sehingga C(n,r) = P(n,r) ÷ r!.</p>
+    ${nol}
+    <p class="formula">Kombinasi tidak memperhatikan urutan, jadi ABC dan BAC dianggap satu pilihan yang sama.</p>
   </div>`;
 }));
 
@@ -395,6 +559,31 @@ $("cb-btn").addEventListener("click", () => run("cb-out", () => {
 document.querySelectorAll(".card input").forEach((inp) =>
   inp.addEventListener("keydown", (e) => { if (e.key === "Enter") inp.closest(".card").querySelector(".btn").click(); })
 );
+
+
+/* ---------- Router: satu file, banyak halaman ---------- */
+const HALAMAN = {
+  "beranda": "Beranda", "bukti-belajar": "Bukti Belajar", "modulo": "Kalkulator Modulo",
+  "kongruensi": "Pengecek Kongruensi", "bilangan": "Kalkulator Sistem Bilangan", "kombinatorika": "Kalkulator Kombinatorika"
+};
+function tampilkanHalaman() {
+  let h = location.hash.replace("#", "") || "beranda";
+  const keBiodata = h === "biodata";
+  if (keBiodata) h = "beranda";
+  if (!(h in HALAMAN)) h = "beranda";
+  document.querySelectorAll(".page").forEach((p) => p.classList.toggle("active", p.id === "page-" + h));
+  // Tandai menu yang aktif (halaman kalkulator termasuk dalam Bukti Belajar)
+  const aktif = keBiodata ? "#biodata" : ["beranda", "bukti-belajar"].includes(h) ? "#" + h : "#bukti-belajar";
+  document.querySelectorAll("#menu a").forEach((a) => {
+    if (a.getAttribute("href") === aktif) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
+  document.title = HALAMAN[h] + " – Biodata Online Muhammad Julfikar Al-Hadid";
+  if (keBiodata) $("biodata").scrollIntoView(); else window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", tampilkanHalaman);
+tampilkanHalaman();
+
 </script>
 </body>
 </html>
